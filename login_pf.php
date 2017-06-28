@@ -9,7 +9,7 @@ if(isset($_POST['login']))
 {
 	$login = $_POST['login'];
 	$senha = $_POST['senha'];
-	autenticalogin($login,$senha);	
+	autenticaloginpf($login,$senha);	
 }
 ?>
 
@@ -34,7 +34,7 @@ if(isset($_POST['login']))
 				</div>
 				<div class="row">
 					<div class="col-md-offset-1 col-md-10">
-					<form method="POST" action="login.php" class="form-horizontal" role="form">
+					<form method="POST" action="login_pf.php" class="form-horizontal" role="form">
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-6">
 								<input type="text" name="login" class="form-control" placeholder="Usuário">
@@ -51,11 +51,15 @@ if(isset($_POST['login']))
 						</div>
 					</form>
 					
-					<br />
+						<br />
 					
 						<div class="form-group">
-							<div class="col-md-offset-2 col-md-8">
+							<div class="col-md-offset-2 col-md-6">
 								<p>Não possui cadastro? <a href="cadastro.php">Clique aqui.</a></p>								
+								<br />
+							</div>
+							<div class="col-md-6">
+								<p>Esqueceu a senha? <a href="cadastro.php">Clique aqui.</a></p>								
 								<br />
 							</div>
 						</div>

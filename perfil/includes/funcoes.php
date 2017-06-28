@@ -15,7 +15,7 @@ function recuperaPessoa($id,$tipo)
 		switch($tipo)
 		{
 			case '1':
-				$sql = "SELECT * FROM sis_pessoa_fisica WHERE Id_PessoaFisica = $id";
+				$sql = "SELECT * FROM usuario_pf WHERE Id_PessoaFisica = $id";
 				$query = mysqli_query($con,$sql);
 				$x = mysqli_fetch_array($query);
 				$y['nome'] = $x['Nome']; 
@@ -28,7 +28,7 @@ function recuperaPessoa($id,$tipo)
 				return $y;
 			break;
 			case '2':
-				$sql = "SELECT * FROM sis_pessoa_juridica WHERE Id_PessoaJuridica = $id";
+				$sql = "SELECT * FROM usuario_pj WHERE Id_PessoaJuridica = $id";
 				$query = mysqli_query($con,$sql);
 				$x = mysqli_fetch_array($query);
 				$y['nome'] = $x['RazaoSocial']; 

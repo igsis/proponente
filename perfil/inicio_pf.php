@@ -85,33 +85,61 @@ $fisica = recuperaDados("sis_pessoa_fisica",$ultimo,"Id_PessoaFisica");
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
-			<h3>DADOS BANCÁRIOS</h3>
+			<h3>INFORMAÇÕES INICIAIS</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> - <b>Nome:</b> <?php echo $idPessoaFisica; ?></p>
-			<h5><?php if(isset($mensagem)){echo $mensagem;}; echo $idPessoaFisica; ?></h5>
+			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?perfil=contratos&p=frm_edita_pf&id_pf=<?php echo $ultimo ?>" method="post">
-						 
+			<form class="form-horizontal" role="form" action="?inicio.php" method="post">
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
-						<select class="form-control" name="codBanco" id="codBanco">
-							<option></option>
-							<option value='32'>Banco do Brasil S.A.</option>
-							<?php geraOpcao("igsis_bancos",$fisica['codBanco'],"");	?>
-						</select>	
+					<div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
+						<input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" value="<?php echo $fisica['Nome']; ?>" >
 					</div>
-				</div> 
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><strong>Nome Artístico:</strong><br/>
+						<input type="text" class="form-control" id="NomeArtistico" name="NomeArtistico" placeholder="Nome Artístico" value="<?php echo $fisica['NomeArtistico']; ?>">
+					</div>
+				</div>
+				  
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-6"><strong>Telefone #1 *:</strong><br/>
+						<input type="text" class="form-control" name="Telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $fisica['Telefone1']; ?>">
+					</div>
+					<div class="col-md-6"><strong>Telefone #2:</strong><br/>
+						<input type="text" class="form-control" name="Telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $fisica['Telefone2']; ?>">
+					</div>
+				</div>
+						  
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
+						<input type="text" class="form-control" name="Telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $fisica['Telefone3']; ?>" >
+					</div>
+					<div class="col-md-6"><strong>E-mail:</strong><br/>
+						<input type="text" class="form-control" id="Email" name="Email" placeholder="E-mail" value="<?php echo $fisica['Email']; ?>" >
+					</div>
+				</div>	  
 		  
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>Agência</strong><br/>
-						<input type="text" class="form-control" id="agencia" name="agencia" placeholder="" value="<?php echo $fisica['agencia']; ?>">
+					<div class="col-md-offset-2 col-md-6"><strong>Estado civil:</strong><br/>
+						<select class="form-control" id="IdEstadoCivil" name="IdEstadoCivil" >
+							<?php geraOpcao("sis_estado_civil",$fisica['IdEstadoCivil'],""); ?>  
+						</select>
 					</div>				  
-					<div class=" col-md-6"><strong>Conta:</strong><br/>
-						<input type="text" class="form-control" id="conta" name="conta" placeholder="" value="<?php echo $fisica['conta']; ?>">
+					<div class=" col-md-6"><strong>Data de nascimento:</strong><br/>
+						<input type="text" class="form-control" id="datepicker01" name="DataNascimento" placeholder="Data de Nascimento" value="<?php echo exibirDataBr($fisica['DataNascimento']); ?>">
 					</div>
-				</div> 
+				</div>
 		  
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><strong>Nacionalidade:</strong><br/>
+						<input type="text" class="form-control" id="Nacionalidade" name="Nacionalidade" placeholder="Nacionalidade" value="<?php echo $fisica['Nacionalidade']; ?>">
+					</div>	
+				</div>
+		  
+				<!-- Botão para Gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<input type="hidden" name="cadastrarFisica" value="<?php echo $fisica['Id_PessoaFisica'] ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
@@ -119,21 +147,18 @@ $fisica = recuperaDados("sis_pessoa_fisica",$ultimo,"Id_PessoaFisica");
 					</div>
 				</div>
 			</form>
-		
-				<!-- Botão para Voltar e Prosseguir -->
-				<div class="form-group">					
-					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
-						</form>	
-					</div>
-					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=anexos_pf" method="post">	
+			
+			
+				<!-- Botão para Prosseguir -->
+				<div class="form-group">
+					<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">
+						<div class="col-md-offset-8 col-md-2">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
-						</form>	
-					</div>					
+						</div>
+					</form>
 				</div>
-				
+			
+		
 			</div>
 		</div>
 	</div>
