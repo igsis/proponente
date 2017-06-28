@@ -183,7 +183,7 @@ Intro
 #intro{
     height:635px;
     width:100%;
-    background-color: #4169E1;
+    background-color: #20B2AA;
     background-image: url(../img/bg-mac.png);
     background-position:center;
     background-repeat:no-repeat;
@@ -581,7 +581,7 @@ more media queries
 
 #bar{
 	
-	background: #4169E1;
+	background: #20B2AA;
 	height:50px;
 	line-height:100px;
 	position:fixed;
