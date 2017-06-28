@@ -7,7 +7,7 @@
 		
 	// Framework
 	//autentica login e cria inicia uma session
-	function autenticalogin($login, $senha)
+	function autenticaloginpf($login, $senha)
 	{	
 		$sql = "SELECT * FROM usuario AS usr
 		WHERE usr.login = '$login' LIMIT 0,1";
@@ -30,7 +30,47 @@
 					$_SESSION['idUsuario'] = $user['id'];
 					$log = "Fez login.";
 					//gravarLog($log);
-					header("Location: visual/index.php");
+					header("Location: visual/index_pf.php");
+				}
+				else
+				{
+					echo "A senha está incorreta.";
+				}
+			}
+			else
+			{
+				echo "O usuário não existe.";
+			}
+		}
+		else
+		{
+			echo "Erro no banco de dados";
+		}	
+	}
+	function autenticaloginpj($login, $senha)
+	{	
+		$sql = "SELECT * FROM usuario AS usr
+		WHERE usr.login = '$login' LIMIT 0,1";
+		$con = bancoMysqli();
+		$query = mysqli_query($con,$sql);
+		//query que seleciona os campos que voltarão para na matriz
+		if($query)
+		{
+			//verifica erro no banco de dados
+			if(mysqli_num_rows($query) > 0)
+			{
+				// verifica se retorna usuário válido
+				$user = mysqli_fetch_array($query);
+				if($user['senha'] == md5($_POST['senha']))
+				{
+					// compara as senhas
+					session_start();
+					$_SESSION['login'] = $user['login'];
+					$_SESSION['nome'] = $user['nome'];
+					$_SESSION['idUsuario'] = $user['id'];
+					$log = "Fez login.";
+					//gravarLog($log);
+					header("Location: visual/index_pj.php");
 				}
 				else
 				{

@@ -31,16 +31,18 @@
 						
 						<br />	
 						
-						<form method="POST" action="login.php" class="form-horizontal" role="form">
-							<div class="form-group">
-								<div class="col-md-offset-1 col-md-3">
+						<div class="form-group">
+							<div class="col-md-offset-1 col-md-3">
+								<form method="POST" action="login_pf.php" class="form-horizontal" role="form">
 									<button type="submit" class="btn btn-theme btn-lg btn-block">Pessoa Física</button>
-								</div>	
-								<div class="col-md-offset-4 col-md-3">
+								</form>	
+							</div>	
+							<div class="col-md-offset-4 col-md-3">
+								<form method="POST" action="login_pj.php" class="form-horizontal" role="form">
 									<button type="submit" class="btn btn-theme btn-lg btn-block">Pessoa Jurídica</button>
-								</div>
+								</form>	
 							</div>
-						</form>
+						</div>
 						
 					</div>
 				</div>
