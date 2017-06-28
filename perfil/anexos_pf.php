@@ -69,7 +69,7 @@ $campo = recuperaPessoa($idPessoa,1);
 
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_interno.php'; ?>
+	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
         <div class="row">
 		    <div class="col-md-offset-2 col-md-8">
 				<div class="section-heading">

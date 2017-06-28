@@ -41,12 +41,12 @@
 	}
 ?>
 <section id="contact" class="home-section bg-white">
-	<div class="container">
+	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8">
 				<div class="text-hide">
 					<h4>MUDANÇA DE SENHA</h4>
-					<p>&nbsp;</p>
+					<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> - <b>Nome:</b> <?php echo $idPessoaFisica; ?></p>
 					<h6><?php if(isset($mensagem)){echo $mensagem;} ?></h6>
 				</div>
 			</div>

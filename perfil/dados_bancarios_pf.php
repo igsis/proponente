@@ -83,7 +83,7 @@ $fisica = recuperaDados("sis_pessoa_fisica",$ultimo,"Id_PessoaFisica");
 ?>
 
 <section id="contact" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_interno.php'; ?>
+	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>DADOS BANCÁRIOS</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> - <b>Nome:</b> <?php echo $idPessoaFisica; ?></p>
