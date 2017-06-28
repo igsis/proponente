@@ -28,6 +28,6 @@ ini_set('session.gc_maxlifetime', 60*60); // 60 minutos
     </head>
 	<body>
 		<div id="bar">
-			<p id="p-bar">&nbsp;<img src="images/logo_pequeno.png" />
+			<p id="p-bar">&nbsp;MACAPAC - Mapeamento e Cadastro de Artistas e Profissionais de Arte e Cultura<!--<img src="images/logo_pequeno.png" />-->
 			</p>
 		</div>
