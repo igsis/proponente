@@ -1,74 +1,34 @@
 ﻿<?php
 $con = bancoMysqli();
 $idPessoaFisica = $_SESSION['idUsuario'];
-$ultimo = $idPessoaFisica;
+
 
 if(isset($_POST['cadastrarFisica']))
 {
 	$idPessoaFisica = $_POST['cadastrarFisica'];
-	$Nome = addslashes($_POST['Nome']);
-	$NomeArtistico = addslashes($_POST['NomeArtistico']);
-	$RG = $_POST['RG'];
-	$CPF = $_POST['CPF'];
-	$CCM = $_POST['CCM'];
-	$IdEstadoCivil = $_POST['IdEstadoCivil'];
-	$DataNascimento = exibirDataMysql($_POST['DataNascimento']);
-	$Nacionalidade = $_POST['Nacionalidade'];
-	$CEP = $_POST['CEP'];
-	$Numero = $_POST['Numero'];
-	$Complemento = $_POST['Complemento'];
-	$Bairro = $_POST['Bairro'];
-	$Cidade = $_POST['Cidade'];
-	$Telefone1 = $_POST['Telefone1'];
-	$Telefone2 = $_POST['Telefone2'];
-	$Telefone3 = $_POST['Telefone3'];
-	$Email = $_POST['Email'];
-	$DRT = $_POST['DRT'];
-	$cbo = $_POST['cbo'];
-	$Funcao = $_POST['Funcao'];
-	$InscricaoINSS = $_POST['InscricaoINSS'];
-	$OMB = $_POST['OMB'];
-	$codBanco = $_POST['codBanco'];
-	$agencia = $_POST['agencia'];
-	$conta = $_POST['conta'];
-	$Observacao = addslashes($_POST['Observacao']);
-	$tipoDocumento = $_POST['tipoDocumento'];
-	$Pis = 0;
-	$data = date('Y-m-d');
-	$idUsuario = $_SESSION['idUsuario'];
+	$Nome = addslashes($_POST['nome']);
+	$NomeArtistico = addslashes($_POST['nomeArtistico']);
+	$IdEstadoCivil = $_POST['idEstadoCivil'];
+	$DataNascimento = exibirDataMysql($_POST['dataNascimento']);
+	$Nacionalidade = $_POST['nacionalidade'];
+	$Telefone1 = $_POST['telefone1'];
+	$Telefone2 = $_POST['telefone2'];
+	$Telefone3 = $_POST['telefone3'];
+	$Email = $_POST['email'];
 	
-	$sql_atualizar_pessoa = "UPDATE sis_pessoa_fisica SET
-	`Nome` = '$Nome',
-	`NomeArtistico` = '$NomeArtistico',
-	`RG` = '$RG', 
-	`CPF` = '$CPF', 
-	`CCM` = '$CCM', 
-	`IdEstadoCivil` = '$IdEstadoCivil' , 
-	`DataNascimento` = '$DataNascimento', 
-	`Nacionalidade` = '$Nacionalidade', 
-	`CEP` = '$CEP', 
-	`Numero` = '$Numero', 
-	`Complemento` = '$Complemento', 
-	`Telefone1` = '$Telefone1', 
-	`Telefone2` = '$Telefone2',  
-	`Telefone3` = '$Telefone3', 
-	`Email` = '$Email', 
-	`DRT` = '$DRT', 
-	`cbo` = '$cbo',
-	`Funcao` = '$Funcao', 
-	`InscricaoINSS` = '$InscricaoINSS', 
-	`Pis` = '$Pis', 
-	`OMB` = '$OMB', 
-	`DataAtualizacao` = '$data', 
-	`Observacao` = '$Observacao', 
-	`IdUsuario` = '$idUsuario', 
-	`tipoDocumento` = '$tipoDocumento', 
-	`codBanco` = '$codBanco', 
-	`agencia` = '$agencia', 
-	`conta` = '$conta'  
-	WHERE `Id_PessoaFisica` = '$idPessoaFisica'";	
+	$sql_atualiza_pf = "UPDATE usuario_pf SET
+	`nome` = '$Nome',
+	`nomeArtistico` = '$NomeArtistico',
+	`idEstadoCivil` = '$IdEstadoCivil', 
+	`dataNascimento` = '$DataNascimento', 
+	`nacionalidade` = '$Nacionalidade', 
+	`telefone1` = '$Telefone1', 
+	`telefone2` = '$Telefone2',  
+	`telefone3` = '$Telefone3', 
+	`email` = '$Email'
+	WHERE `id` = '$idPessoaFisica'";	
 	
-	if(mysqli_query($con,$sql_atualizar_pessoa))
+	if(mysqli_query($con,$sql_atualiza_pf))
 	{
 		$mensagem = "Atualizado com sucesso!";	
 	}
@@ -78,71 +38,70 @@ if(isset($_POST['cadastrarFisica']))
 	}	
 }
 
-$fisica = recuperaDados("sis_pessoa_fisica",$ultimo,"Id_PessoaFisica");
-
+$pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 ?>
 
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>INFORMAÇÕES INICIAIS</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> - <b>Nome:</b> <?php echo $idPessoaFisica; ?></p>
+			<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?inicio.php" method="post">
+			<form class="form-horizontal" role="form" action="?inicio_pf.php" method="post">
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
-						<input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" value="<?php echo $fisica['Nome']; ?>" >
+						<input type="text" class="form-control" name="nome" placeholder="Insira seu nome completo" value="<?php echo $pf['nome']; ?>" >
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome Artístico:</strong><br/>
-						<input type="text" class="form-control" id="NomeArtistico" name="NomeArtistico" placeholder="Nome Artístico" value="<?php echo $fisica['NomeArtistico']; ?>">
+						<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" value="<?php echo $pf['nomeArtistico']; ?>">
 					</div>
 				</div>
 				  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Telefone #1 *:</strong><br/>
-						<input type="text" class="form-control" name="Telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $fisica['Telefone1']; ?>">
+						<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone1']; ?>">
 					</div>
 					<div class="col-md-6"><strong>Telefone #2:</strong><br/>
-						<input type="text" class="form-control" name="Telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $fisica['Telefone2']; ?>">
+						<input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone2']; ?>">
 					</div>
 				</div>
 						  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
-						<input type="text" class="form-control" name="Telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $fisica['Telefone3']; ?>" >
+						<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone3']; ?>" >
 					</div>
 					<div class="col-md-6"><strong>E-mail:</strong><br/>
-						<input type="text" class="form-control" id="Email" name="Email" placeholder="E-mail" value="<?php echo $fisica['Email']; ?>" >
+						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pf['email']; ?>" >
 					</div>
 				</div>	  
 		  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Estado civil:</strong><br/>
-						<select class="form-control" id="IdEstadoCivil" name="IdEstadoCivil" >
-							<?php geraOpcao("sis_estado_civil",$fisica['IdEstadoCivil'],""); ?>  
+						<select class="form-control" name="idEstadoCivil" >
+							<?php geraOpcao("estado_civil",$pf['idEstadoCivil'],""); ?>  
 						</select>
 					</div>				  
 					<div class=" col-md-6"><strong>Data de nascimento:</strong><br/>
-						<input type="text" class="form-control" id="datepicker01" name="DataNascimento" placeholder="Data de Nascimento" value="<?php echo exibirDataBr($fisica['DataNascimento']); ?>">
+						<input type="text" class="form-control" id="datepicker01" name="dataNascimento" placeholder="Data de Nascimento" value="<?php echo exibirDataBr($pf['dataNascimento']); ?>">
 					</div>
 				</div>
 		  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nacionalidade:</strong><br/>
-						<input type="text" class="form-control" id="Nacionalidade" name="Nacionalidade" placeholder="Nacionalidade" value="<?php echo $fisica['Nacionalidade']; ?>">
+						<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $pf['nacionalidade']; ?>">
 					</div>	
 				</div>
 		  
 				<!-- Botão para Gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarFisica" value="<?php echo $fisica['Id_PessoaFisica'] ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+						<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>

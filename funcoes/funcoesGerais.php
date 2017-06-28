@@ -9,7 +9,7 @@
 	//autentica login e cria inicia uma session
 	function autenticaloginpf($login, $senha)
 	{	
-		$sql = "SELECT * FROM usuario AS usr
+		$sql = "SELECT * FROM usuario_pf AS usr
 		WHERE usr.login = '$login' LIMIT 0,1";
 		$con = bancoMysqli();
 		$query = mysqli_query($con,$sql);
