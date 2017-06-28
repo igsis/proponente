@@ -49,7 +49,7 @@
 	}
 	function autenticaloginpj($login, $senha)
 	{	
-		$sql = "SELECT * FROM usuario AS usr
+		$sql = "SELECT * FROM usuario_pj AS usr
 		WHERE usr.login = '$login' LIMIT 0,1";
 		$con = bancoMysqli();
 		$query = mysqli_query($con,$sql);
