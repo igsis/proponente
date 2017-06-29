@@ -25,7 +25,7 @@
 }
 
 .breadcrumbs .breadcrumb li a {
-  background:#4169E1;
+  background:#20B2AA;
   color: #FFFFFF;
   padding: 3px 7px;
 }
@@ -36,7 +36,7 @@
   width: auto;
   border-width: 8px;
   border-style: solid;
-  border-color:transparent transparent transparent #4169E1;
+  border-color:transparent transparent transparent #20B2AA;
   position: absolute;
   top: 11px;
   left:48px;
@@ -54,7 +54,7 @@
 
 
 #list_items .list_info .list_menu {
-	background: #4169E1;
+	background: #20B2AA;
 	color: #fff;
 	font-size: 16px;
 	font-family: 'Open Sans', sans-serif;
@@ -109,7 +109,7 @@
 
 
 #list_items .list_info .list_total_price {
-  color: #4169E1;
+  color: #20B2AA;
   font-size: 24px;
 }
 
@@ -156,7 +156,7 @@
 }
 
 .list_delete a:hover {
-  background:#4169E1
+  background:#20B2AA
 }
 
 
@@ -261,7 +261,7 @@
 }
 
 .update, .check_out {
-  background: #4169E1;
+  background: #20B2AA;
   border-radius: 0;
   color: #FFFFFF;
   margin-top: 18px;

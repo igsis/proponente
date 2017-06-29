@@ -5,7 +5,7 @@ $idPessoaJuridica = $_SESSION['idUsuario'];
 
 if(isset($_POST['cadastrarJuridica']))
 {
-	$idPessoaFisica = $_POST['cadastrarJuridica'];
+	$idPessoaJuridica = $_POST['cadastrarJuridica'];
 	$RazaoSocial = addslashes($_POST['razaoSocial']);
 	$Telefone1 = $_POST['telefone1'];
 	$Telefone2 = $_POST['telefone2'];
