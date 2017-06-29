@@ -1,74 +1,21 @@
 ﻿<?php
 $con = bancoMysqli();
 $idPessoaFisica = $_SESSION['idUsuario'];
-$ultimo = $idPessoaFisica;
 
 if(isset($_POST['cadastrarFisica']))
 {
 	$idPessoaFisica = $_POST['cadastrarFisica'];
-	$Nome = addslashes($_POST['Nome']);
-	$NomeArtistico = addslashes($_POST['NomeArtistico']);
-	$RG = $_POST['RG'];
-	$CPF = $_POST['CPF'];
-	$CCM = $_POST['CCM'];
-	$IdEstadoCivil = $_POST['IdEstadoCivil'];
-	$DataNascimento = exibirDataMysql($_POST['DataNascimento']);
-	$Nacionalidade = $_POST['Nacionalidade'];
-	$CEP = $_POST['CEP'];
-	$Numero = $_POST['Numero'];
-	$Complemento = $_POST['Complemento'];
-	$Bairro = $_POST['Bairro'];
-	$Cidade = $_POST['Cidade'];
-	$Telefone1 = $_POST['Telefone1'];
-	$Telefone2 = $_POST['Telefone2'];
-	$Telefone3 = $_POST['Telefone3'];
-	$Email = $_POST['Email'];
-	$DRT = $_POST['DRT'];
-	$cbo = $_POST['cbo'];
-	$Funcao = $_POST['Funcao'];
-	$InscricaoINSS = $_POST['InscricaoINSS'];
-	$OMB = $_POST['OMB'];
-	$codBanco = $_POST['codBanco'];
-	$agencia = $_POST['agencia'];
-	$conta = $_POST['conta'];
-	$Observacao = addslashes($_POST['Observacao']);
-	$tipoDocumento = $_POST['tipoDocumento'];
-	$Pis = 0;
-	$data = date('Y-m-d');
-	$idUsuario = $_SESSION['idUsuario'];
+	$CBO = $_POST['cbo'];
+	$Funcao = $_POST['funcao'];
+	$OMB = $_POST['omb'];
 	
-	$sql_atualizar_pessoa = "UPDATE sis_pessoa_fisica SET
-	`Nome` = '$Nome',
-	`NomeArtistico` = '$NomeArtistico',
-	`RG` = '$RG', 
-	`CPF` = '$CPF', 
-	`CCM` = '$CCM', 
-	`IdEstadoCivil` = '$IdEstadoCivil' , 
-	`DataNascimento` = '$DataNascimento', 
-	`Nacionalidade` = '$Nacionalidade', 
-	`CEP` = '$CEP', 
-	`Numero` = '$Numero', 
-	`Complemento` = '$Complemento', 
-	`Telefone1` = '$Telefone1', 
-	`Telefone2` = '$Telefone2',  
-	`Telefone3` = '$Telefone3', 
-	`Email` = '$Email', 
-	`DRT` = '$DRT', 
-	`cbo` = '$cbo',
-	`Funcao` = '$Funcao', 
-	`InscricaoINSS` = '$InscricaoINSS', 
-	`Pis` = '$Pis', 
-	`OMB` = '$OMB', 
-	`DataAtualizacao` = '$data', 
-	`Observacao` = '$Observacao', 
-	`IdUsuario` = '$idUsuario', 
-	`tipoDocumento` = '$tipoDocumento', 
-	`codBanco` = '$codBanco', 
-	`agencia` = '$agencia', 
-	`conta` = '$conta'  
-	WHERE `Id_PessoaFisica` = '$idPessoaFisica'";	
+	$sql_atualiza_complementares = "UPDATE usuario_pf SET
+	`cbo` = '$CBO',
+	`funcao` = '$Funcao', 
+	`omb` = '$OMB'
+	WHERE `id` = '$idPessoaFisica'";	
 	
-	if(mysqli_query($con,$sql_atualizar_pessoa))
+	if(mysqli_query($con,$sql_atualiza_complementares))
 	{
 		$mensagem = "Atualizado com sucesso!";	
 	}
@@ -78,7 +25,7 @@ if(isset($_POST['cadastrarFisica']))
 	}	
 }
 
-$fisica = recuperaDados("sis_pessoa_fisica",$ultimo,"Id_PessoaFisica");
+$pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 
 ?>
 
@@ -86,35 +33,35 @@ $fisica = recuperaDados("sis_pessoa_fisica",$ultimo,"Id_PessoaFisica");
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>INFORMAÇÕES COMPLEMENTARES</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> - <b>Nome:</b> <?php echo $idPessoaFisica; ?></p>
-			<h5><?php if(isset($mensagem)){echo $mensagem;}; echo $idPessoaFisica; ?></h5>
+			<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
+			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?perfil=contratos&p=frm_edita_pf&id_pf=<?php echo $ultimo ?>" method="post">
+			<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
 				
 						  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>DRT:</strong><br/>
-						<input type="text" class="form-control" id="DRT" name="DRT" placeholder="DRT" value="<?php echo $fisica['DRT']; ?>">
+						<input type="text" class="form-control" name="drt" placeholder="DRT" value="<?php echo $pf['drt']; ?>">
 					</div>
 					<div class="col-md-6"><strong>OMB:</strong><br/>
-						<input type="text" class="form-control" id="OMB" name="OMB" placeholder="OMB" value="<?php echo $fisica['OMB']; ?>">
+						<input type="text" class="form-control" name="omb" placeholder="OMB" value="<?php echo $pf['omb']; ?>">
 					</div>
 				</div>
 		 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>C.B.O.:</strong> <i><a href="http://www.mtecbo.gov.br/cbosite/pages/pesquisas/BuscaPorTitulo.jsf" target="_blank">Consulte o código aqui</a></i><br/>
-						<input type="text" class="form-control" id="cbo" name="cbo" placeholder="C.B.O."value="<?php echo $fisica['cbo']; ?>" >
+						<input type="text" class="form-control" id="cbo" name="cbo" placeholder="C.B.O."value="<?php echo $pf['cbo']; ?>" >
 					</div> 				  
 					<div class=" col-md-6"><strong>Função:</strong><br/>
-						<input type="text" class="form-control" id="Funcao" name="Funcao" placeholder="Função" value="<?php echo $fisica['Funcao']; ?>">
+						<input type="text" class="form-control" id="Funcao" name="funcao" placeholder="Função" value="<?php echo $pf['funcao']; ?>">
 					</div>
 				</div>				
 		  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarFisica" value="<?php echo $fisica['Id_PessoaFisica'] ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+						<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
