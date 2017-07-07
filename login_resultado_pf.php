@@ -13,43 +13,6 @@ if(isset($_POST['busca']))
 	$num_busca = mysqli_num_rows($query_busca);
 }
 
-	
-if(isset($_POST['cadastraNovoPf']))
-{
-	//verifica se há um post
-	if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) > 5))
-	{
-		if($_POST['senha01'] == $_POST['senha02'])
-		{
-			$nome = addslashes($_POST['nome']);
-			$email = $_POST['email'];
-			$login = $_POST['login'];
-			$senha01 = md5($_POST['senha01']);
-			$sql_senha = "INSERT INTO `usuario_pf`(nome, email, login, senha) VALUES ('$nome', '$email', '$login', '$senha01')";
-			$query_senha = mysqli_query($con,$sql_senha);
-			if($query_senha)
-			{
-				$mensagem = "Usuário cadastrado com sucesso!";	
-			}
-			else
-			{
-				$mensagem = "Erro ao cadastrar. Tente novamente.";	
-			}
-		}
-		else
-		{
-			// caso não tenha digitado 2 vezes
-			$mensagem = "As senhas não conferem. Tente novamente.";
-		}
-	}
-	else
-	{
-		$mensagem = "A senha não pode estar em branco e deve conter mais de 5 caracteres";	
-	}
-}
-
-
-
 if($num_busca > 0)
 { // Se exisitr, lista a resposta.
 ?>
@@ -118,7 +81,6 @@ if($num_busca > 0)
 else
 { // se não existir o cpf, imprime um formulário.
 ?>	
-
 	<html>
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -137,7 +99,7 @@ else
 					</div>
 					<div class="row">
 						<div class="col-md-offset-1 col-md-10">
-						<form class="form-horizontal" role="form" action="?perfil=representante1_pj_cadastro" method="post">
+						<form class="form-horizontal" role="form" action="login_cadastro_pf.php" method="post">
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
 									<input type="text" class="form-control" name="nome" placeholder="Nome completo">
@@ -175,8 +137,8 @@ else
 					</div>
 				</div>
 			</section> 
+			<?php include "visual/rodape.php" ?>
 		</body>
-	</html>	
 	</html>	
 <?php	
 }

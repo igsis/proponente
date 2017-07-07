@@ -37,8 +37,8 @@ require "funcoes/funcoesConecta.php";
 					 
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-8">
-								
-								<input type="submit" class="btn btn-theme btn-lg btn-block" value="Pesquisar">                   
+								<input type="hidden" value="busca">
+								<input type="submit" class="btn btn-theme btn-lg btn-block" value="Pesquisar">
 							</div>
 						</div>
 					</form>
