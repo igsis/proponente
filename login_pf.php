@@ -55,11 +55,11 @@ if(isset($_POST['login']))
 					
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-6">
-								<p>Não possui cadastro? <a href="verifica_pf.php">Clique aqui.</a></p>								
+								<p>Não possui cadastro? <a href="verifica_pf.php">Clique aqui.</a></p>							
 								<br />
 							</div>
 							<div class="col-md-6">
-								<p>Esqueceu a senha? <a href="cadastro.php">Clique aqui.</a></p>								
+								<p>Esqueceu a senha? <a href="visual/index_novo_pf.php">Clique aqui.</a></p>								
 								<br />
 							</div>
 						</div>

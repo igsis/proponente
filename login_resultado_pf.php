@@ -80,6 +80,7 @@ if($num_busca > 0)
 }
 else
 { // se não existir o cpf, imprime um formulário.
+	$busca = $_POST['busca'];
 ?>	
 	<html>
 		<head>
@@ -127,6 +128,7 @@ else
 							<!-- Botão para Gravar -->
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8">
+									<input type="hidden" value="<?php echo $busca ?>">
 									<input type="hidden" name="cadastraNovoPf">
 									<input type="submit" value="Enviar" class="btn btn-theme btn-lg btn-block">
 								</div>

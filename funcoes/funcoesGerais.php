@@ -4,7 +4,7 @@
 		@ini_set('display_errors', '1');
 		error_reporting(E_ALL);
 	}
-		
+			
 	// Framework
 	//autentica login e cria inicia uma session
 	function autenticaloginpf($login, $senha)

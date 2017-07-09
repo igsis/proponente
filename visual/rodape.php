@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<p>2017 @ SINCOR - Sistema Integrado de Controle Orçamentário / Secretaria Municipal de Cultura / Prefeitura de São Paulo</p>
+					<p>2017 @ MACAPAC - Mapeamento e Cadastro de Artistas e Profissionais de Arte e Cultura / Secretaria Municipal de Cultura / Prefeitura de São Paulo</p>
 				</div>
 				<div class="col-md-12">
 					<?php
@@ -12,7 +12,6 @@
 echo "<strong>SESSION</strong><pre>", var_dump($_SESSION), "</pre>";
 echo "<strong>POST</strong><pre>", var_dump($_POST), "</pre>";
 echo "<strong>GET</strong><pre>", var_dump($_GET), "</pre>";
-echo "<strong>SERVER</strong><pre>", var_dump($_SERVER), "</pre>";
 echo "<strong>FILES</strong><pre>", var_dump($_FILES), "</pre>";
 
 echo ini_get('session.gc_maxlifetime')/60; // em minutos

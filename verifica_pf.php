@@ -1,8 +1,4 @@
-<?php
-include "funcoes/funcoesGerais.php";
-require "funcoes/funcoesConecta.php";
-?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Mapeamento e Cadastro de Artistas e Profissionais de Arte e Cultura</title>
@@ -10,6 +6,9 @@ require "funcoes/funcoesConecta.php";
 		<link href="visual/css/style.css" rel="stylesheet" media="screen">
 		<link href="visual/color/default.css" rel="stylesheet" media="screen">
 		<script src="visual/js/modernizr.custom.js"></script>
+		<script type="text/javascript">
+		$(function(){
+	$( "#cpf" ).mask("999.999.999-99");</script>
 	</head>
 	<body>
 		<section id="services" class="home-section bg-white">
@@ -46,5 +45,5 @@ require "funcoes/funcoesConecta.php";
 			</div>
 		</section>
 		<?php include "visual/rodape.php" ?>
-    </body>
-</html>
+	</body>
+</html>		

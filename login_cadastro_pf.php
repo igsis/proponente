@@ -1,21 +1,29 @@
 <?php
+require "funcoes/funcoesGerais.php";
+require "funcoes/funcoesConecta.php";
+
+$busca = $_POST['cpf'];
+$con = bancoMysqli(); // conecta no banco
 
 if(isset($_POST['cadastraNovoPf']))
 {		
 	//verifica se há um post
-	if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) > 5))
+	if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) > 4))
 	{
 		if($_POST['senha01'] == $_POST['senha02'])
 		{
 			$nome = addslashes($_POST['nome']);
 			$email = $_POST['email'];
-			$login = $_POST['login'];
+			$login = $_POST['cpf'];
 			$senha01 = md5($_POST['senha01']);
 			$sql_senha = "INSERT INTO `usuario_pf`(nome, email, login, senha) VALUES ('$nome', '$email', '$login', '$senha01')";
 			$query_senha = mysqli_query($con,$sql_senha);
 			if($query_senha)
 			{
-				$mensagem = "Usuário cadastrado com sucesso!";	
+				$mensagem = "Usuário cadastrado com sucesso! Aguarde que você será redirecionado para a página de login";
+				 echo "<script type=\"text/javascript\">
+					  window.setTimeout(\"location.href='login_pf.php';\", 8000);
+					</script>";
 			}
 			else
 			{
@@ -53,7 +61,7 @@ if(isset($_POST['cadastraNovoPf']))
 				</div>
 				<div class="row">
 					<div class="col-md-offset-1 col-md-10">
-					<form class="form-horizontal" role="form" action="login_resultado_pf.php" method="post">
+					<form class="form-horizontal" role="form" action="login_cadastro_pf.php" method="post">
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
 								<input type="text" class="form-control" name="nome" placeholder="Nome completo">
