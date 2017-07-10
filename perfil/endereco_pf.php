@@ -44,7 +44,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					<div class="col-md-offset-2 col-md-6"><strong>CEP *:</strong><br/>
 						<input type="text" class="form-control" id="CEP" name="CEP" placeholder="CEP" value="<?php echo $pf['cep']; ?>">
 					</div>
-					<div class="col-md-6" align="left"><br/><i>Pressione a tecla Tab para carregar</i>
+					<div class="col-md-6" align="left"><i>Clique no número do CEP e pressione a tecla Tab para carregar</i>
 					</div>
 				</div>
 		  
