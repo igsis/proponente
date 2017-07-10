@@ -6,11 +6,8 @@
 		<link href="visual/css/style.css" rel="stylesheet" media="screen">
 		<link href="visual/color/default.css" rel="stylesheet" media="screen">
 		<script src="visual/js/modernizr.custom.js"></script>
-		<script type="text/javascript">
-		$(function(){
-	$( "#cpf" ).mask("999.999.999-99");</script>
 	</head>
-	<body>
+	<body>	
 		<section id="services" class="home-section bg-white">
 			<div class="container">
 				<div class="row">
