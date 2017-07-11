@@ -54,7 +54,7 @@ function recuperaPessoa($id,$tipo)
 }
 
 
-function listaArquivosPessoaSiscontrat($idPessoa,$tipo,$pedido,$form,$pag)
+function listaArquivosPessoa($idPessoa,$tipo,$form,$pag)
 {
 	$con = bancoMysqli();
 	$sql = "SELECT * 
@@ -75,7 +75,7 @@ function listaArquivosPessoaSiscontrat($idPessoa,$tipo,$pedido,$form,$pag)
 			<tbody>";
 	while($campo = mysqli_fetch_array($query))
 	{
-		$tipoDoc = recuperaDados("igsis_upload_docs",$campo['tipo'],"idTipoDoc");
+		$tipoDoc = recuperaDados("upload_tipo_documento",$campo['tipo'],"idTipoDoc");
 		echo "<tr>";
 		echo "<td class='list_description'>".$tipoDoc['documento']."</td>";
 		echo "<td class='list_description'><a href='../uploadsdocs/".$campo['arquivo']."' target='_blank'>".$campo['arquivo']."</a></td>";

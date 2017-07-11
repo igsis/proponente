@@ -2,8 +2,9 @@
 require "includes/funcoes.php";
 
 $con = bancoMysqli();
-$idPessoa = $_SESSION['idUsuario'];
+$idPessoaFisica = $_SESSION['idUsuario'];
 $tipoPessoa = 1;
+$pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 
 
 if(isset($_POST["enviar"]))
@@ -63,7 +64,7 @@ if(isset($_POST['apagar']))
 	}
 }
 
-$campo = recuperaPessoa($idPessoa,1); 
+$campo = recuperaPessoa($idPessoaFisica,1); 
 
 ?>
 
@@ -73,7 +74,7 @@ $campo = recuperaPessoa($idPessoa,1);
         <div class="row">
 		    <div class="col-md-offset-2 col-md-8">
 				<div class="section-heading">
-					<p><b>Código de cadastro:</b> <?php echo $idPessoa; ?> - <b>Nome:</b> <?php echo $idPessoa; ?></p>
+					<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 					<p>&nbsp;</p>
 					<h4>Arquivos anexados</h4>
 					<p><strong>Se na lista abaixo, o seu arquivo começar com "http://", por favor, clique, grave em seu computador, faça o upload novamente e apague a ocorrência citada.</strong></p>
@@ -84,7 +85,7 @@ $campo = recuperaPessoa($idPessoa,1);
 					<?php if($tipoPessoa == 1){$tipo = 1; } ?>
 					<?php //if($tipoPessoa == 3){$tipo = 3; } ?>			
 					<?php $pag = "contratos"; ?>
-					<?php listaArquivosPessoaSiscontrat($idPessoa,$tipo,$_SESSION['idPedido'],$p,$pag); ?>
+					<?php listaArquivosPessoa($idPessoaFisica,$tipo,$p,$pag); ?>
 				</div>
                 <!--
 				<div class="form-group">
@@ -116,7 +117,7 @@ $campo = recuperaPessoa($idPessoa,1);
 								<td width="50%"><td>
 							</tr>
 					<?php 
-						$sql_arquivos = "SELECT * FROM igsis_upload_docs WHERE tipoUpload = '$tipoPessoa'";
+						$sql_arquivos = "SELECT * FROM upload_tipo_documento WHERE tipoUpload = '$tipoPessoa'";
 						$query_arquivos = mysqli_query($con,$sql_arquivos);
 						while($arq = mysqli_fetch_array($query_arquivos))
 						{ 
