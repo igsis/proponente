@@ -60,11 +60,49 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 		  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+						<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
 			</form>
+			
+				<!-- Gerar FACC -->
+				<?php
+				/* criar aqui a recuperação de dados dos campos:
+					cpf
+					ccm
+					nome
+					cep
+					numero
+					telefone
+					codbanco
+					agencia
+					conta
+					nit
+					cbo
+					rg
+				*/
+				if ($idPessoaFisica == 1) //Se todos os campos necessários para a FACC forem preenchidos
+				{
+				?>
+				
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><br/></div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-md-offset-4 col-md-6">
+							<input type="hidden" name="gerarFacc" value="<?php echo $idPessoaFisica ?>">	
+							<input type="submit" value="Gerar FACC" class="btn btn-theme btn-lg btn-block">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><br/><br/></div>
+					</div>
+				<?php
+				}
+				?>				
 		
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">					
