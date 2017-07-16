@@ -66,10 +66,9 @@ if(isset($_POST['cadastraRg']))
 /* Edita o RG */
 if(isset($_POST['editaRg']))
 {
-	$titulo = addslashes($_POST['titulo']);
 	$numero = $_POST['numero'];
 	$dataRg = exibirDataMysql($_POST['dataRg']);
-	$sql_insere_rg = "UPDATE `rg` SET `titulo` = '$titulo', `numero` = '$numero', `dataEmissao` = '$dataRg' WHERE `idUsuario` = '$idPessoaFisica'";
+	$sql_insere_rg = "UPDATE `rg` SET `numero` = '$numero', `dataEmissao` = '$dataRg' WHERE `idUsuario` = '$idPessoaFisica'";
 	if(mysqli_query($con,$sql_insere_rg))
 	{
 		$mensagem = "Atualizado com sucesso!";	
@@ -115,11 +114,6 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				$rg = recuperaDados("rg","idUsuario",$idPessoaFisica);
 			?>	
 			<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>Título *:</strong><br/>
-						<input type="text" class="form-control" name="titulo" placeholder="Título" value="<?php echo $rg['titulo']; ?>">
-					</div>
-				</div>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>RG nº *:</strong><br/>
 						<input type="text" class="form-control" name="numero" placeholder="Número" value="<?php echo $rg['numero']; ?>">
