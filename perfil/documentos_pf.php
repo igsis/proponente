@@ -178,14 +178,14 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Inscrição INSS:</strong><br/>
-						<input type="text" class="form-control" id="inss" name="inss" placeholder="Nº da inscrição INSS" value="<?php echo $pf['inscricaoInss']; ?>">
+						<input type="text" class="form-control" id="inscricaoInss" name="inscricaoInss" placeholder="Nº da inscrição INSS" value="<?php echo $pf['inscricaoInss']; ?>">
 					</div>
 				</div>
 				
 				<!-- Botão para gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+						<input type="hidden" name="cadastrarFisica" value="<?php echo $inscricaoInss ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>

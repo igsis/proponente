@@ -55,7 +55,7 @@ if(isset($_POST['login']))
 					
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-6">
-								<p>Não possui cadastro? <a href="cadastro.php">Clique aqui.</a></p>								
+								<p>Não possui cadastro? <a href="verifica_pj.php">Clique aqui.</a></p>								
 								<br />
 							</div>
 							<div class="col-md-6">

@@ -13,7 +13,7 @@
 				<div class="row">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="section-heading">
-							<h3>Cadastro de Pessoa Física</h3>
+							<h3>Cadastro de Pessoa Jurídica</h3>
 							<p><strong><?php if(isset($mensagem)){echo $mensagem;} ?></strong></p>
 							<p><strong>Vamos verificar se você já possui cadastro no sistema.</strong></p>
 							<p></p>
@@ -23,9 +23,9 @@
 				<div class="row">
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<form method="POST" action="login_resultado_pf.php" class="form-horizontal" role="form">
-								<label>Insira o CPF</label>
-								<input type="text" name="busca" class="form-control" placeholder="CPF" id="cpf" >
+							<form method="POST" action="login_resultado_pj.php" class="form-horizontal" role="form">
+								<label>Insira o CNPJ</label>
+								<input type="text" name="busca" class="form-control" placeholder="CNPJ" id="cnpj" >
 								<br />             
 								<div class="form-group">
 									<div class="col-md-offset-2 col-md-8">
