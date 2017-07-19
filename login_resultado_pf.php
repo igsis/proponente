@@ -120,8 +120,8 @@ else
 								<div class="col-md-offset-2 col-md-6"><strong>CPF: *</strong><br/>
 									<input type="text" readonly class="form-control" name="cpf" value="<?php echo $busca ?>" placeholder="CPF">
 								</div>
-								<div class="col-md-6"><strong>E-mail: *</strong><br/>
-									<input type="text" class="form-control" name="email" placeholder="E-mail">
+								<div class="col-md-6"><strong>Email: *</strong><br/>
+									<input type="text" class="form-control" name="email" placeholder="Email">
 								</div>
 							</div>
 								  
