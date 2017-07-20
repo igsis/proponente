@@ -5,12 +5,12 @@ $idPessoaFisica = $_SESSION['idUsuario'];
 if(isset($_POST['cadastrarFisica']))
 {
 	$idPessoaFisica = $_POST['cadastrarFisica'];
-	$CodBanco = $_POST['codBanco'];
+	$CodigoBanco = $_POST['codigoBanco'];
 	$Agencia = $_POST['agencia'];
 	$Conta = $_POST['conta'];
 	
 	$sql_atualiza_pf = "UPDATE usuario_pf SET
-	`codBanco` = '$CodBanco', 
+	`codigoBanco` = '$CodigoBanco', 
 	`agencia` = '$Agencia', 
 	`conta` = '$Conta'
 	WHERE `id` = '$idPessoaFisica'";	
@@ -42,9 +42,9 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
-						<select class="form-control" name="codBanco" id="codBanco">
+						<select class="form-control" name="codigoBanco" id="codigoBanco">
 							<option></option>
-							<?php geraOpcao("banco",$pf['codBanco'],"");	?>
+							<?php geraOpcao("banco",$pf['codigoBanco'],"");	?>
 						</select>	
 					</div>
 				</div> 
@@ -75,7 +75,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					cep
 					numero
 					telefone
-					codbanco
+					codigobanco
 					agencia
 					conta
 					nit

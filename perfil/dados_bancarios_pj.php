@@ -5,12 +5,12 @@ $idPessoaJuridica = $_SESSION['idUsuario'];
 if(isset($_POST['cadastrarJuridica']))
 {
 	$idPessoaJuridica = $_POST['cadastrarJuridica'];
-	$CodBanco = $_POST['codBanco'];
+	$CodigoBanco = $_POST['codigoBanco'];
 	$Agencia = $_POST['agencia'];
 	$Conta = $_POST['conta'];
 	
 	$sql_atualiza_pj = "UPDATE usuario_pj SET
-	`codBanco` = '$CodBanco', 
+	`codigoBanco` = '$CodigoBanco', 
 	`agencia` = '$Agencia', 
 	`conta` = '$Conta'
 	WHERE `id` = '$idPessoaJuridica'";	
@@ -42,9 +42,9 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 						 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
-						<select class="form-control" name="codBanco" id="codBanco">
+						<select class="form-control" name="codigoBanco" id="codigoBanco">
 							<option value='32'>Banco do Brasil S.A.</option>
-							<?php geraOpcao("banco",$pj['codBanco'],""); ?>
+							<?php geraOpcao("banco",$pj['codigoBanco'],""); ?>
 						</select>
 					</div>
 				</div>  
@@ -74,7 +74,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 					cep
 					numero
 					telefone
-					codbanco
+					codigobanco
 					agencia
 					conta
 				*/
