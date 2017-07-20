@@ -43,11 +43,11 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
 						<select class="form-control" name="codBanco" id="codBanco">
-							<option></option>
-							<?php geraOpcao("banco",$pj['codBanco'],"");	?>
-						</select>	
+							<option value='32'>Banco do Brasil S.A.</option>
+							<?php geraOpcao("banco",$pj['codBanco'],""); ?>
+						</select>
 					</div>
-				</div> 
+				</div>  
 		  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Agência</strong><br/>
@@ -69,20 +69,16 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<!-- Gerar FACC -->
 				<?php
 				/* criar aqui a recuperação de dados dos campos:
-					cpf
-					ccm
-					nome
+					cnpj
+					razaosocial
 					cep
 					numero
 					telefone
 					codbanco
 					agencia
 					conta
-					nit
-					cbo
-					rg
 				*/
-				if ($idPessoaJuridica == 1) //Se todos os campos necessários para a FACC forem preenchidos
+				if ($idPessoaJuridica == 2) //Se todos os campos necessários para a FACC forem preenchidos
 				{
 				?>
 				
