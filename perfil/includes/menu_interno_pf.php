@@ -8,6 +8,7 @@
 			| <a href="?perfil=informacoes_complementares_pf">Informações Complementares</a>  
 			| <a href="?perfil=dados_bancarios_pf">Dados Bancários</a>  
 			| <a href="?perfil=anexos_pf">Demais Anexos</a> 
+			| <a href="?perfil=conta&p=dados">Dados da Conta</a>
 			| <a href="?perfil=senha_pf">Trocar a senha</a>
 			| <a href="../include/logoff.php">Sair</a> |</strong><br/>
 		</div>
