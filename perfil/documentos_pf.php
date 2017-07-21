@@ -171,15 +171,17 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					</div>
 				</div>
 				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><br/></div>
+				</div>
+				
 				<!-- Botão para gravar -->
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<p>
 						<div class="col-md-offset-2 col-md-8">
 							<input type="hidden" name="cadastrarFisica" value="abs">	<input type="hidden" name="Sucesso" id="Sucesso" />
 							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 						</div>
-					</div>
+	
 				</div>
 				
 

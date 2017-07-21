@@ -8,7 +8,6 @@ if(isset($_POST['cadastrarFisica']))
 	$CBO = $_POST['cbo'];
 	$Funcao = $_POST['funcao'];
 	$OMB = $_POST['omb'];
-	$DRT = $_POST['drt'];
 	$numero = $_POST['numero'];
 	$dataEmissao = $_POST['dataEmissao'];
 	
