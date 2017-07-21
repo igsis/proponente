@@ -21,17 +21,18 @@
 	$conta = recuperaUsuarioCompleto($_SESSION['idUsuario']);
 ?>
 <section id="contact" class="home-section bg-white">
-	<div class="container">
+	<div class="container"><?php include '../perfil/includes/menu_interno_pf.php'; ?>
+		<div class="form-group">
 		<h3>DADOS DO USUÁRIO</h3>
 		<p><strong><?php if(isset($mensagem)){ echo $mensagem; } ?></strong></p> <br/>
 		<p>Se necessitar a edição de um campo não permitido neste formulário, contacte o administrador local.</p> 
 		
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form class="form-horizontal" role="form" action="?perfil=conta&p=dados" method="post">
+				<form class="form-horizontal" role="form" action="?perfil=conta&p=dados_pj" method="post">
 					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><strong>Nome completo:</strong><br/>
-							<input type="text" class="form-control" id="nome" name="nome" value="<?php echo $conta['nome']; ?>" >
+						<div class="col-md-offset-2 col-md-8"><strong>Razão Social:</strong><br/>
+							<input type="text" class="form-control" id="razaoSocial" name="razaoSocial" value="<?php echo $conta['razaoSocial']; ?>" >
 						</div>
 					</div>
 					<div class="form-group">
@@ -43,15 +44,14 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><strong>Perfil:</strong><br/>
-							<input type="text" readonly class="form-control" value="<?php echo $conta['perfil']; ?>">
+						<div class="col-md-offset-2 col-md-6"><strong>Telefone 1:</strong><br/>
+							<input type="text"  class="form-control" id="telefone1" name="telefone1" value="<?php echo $conta['telefone1']; ?>"  >
 						</div>
-					</div> 
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><strong>Módulos habilitados</strong><br/>
-							<textarea name="publico" readonly="readonly" class="form-control" rows="5" placeholder=""><?php echo $conta['modulos']; ?></textarea>
+						<div class="col-md-6"><strong>Telefone 2:</strong><br/>
+							<input type="text" class="form-control" id="telefone2" name="telefone2" value="<?php echo $conta['telefone2']; ?>" >
 						</div>
-					</div> 
+					</div>
+					
 					<!-- Botão Gravar -->	
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
@@ -62,5 +62,6 @@
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </section>

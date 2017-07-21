@@ -30,7 +30,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 ?>
 
 <section id="contact" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
+	<div class="container"><?php include '..perfil/includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>ENDEREÇO</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
