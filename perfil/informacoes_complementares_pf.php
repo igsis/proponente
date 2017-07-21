@@ -8,14 +8,20 @@ if(isset($_POST['cadastrarFisica']))
 	$CBO = $_POST['cbo'];
 	$Funcao = $_POST['funcao'];
 	$OMB = $_POST['omb'];
+	$DRT = $_POST['drt'];
+	$numero = $_POST['numero'];
+	$dataEmissao = $_POST['dataEmissao'];
 	
 	$sql_atualiza_complementares = "UPDATE usuario_pf SET
 	`cbo` = '$CBO',
 	`funcao` = '$Funcao', 
 	`omb` = '$OMB'
-	WHERE `id` = '$idPessoaFisica'";	
+	WHERE `id` = '$idPessoaFisica'";
 	
-	if(mysqli_query($con,$sql_atualiza_complementares))
+	$sql_insere_drt = "INSERT INTO `drt` (`numero`, `dataEmissao`, `idUsuario`) VALUES ('$numero', '$dataEmissao', '$idPessoaFisica')";
+	
+	
+	if(mysqli_query($con,$sql_atualiza_complementares) AND (mysqli_query($con,$sql_insere_drt)))
 	{
 		$mensagem = "Atualizado com sucesso!";	
 	}
@@ -26,6 +32,7 @@ if(isset($_POST['cadastrarFisica']))
 }
 
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
+$drt = recuperaDados("drt","idUsuario",$pf['id']);
 
 ?>
 
@@ -43,10 +50,10 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>DRT:</strong><br/>
-						<input type="text" class="form-control" name="drt" placeholder="DRT" value="<?php echo $pf['drt']; ?>">
+						<input type="text" class="form-control" name="numero" placeholder="DRT" value="<?php echo $drt['numero']; ?>">
 					</div>
-					<div class="col-md-6"><strong>OMB:</strong><br/>
-						<input type="text" class="form-control" name="omb" placeholder="OMB" value="<?php echo $pf['omb']; ?>">
+					<div class="col-md-6"><strong>Data Emissão:</strong><br/>
+						<input type="text" class="form-control" name="dataEmissao" placeholder="10/05/2010" value="<?php echo $drt['dataEmissao']; ?>">
 					</div>
 				</div>
 		 

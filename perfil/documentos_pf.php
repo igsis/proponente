@@ -8,13 +8,15 @@ if(isset($_POST['cadastrarFisica']))
 	$Nome = addslashes($_POST['nome']);
 	$InscricaoInss = $_POST['inscricaoInss'];
 	$tipoDocumento = $_POST['tipoDocumento'];
+	$cpf = $_POST['cpf'];
 	$data = date('Y-m-d');
 	$idUsuario = $_SESSION['idUsuario'];
 	
 	$sql_atualiza_pf = "UPDATE usuario_pf SET
 	`nome` = '$Nome',
 	`inscricaoInss` = '$InscricaoInss', 
-	`tipoDocumento` = '$tipoDocumento', 
+	`tipoDocumento` = '$tipoDocumento',
+	`cpf` = '$cpf',
 	`IdUsuario` = '$idUsuario'
 	WHERE `id` = '$idPessoaFisica'";	
 	
@@ -155,27 +157,14 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 			}	
 			?>
 			<!-- Fim Se for RG -->
-						
-				
-				<hr/>
-				
+	
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>CPF *:</strong><br/>
 						<input type="text" class="form-control" id="cpf" name="CPF" placeholder="CPF" value="<?php echo $pf['cpf']; ?>">
 					</div>
 				</div>
 				
-				<!-- Botão para gravar -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
-						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
-					</div>
-				</div>
-				
-				<hr/>
-				
-				
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Inscrição INSS:</strong><br/>
 						<input type="text" class="form-control" id="inscricaoInss" name="inscricaoInss" placeholder="Nº da inscrição INSS" value="<?php echo $pf['inscricaoInss']; ?>">
@@ -185,14 +174,15 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				<!-- Botão para gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarFisica" value="<?php echo $inscricaoInss ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
-						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+						<p>
+						<div class="col-md-offset-2 col-md-8">
+							<input type="hidden" name="cadastrarFisica" value="abs">	<input type="hidden" name="Sucesso" id="Sucesso" />
+							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+						</div>
 					</div>
 				</div>
 				
-				<hr/>
-				
-				
+
 			
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><br/></div>
