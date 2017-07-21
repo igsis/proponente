@@ -53,7 +53,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form method="POST" action="?perfil=conta&p=senha"class="form-horizontal" role="form">
+				<form method="POST" action="?perfil=senha_pf"class="form-horizontal" role="form">
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><label>Insira sua senha antiga para confirmar a mudança.</label>
 							<input type="password" name="senha03" class="form-control" id="inputName" placeholder="">
