@@ -1,14 +1,13 @@
 <?php
 require "funcoes/funcoesGerais.php";
 require "funcoes/funcoesConecta.php";
-
 $busca = $_POST['cpf'];
 $con = bancoMysqli(); // conecta no banco
 
 if(isset($_POST['cadastraNovoPf']))
 {		
 	//verifica se há um post
-	if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) > 4))
+	if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) >= 5))
 	{
 		if($_POST['senha01'] == $_POST['senha02'])
 		{
@@ -18,12 +17,18 @@ if(isset($_POST['cadastraNovoPf']))
 			$senha01 = md5($_POST['senha01']);
 			$sql_senha = "INSERT INTO `usuario_pf`(nome, email, login, senha) VALUES ('$nome', '$email', '$login', '$senha01')";
 			$query_senha = mysqli_query($con,$sql_senha);
+			$sql_select = "SELECT * FROM usuario_pf WHERE login = '$login'";
+			$query_select = mysqli_query($con,$sql_select);
+			$sql_array = mysqli_fetch_array($query_select);
+			$idPessoaFisica = $sql_array['id'];
+			$sql_insere_drt = "INSERT INTO `drt` (`numero`, `dataEmissao`, `idUsuario`) VALUES ('', '', '$idPessoaFisica')";
 			if($query_senha)
 			{
 				$mensagem = "Usuário cadastrado com sucesso! Aguarde que você será redirecionado para a página de login";
 				 echo "<script type=\"text/javascript\">
 					  window.setTimeout(\"location.href='login_pf.php';\", 8000);
 					</script>";
+				$query_insere_drt = mysqli_query($con,$sql_insere_drt);
 			}
 			else
 			{

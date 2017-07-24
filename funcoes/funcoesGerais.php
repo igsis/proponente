@@ -356,6 +356,26 @@
 		}	
 	}
 		
+	function recuperaUsuarioCompleto($id)
+	{
+		//retorna dados do usuário
+		$recupera = recuperaDados('usuario_pf','id',$id);
+		if($recupera)
+		{
+			$x = array(
+				"nome" => $recupera['nome'],
+				"email" => $recupera['email'],
+				"login" => $recupera['login'],
+				"telefone1" => $recupera['telefone1'],
+				"telefone2" => $recupera['telefone2']);	
+			return $x;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+	
 	function recuperaDados($tabela,$campo,$variavelCampo)
 	{
 		//retorna uma array com os dados de qualquer tabela. serve apenas para 1 registro.

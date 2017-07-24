@@ -7,20 +7,20 @@ if(isset($_POST['cadastrarFisica']))
 	$idPessoaFisica = $_POST['cadastrarFisica'];
 	$CBO = $_POST['cbo'];
 	$Funcao = $_POST['funcao'];
-	$OMB = $_POST['omb'];
 	$numero = $_POST['numero'];
 	$dataEmissao = $_POST['dataEmissao'];
 	
 	$sql_atualiza_complementares = "UPDATE usuario_pf SET
 	`cbo` = '$CBO',
-	`funcao` = '$Funcao', 
-	`omb` = '$OMB'
+	`funcao` = '$Funcao'
 	WHERE `id` = '$idPessoaFisica'";
 	
-	$sql_insere_drt = "INSERT INTO `drt` (`numero`, `dataEmissao`, `idUsuario`) VALUES ('$numero', '$dataEmissao', '$idPessoaFisica')";
+	$sql_atualiza_complementares_drt = "UPDATE drt SET 
+	`numero` = '$numero',
+	`dataEmissao` = '$dataEmissao'
+	WHERE `idUsuario` = '$idPessoaFisica'";
 	
-	
-	if(mysqli_query($con,$sql_atualiza_complementares) AND (mysqli_query($con,$sql_insere_drt)))
+	if(mysqli_query($con,$sql_atualiza_complementares_drt) AND mysqli_query($con,$sql_atualiza_complementares))
 	{
 		$mensagem = "Atualizado com sucesso!";	
 	}
