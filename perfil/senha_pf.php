@@ -1,5 +1,6 @@
 <?php
- 
+ $idPessoaFisica = $_SESSION['idUsuario'];
+
 	if(isset($_POST['senha01']))
 	{
 		//verifica se há um post

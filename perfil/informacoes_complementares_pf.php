@@ -52,7 +52,7 @@ $drt = recuperaDados("drt","idUsuario",$pf['id']);
 						<input type="text" class="form-control" name="numero" placeholder="DRT" value="<?php echo $drt['numero']; ?>">
 					</div>
 					<div class="col-md-6"><strong>Data Emissão:</strong><br/>
-						<input type="text" class="form-control" name="dataEmissao" placeholder="10/05/2010" value="<?php echo $drt['dataEmissao']; ?>">
+						<input type="text" class="form-control" id="datePicker01" name="dataEmissao" placeholder="DD/MM/AAAA" value="<?php echo exibirDataBr ($drt['dataEmissao']); ?>">
 					</div>
 				</div>
 		 
