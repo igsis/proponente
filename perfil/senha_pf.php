@@ -1,18 +1,20 @@
-<?php 
+<?php
+ 
 	if(isset($_POST['senha01']))
 	{
 		//verifica se há um post
-		if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) > 5))
+		if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) >= 5))
 		{
 			if($_POST['senha01'] == $_POST['senha02'])
 			{
 				// verifica se a nova senha foi digitada corretamente duas vezes
-				$senha = recuperaDados("usuario","login",$_SESSION['login']);
+				$senha = recuperaDados("usuario_pf","login",$_SESSION['login']);
 				if(md5($_POST['senha03']) == $senha['senha'])
 				{
 					$usuario = $_SESSION['idUsuario'];
 					$senha01 = md5($_POST['senha01']);
-					$sql_senha = "UPDATE `usuario` SET `senha` = '$senha01' WHERE `id` = '$usuario';";
+					$sql_senha = "UPDATE `usuario_pf` SET `senha` = '$senha01' WHERE `id` = '$usuario';";
+					$con = bancoMysqli();
 					$query_senha = mysqli_query($con,$sql_senha);
 					if($query_senha)
 					{
