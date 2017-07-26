@@ -8,7 +8,7 @@ if(isset($_POST['cadastrarFisica']))
 	$CBO = $_POST['cbo'];
 	$Funcao = $_POST['funcao'];
 	$numero = $_POST['numero'];
-	$dataEmissao = $_POST['dataEmissao'];
+	$dataEmissao = exibirDataMysql ($_POST['dataEmissao']);
 	
 	$sql_atualiza_complementares = "UPDATE usuario_pf SET
 	`cbo` = '$CBO',
@@ -52,7 +52,7 @@ $drt = recuperaDados("drt","idUsuario",$pf['id']);
 						<input type="text" class="form-control" name="numero" placeholder="DRT" value="<?php echo $drt['numero']; ?>">
 					</div>
 					<div class="col-md-6"><strong>Data Emissão:</strong><br/>
-						<input type="text" class="form-control" id="datePicker01" name="dataEmissao" placeholder="DD/MM/AAAA" value="<?php echo exibirDataBr ($drt['dataEmissao']); ?>">
+						<input type="text" class="form-control" id="datepicker01" name="dataEmissao" placeholder="Data de Emissão" value="<?php echo exibirDataBr($drt['dataEmissao']); ?>">
 					</div>
 				</div>
 		 

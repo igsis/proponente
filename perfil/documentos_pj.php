@@ -10,13 +10,10 @@ if(isset($_POST['cadastrarJuridica']))
 	$Data = date('Y-m-d');
 	$idUsuario = $_SESSION['idUsuario'];
 	
-	$sql_atualiza_pf = "UPDATE usuario_pj SET
-	`razaoSocial` = '$RazaoSocial',
-	`cnpj` = '$Cnpj',
-	`IdUsuario` = '$idUsuario'
-	WHERE `id` = '$idPessoaJuridica'";	
+	$sql_documentos_pj = "INSERT INTO `usuario_pj` (`cnpj`) VALUES ('$cnpj')";
+
 	
-	if(mysqli_query($con,$sql_atualiza_pj))
+	if(mysqli_query($con,$sql_documentos_pj))
 	{
 		$mensagem = "Atualizado com sucesso!";	
 	}
@@ -47,7 +44,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<!-- Botão para gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+						<input type="hidden" name="cadastrarJuridica" value="<?php echo $idPessoaJuridica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
@@ -60,12 +57,12 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<div class="form-group">					
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=inicio_pj" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
 						</form>	
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=endereco_pf" method="post">	
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
+						<form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">	
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
 						</form>	
 					</div>					
 				</div>
