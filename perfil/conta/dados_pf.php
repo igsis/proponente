@@ -40,7 +40,7 @@
 								<input type="text"  class="form-control" id="email" name="email" value="<?php echo $conta['email']; ?>"  >
 							</div>
 							<div class="col-md-6"><strong>Usuário:</strong><br/>
-								<input type="text" readonly class="form-control" id="usuario" name="usuario" value="<?php echo $conta['login']; ?>" >
+								<input type="text" readonly class="form-control" id="login" name="login" value="<?php echo $conta['login']; ?>" >
 							</div>
 						</div>
 						<div class="form-group">

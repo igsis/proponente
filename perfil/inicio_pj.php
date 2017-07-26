@@ -11,6 +11,7 @@ if(isset($_POST['cadastrarJuridica']))
 	$Telefone2 = $_POST['telefone2'];
 	$Telefone3 = $_POST['telefone3'];
 	$Email = $_POST['email'];
+	$Login = $_POST['login'];
 	
 	$sql_atualiza_pj = "UPDATE usuario_pj SET
 	`razaoSocial` = '$RazaoSocial',
@@ -65,7 +66,12 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 					<div class="col-md-6"><strong>E-mail:</strong><br/>
 						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pj['email']; ?>" >
 					</div>
-				</div>	  
+				</div>	
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><strong>Nome de Usuário:</strong><br/>
+						<input type="text" readonly class="form-control" id="login" name="login" value="<?php echo $pj['login']; ?>" >
+					</div>
+				</div>				
 		  
 					  
 				<!-- Botão para Gravar -->

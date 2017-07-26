@@ -6,11 +6,13 @@ if(isset($_POST['cadastrarJuridica']))
 {
 	$idPessoaJuridica = $_POST['cadastrarJuridica'];
 	$RazaoSocial = addslashes($_POST['razaoSocial']);
-	$data = date('Y-m-d');
+	$Cnpj = $_POST['cnpj'];
+	$Data = date('Y-m-d');
 	$idUsuario = $_SESSION['idUsuario'];
 	
 	$sql_atualiza_pf = "UPDATE usuario_pj SET
 	`razaoSocial` = '$RazaoSocial',
+	`cnpj` = '$Cnpj',
 	`IdUsuario` = '$idUsuario'
 	WHERE `id` = '$idPessoaJuridica'";	
 	
@@ -38,7 +40,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 			<div class="col-md-offset-1 col-md-10">				
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>CNPJ *:</strong><br/>
-						<input type="text" class="form-control" id="cnpj" name="CPF" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>">
+						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>">
 					</div>
 				</div>
 				

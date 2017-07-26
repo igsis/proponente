@@ -9,7 +9,6 @@
 			| <a href="?perfil=representante1_pj">Representante #1</a>
 			| <a href="?perfil=representante2_pj">Representante #2</a>
 			| <a href="?perfil=anexos_pj">Demais Anexos</a>
-			| <a href="?perfil=conta&p=dados_pj">Dados da Conta</a>		
 			| <a href="?perfil=senha_pj">Trocar a senha</a>
 			| <a href="../include/logoff.php">Sair</a> |</strong><br/>
 		</div>

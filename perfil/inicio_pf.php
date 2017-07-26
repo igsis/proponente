@@ -15,6 +15,9 @@ if(isset($_POST['cadastrarFisica']))
 	$Telefone2 = $_POST['telefone2'];
 	$Telefone3 = $_POST['telefone3'];
 	$Email = $_POST['email'];
+	$Login = $_POST['login'];
+
+	
 	
 	$sql_atualiza_pf = "UPDATE usuario_pf SET
 	`nome` = '$Nome',
@@ -87,15 +90,17 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 							<?php geraOpcao("estado_civil",$pf['idEstadoCivil'],""); ?>  
 						</select>
 					</div>				  
-					<div class=" col-md-6"><strong>Data de nascimento:</strong><br/>
+					<div class="col-md-6"><strong>Data de nascimento:</strong><br/>
 						<input type="text" class="form-control" id="datepicker01" name="dataNascimento" placeholder="Data de Nascimento" value="<?php echo exibirDataBr($pf['dataNascimento']); ?>">
 					</div>
 				</div>
 		  
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>Nacionalidade:</strong><br/>
+					<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade:</strong><br/>
 						<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $pf['nacionalidade']; ?>">
 					</div>	
+					<div class="col-md-6"><strong>Nome de Usuário:</strong><br/>
+						<input type="text" readonly class="form-control" id="usuario" name="usuario" value="<?php echo $pf['login']; ?>" >					</div>	
 				</div>
 		  
 				<!-- Botão para Gravar -->

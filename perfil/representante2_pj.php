@@ -77,7 +77,7 @@ else
 		<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">					
-					<h3>REPRESENTANTE LEGAL #1</h3>					
+					<h3>REPRESENTANTE LEGAL #2</h3>					
 				</div>
 			</div>
 			<div class="row">
