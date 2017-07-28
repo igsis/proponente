@@ -10,8 +10,9 @@ if(isset($_POST['cadastrarJuridica']))
 	$Data = date('Y-m-d');
 	$idUsuario = $_SESSION['idUsuario'];
 	
-	$sql_documentos_pj = "INSERT INTO `usuario_pj` (`cnpj`) VALUES ('$cnpj')";
-
+	$sql_documentos_pj = "UPDATE usuario_pj SET
+	`cnpj` = '$Cnpj'
+	WHERE `id` = '$idPessoaJuridica'";	
 	
 	if(mysqli_query($con,$sql_documentos_pj))
 	{
@@ -34,7 +35,10 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">
-			<div class="col-md-offset-1 col-md-10">				
+			<div class="col-md-offset-1 col-md-10">		
+			<form class="form-horizontal" role="form" action="?perfil=documentos_pj" method="post">
+
+			
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>CNPJ *:</strong><br/>
 						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>">
@@ -44,7 +48,8 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<!-- Botão para gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarJuridica" value="<?php echo $idPessoaJuridica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+						<input type="hidden" name="cadastrarJuridica" value="<?php echo $idPessoaJuridica ?>">	
+						<input type="hidden" name="Sucesso" id="Sucesso" />
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
@@ -52,7 +57,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><br/></div>
 				</div>
-		
+			</form>
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">					
 					<div class="col-md-offset-2 col-md-2">
