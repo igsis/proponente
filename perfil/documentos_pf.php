@@ -7,20 +7,20 @@ if(isset($_POST['cadastrarFisica']))
 	$idPessoaFisica = $_POST['cadastrarFisica'];
 	$Nome = addslashes($_POST['nome']);
 	$InscricaoInss = $_POST['inscricaoInss'];
-	$tipoDocumento = $_POST['tipoDocumento'];
-	$cpf = $_POST['cpf'];
+	$TipoDocumento = $_POST['tipoDocumento'];
+	$Cpf = $_POST['cpf'];
 	$data = date('Y-m-d');
 	$idUsuario = $_SESSION['idUsuario'];
 	
-	$sql_atualiza_pf = "UPDATE usuario_pf SET
+	$sql_documentos_pf = "UPDATE usuario_pf SET
 	`nome` = '$Nome',
 	`inscricaoInss` = '$InscricaoInss', 
-	`tipoDocumento` = '$tipoDocumento',
-	`cpf` = '$cpf',
+	`tipoDocumento` = '$TipoDocumento',
+	`cpf` = '$Cpf',
 	`IdUsuario` = '$idUsuario'
 	WHERE `id` = '$idPessoaFisica'";	
 	
-	if(mysqli_query($con,$sql_atualiza_pf))
+	if(mysqli_query($con,$sql_documentos_pf))
 	{
 		$mensagem = "Atualizado com sucesso!";	
 	}
@@ -158,6 +158,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 			?>
 			<!-- Fim Se for RG -->
 	
+			<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>CPF *:</strong><br/>
 						<input type="text" class="form-control" id="cpf" name="CPF" placeholder="CPF" value="<?php echo $pf['cpf']; ?>">
@@ -178,18 +179,18 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				<!-- Botão para gravar -->
 				<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<input type="hidden" name="cadastrarFisica" value="abs">	<input type="hidden" name="Sucesso" id="Sucesso" />
+							<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">	
+							<input type="hidden" name="Sucesso" id="Sucesso" />
 							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 						</div>
 	
 				</div>
-				
-
+			</form>
 			
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><br/></div>
 				</div>
-		
+
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">					
 					<div class="col-md-offset-2 col-md-2">

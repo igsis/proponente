@@ -8,11 +8,13 @@ if(isset($_POST['cadastrarFisica']))
 	$CBO = $_POST['cbo'];
 	$Funcao = $_POST['funcao'];
 	$numero = $_POST['numero'];
+	$Omb = $POST['omb'];
 	$dataEmissao = exibirDataMysql ($_POST['dataEmissao']);
 	
 	$sql_atualiza_complementares = "UPDATE usuario_pf SET
 	`cbo` = '$CBO',
-	`funcao` = '$Funcao'
+	`funcao` = '$Funcao',
+	`omb` = '$Omb'
 	WHERE `id` = '$idPessoaFisica'";
 	
 	$sql_atualiza_complementares_drt = "UPDATE drt SET 
@@ -63,7 +65,13 @@ $drt = recuperaDados("drt","idUsuario",$pf['id']);
 					<div class=" col-md-6"><strong>Função:</strong><br/>
 						<input type="text" class="form-control" id="Funcao" name="funcao" placeholder="Função" value="<?php echo $pf['funcao']; ?>">
 					</div>
-				</div>				
+				</div>	
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-6"><strong>O.M.B.:</strong><br/>
+						<input type="text" class="form-control" id="omb" name="omb" placeholder="O.M.B." value="<?php echo $pf['omb']; ?>">
+					</div> 				 
+				</div>					
 		  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
