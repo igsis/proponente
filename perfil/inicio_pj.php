@@ -66,12 +66,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 					<div class="col-md-6"><strong>E-mail:</strong><br/>
 						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pj['email']; ?>" >
 					</div>
-				</div>	
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>Nome de Usuário:</strong><br/>
-						<input type="text" readonly class="form-control" id="login" name="login" value="<?php echo $pj['login']; ?>" >
-					</div>
-				</div>				
+				</div>					
 		  
 					  
 				<!-- Botão para Gravar -->

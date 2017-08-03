@@ -79,9 +79,15 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
 						<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone3']; ?>" >
 					</div>
-					<div class="col-md-6"><strong>E-mail:</strong><br/>
-						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pf['email']; ?>" >
+					<div class="col-md-6"><strong>Data de nascimento:</strong><br/>
+						<input type="text" class="form-control" id="datepicker01" name="dataNascimento" placeholder="Data de Nascimento" value="<?php echo exibirDataBr($pf['dataNascimento']); ?>">
 					</div>
+				</div>
+		  
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><strong>E-mail:</strong><br/>
+						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pf['email']; ?>" >
+					</div>	
 				</div>	  
 		  
 				<div class="form-group">
@@ -90,17 +96,9 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 							<?php geraOpcao("estado_civil",$pf['idEstadoCivil'],""); ?>  
 						</select>
 					</div>				  
-					<div class="col-md-6"><strong>Data de nascimento:</strong><br/>
-						<input type="text" class="form-control" id="datepicker01" name="dataNascimento" placeholder="Data de Nascimento" value="<?php echo exibirDataBr($pf['dataNascimento']); ?>">
-					</div>
-				</div>
-		  
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade:</strong><br/>
+					<div class="col-md-6"><strong>Nacionalidade:</strong><br/>
 						<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $pf['nacionalidade']; ?>">
-					</div>	
-					<div class="col-md-6"><strong>Nome de Usuário:</strong><br/>
-						<input type="text" readonly class="form-control" id="usuario" name="usuario" value="<?php echo $pf['login']; ?>" >					</div>	
+					</div>
 				</div>
 		  
 				<!-- Botão para Gravar -->
