@@ -2,6 +2,9 @@
 $con = bancoMysqli();
 $idPessoaFisica = $_SESSION['idUsuario'];
 
+$idCampo = 1;
+$tipoPessoa = 1;
+
 if(isset($_POST['cadastrarFisica']))
 {
 	$idPessoaFisica = $_POST['cadastrarFisica'];
@@ -64,45 +67,72 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
-			</form>
-			
+			</form>				
+				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/></div>
+				</div>
+					
 				<!-- Gerar FACC -->
 				<?php
-				/* criar aqui a recuperação de dados dos campos:
-					cpf
-					ccm
-					nome
-					cep
-					numero
-					telefone
-					codigobanco
-					agencia
-					conta
-					nit
-					cbo
-					rg
-				*/
-				if ($idPessoaFisica == 1) //Se todos os campos necessários para a FACC forem preenchidos
-				{
+					$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
+					$http = $server."/pdf/";
+					$link1 = $http."rlt_facc_pf.php"."?id_pf=".$idPessoaFisica;
 				?>
+					
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-5">
+						<p align="left">Após inserir seus dados pessoais e os dados bancários, clique no botão para gerar a FACC</p>						
+					</div>
+					<div class="col-md-3">
+						<a href='<?php echo $link1 ?>' target='_blank' class="btn btn-theme btn-lg btn-block"><strong>Gerar</strong></a>							
+					</div>
+				</div>
+				<!--  FIM Gerar FACC -->
 				
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><br/></div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+						<form method="POST" action="?<?php echo $_SERVER['QUERY_STRING'] ?>" enctype="multipart/form-data">
+						<table>
+							<tr>
+								<td width="50%"><td>
+							</tr>
+					<?php 
+						$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+						$query_arquivos = mysqli_query($con,$sql_arquivos);
+						while($arq = mysqli_fetch_array($query_arquivos))
+						{ 
+					?>
+							<tr>
+								<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+							</tr>
+					<?php 
+						}
+					?>
+
+						</table>
+						<br>
+						<input type="hidden" name="idPessoa" value="<?php echo $idPessoa; ?>"  />
+						<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
+					<?php 
+							if(isset($_POST['volta']))
+							{
+								echo "<input type='hidden' name='volta' value='".$_POST['volta']."' />";
+							} 
+					?>
+						<input type='hidden' name='<?php echo $p; ?>' value='1' />
+						<input type="hidden" name="enviar" value="1"  />
+						<input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar'>
+						</form>
 					</div>
-					
-					<div class="form-group">
-						<div class="col-md-offset-4 col-md-6">
-							<input type="hidden" name="gerarFacc" value="<?php echo $idPessoaFisica ?>">	
-							<input type="submit" value="Gerar FACC" class="btn btn-theme btn-lg btn-block">
-						</div>
 					</div>
-					
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><br/><br/></div>
-					</div>
-				<?php
-				}
-				?>				
+				</div>	
+											
 		
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">					
