@@ -8,21 +8,18 @@ if(isset($_POST['cadastrarFisica']))
 	$CBO = $_POST['cbo'];
 	$Funcao = $_POST['funcao'];
 	$numero = $_POST['numero'];
-	$Omb = $POST['omb'];
-	$dataEmissao = exibirDataMysql ($_POST['dataEmissao']);
+	$Omb = $_POST['omb'];
+	$Drt = $_POST['drt'];
 	
 	$sql_atualiza_complementares = "UPDATE usuario_pf SET
 	`cbo` = '$CBO',
 	`funcao` = '$Funcao',
-	`omb` = '$Omb'
+	`omb` = '$Omb',
+	`drt` = '$Drt'
 	WHERE `id` = '$idPessoaFisica'";
 	
-	$sql_atualiza_complementares_drt = "UPDATE drt SET 
-	`numero` = '$numero',
-	`dataEmissao` = '$dataEmissao'
-	WHERE `idUsuario` = '$idPessoaFisica'";
 	
-	if(mysqli_query($con,$sql_atualiza_complementares_drt) AND mysqli_query($con,$sql_atualiza_complementares))
+	if (mysqli_query($con,$sql_atualiza_complementares))
 	{
 		$mensagem = "Atualizado com sucesso!";	
 	}
@@ -33,7 +30,6 @@ if(isset($_POST['cadastrarFisica']))
 }
 
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
-$drt = recuperaDados("drt","idUsuario",$pf['id']);
 
 ?>
 
@@ -50,11 +46,8 @@ $drt = recuperaDados("drt","idUsuario",$pf['id']);
 				
 						  
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>DRT:</strong><br/>
-						<input type="text" class="form-control" name="numero" placeholder="DRT" value="<?php echo $drt['numero']; ?>">
-					</div>
-					<div class="col-md-6"><strong>Data Emissão:</strong><br/>
-						<input type="text" class="form-control" id="datepicker01" name="dataEmissao" placeholder="Data de Emissão" value="<?php echo exibirDataBr($drt['dataEmissao']); ?>">
+					<div class="col-md-offset-2 col-md-8"><strong>DRT:</strong><br/>
+						<input type="text" class="form-control" name="drt" placeholder="DRT" value="<?php echo $pf['drt']; ?>">
 					</div>
 				</div>
 		 
@@ -68,7 +61,7 @@ $drt = recuperaDados("drt","idUsuario",$pf['id']);
 				</div>	
 
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>O.M.B.:</strong><br/>
+					<div class="col-md-offset-2 col-md-8"><strong>O.M.B.:</strong><br/>
 						<input type="text" class="form-control" id="omb" name="omb" placeholder="O.M.B." value="<?php echo $pf['omb']; ?>">
 					</div> 				 
 				</div>					
