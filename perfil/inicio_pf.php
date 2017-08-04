@@ -11,13 +11,13 @@ if(isset($_POST['cadastrarFisica']))
 	$IdEstadoCivil = $_POST['idEstadoCivil'];
 	$DataNascimento = exibirDataMysql($_POST['dataNascimento']);
 	$Nacionalidade = $_POST['nacionalidade'];
+	$LocalNascimento = $_POST['localNascimento'];
 	$Telefone1 = $_POST['telefone1'];
 	$Telefone2 = $_POST['telefone2'];
 	$Telefone3 = $_POST['telefone3'];
 	$Email = $_POST['email'];
 	$Login = $_POST['login'];
-
-	
+		
 	
 	$sql_atualiza_pf = "UPDATE usuario_pf SET
 	`nome` = '$Nome',
@@ -25,6 +25,7 @@ if(isset($_POST['cadastrarFisica']))
 	`idEstadoCivil` = '$IdEstadoCivil', 
 	`dataNascimento` = '$DataNascimento', 
 	`nacionalidade` = '$Nacionalidade', 
+	`localNascimento` = '$LocalNascimento', 
 	`telefone1` = '$Telefone1', 
 	`telefone2` = '$Telefone2',  
 	`telefone3` = '$Telefone3', 
@@ -85,19 +86,22 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				</div>
 		  
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>E-mail:</strong><br/>
+					<div class="col-md-offset-2 col-md-6"><strong>E-mail:</strong><br/>
 						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pf['email']; ?>" >
 					</div>	
-				</div>	  
-		  
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>Estado civil:</strong><br/>
+					<div class="col-md-6"><strong>Estado civil:</strong><br/>
 						<select class="form-control" name="idEstadoCivil" >
 							<?php geraOpcao("estado_civil",$pf['idEstadoCivil'],""); ?>  
 						</select>
-					</div>				  
-					<div class="col-md-6"><strong>Nacionalidade:</strong><br/>
+					</div>	
+				</div>	  
+		  
+				<div class="form-group">			  
+					<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade:</strong><br/>
 						<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $pf['nacionalidade']; ?>">
+					</div>
+					<div class="col-md-6"><strong>Local de Nascimento:</strong><br/>
+						<input type="text" class="form-control" name="localNascimento" placeholder="Nacionalidade" value="<?php echo $pf['localNascimento']; ?>">
 					</div>
 				</div>
 		  
