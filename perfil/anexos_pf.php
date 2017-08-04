@@ -13,7 +13,7 @@ if(isset($_POST["enviar"]))
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{ 
-		$y = $arq['idTipoDoc'];
+		$y = $arq['id'];
 		$x = $arq['sigla'];
 		$nome_arquivo = $_FILES['arquivo']['name'][$x];
 		
