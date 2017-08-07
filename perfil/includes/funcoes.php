@@ -93,4 +93,5 @@ function listaArquivosPessoa($idPessoa,$tipo,$form,$pag)
 		</tbody>
 		</table>";
 }
+
 ?>

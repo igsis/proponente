@@ -600,4 +600,44 @@
 		$dados['estado']  = strtoupper($campo01['uf']);
 		return $dados;
 	}
+	
+	
+function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
+{
+	$con = bancoMysqli();
+	$sql = "SELECT * 
+			FROM upload_arquivo as arq
+			INNER JOIN upload_lista_documento as list ON arq.idUploadListaDocumento = list.id
+			WHERE arq.idPessoa = '$idPessoa' 
+			AND arq.idTipoPessoa = '$tipoPessoa' 
+			AND list.id = '$idCampo'
+			AND arq.publicado = '1'";
+	$query = mysqli_query($con,$sql);
+	echo "
+		<table class='table table-condensed'>
+			<thead>
+				<tr class='list_menu'>
+					<td>Nome do arquivo</td>
+					<td width='10%'></td>
+				</tr>
+			</thead>
+			<tbody>";
+				while($arquivo = mysqli_fetch_array($query))
+				{
+					echo "<tr>";
+					echo "<td class='list_description'><a href='../uploadsdocs/".$arquivo['arquivo']."' target='_blank'>".$arquivo['arquivo']."</a><br/>(".$arquivo['documento'].")</td>";
+					echo " 
+						<td class='list_description'>
+							<form method='POST' action='?perfil=".$pagina."&id=".$idPessoa."&tipo=".$tipoPessoa."'>
+								<input type='hidden' name='idPessoa' value='".$idPessoa."' />
+								<input type='hidden' name='tipoPessoa' value='".$tipoPessoa."' />
+								<input type='hidden' name='apagar' value='".$arquivo['id']."' />
+								<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td>
+							</form>";
+					echo "</tr>";		
+				}
+				echo "
+		</tbody>
+		</table>";
+}
 ?>

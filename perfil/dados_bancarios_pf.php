@@ -48,7 +48,7 @@ if(isset($_POST["enviar"]))
 		
 			if(move_uploaded_file($nome_temporario, $dir.$new_name))
 			{  
-				$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaFisica', '$y', '$new_name', '$hoje', '1'); ";
+				$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaFisica', '$idCampo', '$new_name', '$hoje', '1'); ";
 				$query = mysqli_query($con,$sql_insere_arquivo);
 			
 				if($query)
@@ -69,12 +69,28 @@ if(isset($_POST["enviar"]))
 	}
 }
 
+if(isset($_POST['apagar']))
+{
+	$idArquivo = $_POST['apagar'];
+	$sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
+	if(mysqli_query($con,$sql_apagar_arquivo))
+	{
+		$arq = recuperaDados("UPDATE upload_arquivo",$idArquivo,"idArquivosPessoa");
+		$mensagem =	"Arquivo ".$arq['arquivo']."apagado com sucesso!";
+		gravarLog($sql_apagar_arquivo);
+	}
+	else
+	{
+		$mensagem = "Erro ao apagar o arquivo. Tente novamente!";
+	}
+}
+
 
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 
 ?>
 
-<section id="contact" class="home-section bg-white">
+<section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>DADOS BANCÁRIOS</h3>
@@ -131,11 +147,25 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					</div>
 				</div>
 				<!--  FIM Gerar FACC -->
+								
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>
+				
+				<!-- Exibir arquivos -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class="table-responsive list_info"><h6>Arquivo Anexado</h6>
+							<?php listaArquivoCampo($idPessoaFisica,$tipoPessoa,$idCampo,"dados_bancarios_pf"); ?>
+						</div>
+					</div>
+				</div>				
 				
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
 				
+				<!-- Upload de arquivo -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
@@ -165,7 +195,12 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</form>
 						</div>
 					</div>
-				</div>	
+				</div>
+				<!-- Fim Upload de arquivo -->
+				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>
 											
 		
 				<!-- Botão para Voltar e Prosseguir -->
