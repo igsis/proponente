@@ -31,7 +31,7 @@ if(isset($_POST['cadastrarFisica']))
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM igsis_upload_docs";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{ 
@@ -41,15 +41,15 @@ if(isset($_POST["enviar"]))
 		
 		if($nome_arquivo != "")
 		{
-		$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
-		$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
-		$hoje = date("Y-m-d H:i:s");
-		$dir = '../uploadsdocs/'; //Diretório para uploads
+			$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
+			$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
+			$hoje = date("Y-m-d H:i:s");
+			$dir = '../uploadsdocs/'; //Diretório para uploads
 		
 			if(move_uploaded_file($nome_temporario, $dir.$new_name))
 			{  
-			$sql_insere_arquivo = "INSERT INTO `igsis_arquivos_pessoa` (`idArquivosPessoa`, `idTipoPessoa`, `idPessoa`, `arquivo`, `dataEnvio`, `publicado`, `tipo`) VALUES (NULL, '$tipoPessoa', '$idPessoa', '$new_name', '$hoje', '1', '$y'); ";
-			$query = mysqli_query($con,$sql_insere_arquivo);
+				$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaFisica', '$y', '$new_name', '$hoje', '1'); ";
+				$query = mysqli_query($con,$sql_insere_arquivo);
 			
 				if($query)
 				{
@@ -139,7 +139,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
-						<form method="POST" action="?<?php echo $_SERVER['QUERY_STRING'] ?>" enctype="multipart/form-data">
+						<form method="POST" action="?perfil=dados_bancarios_pf" enctype="multipart/form-data">
 							<table>
 								<tr>
 									<td width="50%"><td>
@@ -158,15 +158,8 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 								?>
 							</table><br>
 						
-							<input type="hidden" name="idPessoa" value="<?php echo $idPessoa; ?>"  />
+							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaFisica; ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
-							<?php 
-								if(isset($_POST['volta']))
-								{
-									echo "<input type='hidden' name='volta' value='".$_POST['volta']."' />";
-								} 
-							?>
-							<input type='hidden' name='<?php echo $p; ?>' value='1' />
 							<input type="hidden" name="enviar" value="1"  />
 							<input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar'>
 						</form>
