@@ -2,20 +2,20 @@
 $con = bancoMysqli();
 $idPessoaFisica = $_SESSION['idUsuario'];
 
+$idCampo = 2;
+$tipoPessoa = 1;
+
 if(isset($_POST['cadastrarFisica']))
 {
 	$idPessoaFisica = $_POST['cadastrarFisica'];
 	$CBO = $_POST['cbo'];
 	$Funcao = $_POST['funcao'];
-	$numero = $_POST['numero'];
 	$Omb = $_POST['omb'];
-	$Drt = $_POST['drt'];
 	
 	$sql_atualiza_complementares = "UPDATE usuario_pf SET
 	`cbo` = '$CBO',
 	`funcao` = '$Funcao',
-	`omb` = '$Omb',
-	`drt` = '$Drt'
+	`omb` = '$Omb'
 	WHERE `id` = '$idPessoaFisica'";
 	
 	
@@ -28,6 +28,68 @@ if(isset($_POST['cadastrarFisica']))
 		$mensagem = "Erro ao atualizar! Tente novamente.";
 	}	
 }
+
+if(isset($_POST['cadastrarDrt']))
+{
+	$idPessoaFisica = $_POST['cadastrarDrt'];
+	$Drt = $_POST['drt'];
+	
+	$sql_atualiza_drt = "UPDATE usuario_pf SET
+	`drt` = '$Drt'
+	WHERE `id` = '$idPessoaFisica'";
+	
+	
+	if (mysqli_query($con,$sql_atualiza_drt))
+	{
+		$mensagem = "Atualizado com sucesso!";	
+	}
+	else
+	{
+		$mensagem = "Erro ao atualizar! Tente novamente.";
+	}	
+}
+
+
+if(isset($_POST["enviar"]))
+{
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+	$query_arquivos = mysqli_query($con,$sql_arquivos);
+	while($arq = mysqli_fetch_array($query_arquivos))
+	{ 
+		$y = $arq['id'];
+		$x = $arq['sigla'];
+		$nome_arquivo = $_FILES['arquivo']['name'][$x];
+		
+		if($nome_arquivo != "")
+		{
+			$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
+			$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
+			$hoje = date("Y-m-d H:i:s");
+			$dir = '../uploadsdocs/'; //Diretório para uploads
+		
+			if(move_uploaded_file($nome_temporario, $dir.$new_name))
+			{  
+				$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaFisica', '$y', '$new_name', '$hoje', '1'); ";
+				$query = mysqli_query($con,$sql_insere_arquivo);
+			
+				if($query)
+				{
+					$mensagem = "Arquivo recebido com sucesso";
+				}
+				else
+				{
+					$mensagem = "Erro ao gravar no banco";
+				}
+				
+			}
+			else
+			{
+				 $mensagem = "Erro no upload"; 
+			}
+		}	
+	}
+}
+
 
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 
@@ -50,12 +112,56 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						<input type="text" class="form-control" name="drt" placeholder="DRT" value="<?php echo $pf['drt']; ?>">
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<input type="hidden" name="cadastrarDrt" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+					</div>
+				</div>
+			</form>	
+				
+				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+						<form method="POST" action="?perfil=informacoes_complementares_pf" enctype="multipart/form-data">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php 
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{ 
+								?>
+										<tr>
+											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										</tr>
+								<?php 
+									}
+								?>
+							</table><br>
+						
+							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaFisica; ?>"  />
+							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
+							<input type="hidden" name="enviar" value="1"  />
+							<input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar'>
+						</form>
+						</div>
+					</div>
+				</div>
+
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+			<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">				
 		 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>C.B.O.:</strong> <i><a href="http://www.mtecbo.gov.br/cbosite/pages/pesquisas/BuscaPorTitulo.jsf" target="_blank">Consulte o código aqui</a></i><br/>
 						<input type="text" class="form-control" id="cbo" name="cbo" placeholder="C.B.O."value="<?php echo $pf['cbo']; ?>" >
 					</div> 				  
-					<div class=" col-md-6"><strong>Função:</strong><br/>
+					<div class="col-md-6"><strong>Função:</strong><br/>
 						<input type="text" class="form-control" id="Funcao" name="funcao" placeholder="Função" value="<?php echo $pf['funcao']; ?>">
 					</div>
 				</div>	
