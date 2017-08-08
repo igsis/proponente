@@ -104,58 +104,58 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
-				
-						  
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>DRT:</strong><br/>
-						<input type="text" class="form-control" name="drt" placeholder="DRT" value="<?php echo $pf['drt']; ?>">
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarDrt" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
-						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
-					</div>
-				</div>
-			</form>	
-				
-				
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class = "center">
-						<form method="POST" action="?perfil=informacoes_complementares_pf" enctype="multipart/form-data">
-							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
-								<?php 
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{ 
-								?>
-										<tr>
-											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-										</tr>
-								<?php 
-									}
-								?>
-							</table><br>
-						
-							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaFisica; ?>"  />
-							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
-							<input type="hidden" name="enviar" value="1"  />
-							<input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar'>
-						</form>
+				<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
+					  
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>DRT:</strong><br/>
+							<input type="text" class="form-control" name="drt" placeholder="DRT" value="<?php echo $pf['drt']; ?>">
 						</div>
 					</div>
+					
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8">
+							<input type="hidden" name="cadastrarDrt" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+						</div>
+					</div>
+				</form>	
+			</div>
+		</div>
+				
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-8">
+				<div class = "center">
+				<form method="POST" action="?perfil=informacoes_complementares_pf" enctype="multipart/form-data">
+					<table>
+						<tr>
+							<td width="45%"><td>
+						</tr>
+						<?php 
+							$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+							$query_arquivos = mysqli_query($con,$sql_arquivos);
+							while($arq = mysqli_fetch_array($query_arquivos))
+							{ 
+						?>
+								<tr>
+									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+								</tr>
+						<?php 
+							}
+						?>
+					</table><br>
+				
+					<input type="hidden" name="idPessoa" value="<?php echo $idPessoaFisica; ?>"  />
+					<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
+					<input type="hidden" name="enviar" value="1"  />
+					<input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar'>
+				</form>
 				</div>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">				
+				<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">				
 		 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>C.B.O.:</strong> <i><a href="http://www.mtecbo.gov.br/cbosite/pages/pesquisas/BuscaPorTitulo.jsf" target="_blank">Consulte o código aqui</a></i><br/>
@@ -178,7 +178,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
-			</form>
+				</form>
 		
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">					
@@ -193,7 +193,6 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</form>	
 					</div>					
 				</div>
-				
 			</div>
 		</div>
 	</div>
