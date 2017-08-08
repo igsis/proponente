@@ -75,8 +75,7 @@ if(isset($_POST['apagar']))
 	$sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
 	if(mysqli_query($con,$sql_apagar_arquivo))
 	{
-		$arq = recuperaDados("UPDATE upload_arquivo",$idArquivo,"idArquivosPessoa");
-		$mensagem =	"Arquivo ".$arq['arquivo']."apagado com sucesso!";
+		$mensagem =	"Arquivo apagado com sucesso!";
 		gravarLog($sql_apagar_arquivo);
 	}
 	else
@@ -161,9 +160,6 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					</div>
 				</div>				
 				
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-				</div>
 				
 				<!-- Upload de arquivo -->
 				<div class="form-group">
@@ -186,11 +182,9 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 								<?php 
 									}
 								?>
-							</table><br>
-						
+							</table><br>						
 							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaFisica; ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
-							<input type="hidden" name="enviar" value="1"  />
 							<input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar'>
 						</form>
 						</div>

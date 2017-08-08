@@ -606,8 +606,8 @@ function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
 {
 	$con = bancoMysqli();
 	$sql = "SELECT * 
-			FROM upload_arquivo as arq
-			INNER JOIN upload_lista_documento as list ON arq.idUploadListaDocumento = list.id
+			FROM upload_lista_documento as list
+			INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 			WHERE arq.idPessoa = '$idPessoa' 
 			AND arq.idTipoPessoa = '$tipoPessoa' 
 			AND list.id = '$idCampo'
@@ -624,11 +624,12 @@ function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
 			<tbody>";
 				while($arquivo = mysqli_fetch_array($query))
 				{
+					//var_dump($arquivo);
 					echo "<tr>";
 					echo "<td class='list_description'><a href='../uploadsdocs/".$arquivo['arquivo']."' target='_blank'>".$arquivo['arquivo']."</a><br/>(".$arquivo['documento'].")</td>";
 					echo " 
 						<td class='list_description'>
-							<form method='POST' action='?perfil=".$pagina."&id=".$idPessoa."&tipo=".$tipoPessoa."'>
+							<form method='POST' action='?perfil=".$pagina."'>
 								<input type='hidden' name='idPessoa' value='".$idPessoa."' />
 								<input type='hidden' name='tipoPessoa' value='".$tipoPessoa."' />
 								<input type='hidden' name='apagar' value='".$arquivo['id']."' />
