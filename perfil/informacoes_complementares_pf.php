@@ -2,17 +2,19 @@
 $con = bancoMysqli();
 $idPessoaFisica = $_SESSION['idUsuario'];
 
-$idCampo = 2;
+$idCampo = 30;
 $tipoPessoa = 1;
 
 if(isset($_POST['cadastrarFisica']))
 {
 	$idPessoaFisica = $_POST['cadastrarFisica'];
+	$Drt = $_POST['drt'];
 	$CBO = $_POST['cbo'];
 	$Funcao = $_POST['funcao'];
 	$Omb = $_POST['omb'];
 	
 	$sql_atualiza_complementares = "UPDATE usuario_pf SET
+	`drt` = '$Drt',
 	`cbo` = '$CBO',
 	`funcao` = '$Funcao',
 	`omb` = '$Omb'
@@ -29,7 +31,7 @@ if(isset($_POST['cadastrarFisica']))
 	}	
 }
 
-if(isset($_POST['cadastrarDrt']))
+/*if(isset($_POST['cadastrarDrt']))
 {
 	$idPessoaFisica = $_POST['cadastrarDrt'];
 	$Drt = $_POST['drt'];
@@ -47,7 +49,7 @@ if(isset($_POST['cadastrarDrt']))
 	{
 		$mensagem = "Erro ao atualizar! Tente novamente.";
 	}	
-}
+}*/
 
 
 if(isset($_POST["enviar"]))
@@ -90,6 +92,22 @@ if(isset($_POST["enviar"]))
 	}
 }
 
+if(isset($_POST['apagar']))
+{
+	$idArquivo = $_POST['apagar'];
+	$sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
+	if(mysqli_query($con,$sql_apagar_arquivo))
+	{
+		$mensagem =	"Arquivo apagado com sucesso!";
+		gravarLog($sql_apagar_arquivo);
+	}
+	else
+	{
+		$mensagem = "Erro ao apagar o arquivo. Tente novamente!";
+	}
+}
+
+
 
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 
@@ -110,19 +128,41 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						<div class="col-md-offset-2 col-md-8"><strong>DRT:</strong><br/>
 							<input type="text" class="form-control" name="drt" placeholder="DRT" value="<?php echo $pf['drt']; ?>">
 						</div>
-					</div>
-					
+					</div>		
+		 
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-6"><strong>C.B.O.:</strong> <i><a href="http://www.mtecbo.gov.br/cbosite/pages/pesquisas/BuscaPorTitulo.jsf" target="_blank">Consulte o código aqui</a></i><br/>
+							<input type="text" class="form-control" id="cbo" name="cbo" placeholder="C.B.O."value="<?php echo $pf['cbo']; ?>" >
+						</div> 				  
+						<div class="col-md-6"><strong>Função:</strong><br/>
+							<input type="text" class="form-control" id="Funcao" name="funcao" placeholder="Função" value="<?php echo $pf['funcao']; ?>">
+						</div>
+					</div>	
+
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>O.M.B.:</strong><br/>
+							<input type="text" class="form-control" id="omb" name="omb" placeholder="O.M.B." value="<?php echo $pf['omb']; ?>">
+						</div> 				 
+					</div>					
+			  
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<input type="hidden" name="cadastrarDrt" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+							<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
 							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 						</div>
 					</div>
-				</form>	
-			</div>
-		</div>
+				</form>
 				
-		<div class="form-group">
+				<!-- Exibir arquivos -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class="table-responsive list_info"><h6>Arquivo Anexado</h6>
+							<?php listaArquivoCampo($idPessoaFisica,$tipoPessoa,$idCampo,"dados_bancarios_pf"); ?>
+						</div>
+					</div>
+				</div>	
+				
+						<div class="form-group">
 			<div class="col-md-offset-2 col-md-8">
 				<div class = "center">
 				<form method="POST" action="?perfil=informacoes_complementares_pf" enctype="multipart/form-data">
@@ -152,33 +192,6 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				</div>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">				
-		 
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>C.B.O.:</strong> <i><a href="http://www.mtecbo.gov.br/cbosite/pages/pesquisas/BuscaPorTitulo.jsf" target="_blank">Consulte o código aqui</a></i><br/>
-						<input type="text" class="form-control" id="cbo" name="cbo" placeholder="C.B.O."value="<?php echo $pf['cbo']; ?>" >
-					</div> 				  
-					<div class="col-md-6"><strong>Função:</strong><br/>
-						<input type="text" class="form-control" id="Funcao" name="funcao" placeholder="Função" value="<?php echo $pf['funcao']; ?>">
-					</div>
-				</div>	
-
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>O.M.B.:</strong><br/>
-						<input type="text" class="form-control" id="omb" name="omb" placeholder="O.M.B." value="<?php echo $pf['omb']; ?>">
-					</div> 				 
-				</div>					
-		  
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarFisica" value="<?php echo $idPessoaFisica ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
-						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
-					</div>
-				</div>
-				</form>
 		
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">					
@@ -193,6 +206,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</form>	
 					</div>					
 				</div>
+				
 			</div>
 		</div>
 	</div>
