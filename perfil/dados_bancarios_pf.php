@@ -5,7 +5,7 @@ $idPessoaFisica = $_SESSION['idUsuario'];
 $idCampo = 1;
 $tipoPessoa = 1;
 
-if(isset($_POST['cadastrarFisica']))
+if(isset($_POST['cadastrarBanco']))
 {
 	$idPessoaFisica = $_POST['cadastrarBanco'];
 	$CodigoBanco = $_POST['codigoBanco'];
@@ -185,7 +185,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 							</table><br>						
 							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaFisica; ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
-							<input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar'>
+							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
 						</form>
 						</div>
 					</div>

@@ -2,9 +2,12 @@
 $con = bancoMysqli();
 $idPessoaJuridica = $_SESSION['idUsuario'];
 
-if(isset($_POST['cadastrarJuridica']))
+$idCampo = 1;
+$tipoPessoa = 1;
+
+if(isset($_POST['cadastrarBanco']))
 {
-	$idPessoaJuridica = $_POST['cadastrarJuridica'];
+	$idPessoaJuridica = $_POST['cadastrarBanco'];
 	$CodigoBanco = $_POST['codigoBanco'];
 	$Agencia = $_POST['agencia'];
 	$Conta = $_POST['conta'];
@@ -17,7 +20,7 @@ if(isset($_POST['cadastrarJuridica']))
 	
 	if(mysqli_query($con,$sql_atualiza_pj))
 	{
-		$mensagem = "Atualizado com sucesso!";	
+		$mensagem = "Atualizado com sucesso!!!";	
 	}
 	else
 	{
@@ -25,11 +28,67 @@ if(isset($_POST['cadastrarJuridica']))
 	}	
 }
 
+
+if(isset($_POST["enviar"]))
+{
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+	$query_arquivos = mysqli_query($con,$sql_arquivos);
+	while($arq = mysqli_fetch_array($query_arquivos))
+	{ 
+		$y = $arq['id'];
+		$x = $arq['sigla'];
+		$nome_arquivo = $_FILES['arquivo']['name'][$x];
+		
+		if($nome_arquivo != "")
+		{
+			$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
+			$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
+			$hoje = date("Y-m-d H:i:s");
+			$dir = '../uploadsdocs/'; //Diretório para uploads
+		
+			if(move_uploaded_file($nome_temporario, $dir.$new_name))
+			{  
+				$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaJuridica', '$idCampo', '$new_name', '$hoje', '1'); ";
+				$query = mysqli_query($con,$sql_insere_arquivo);
+			
+				if($query)
+				{
+					$mensagem = "Arquivo recebido com sucesso";
+				}
+				else
+				{
+					$mensagem = "Erro ao gravar no banco";
+				}
+				
+			}
+			else
+			{
+				 $mensagem = "Erro no upload"; 
+			}
+		}	
+	}
+}
+
+if(isset($_POST['apagar']))
+{
+	$idArquivo = $_POST['apagar'];
+	$sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
+	if(mysqli_query($con,$sql_apagar_arquivo))
+	{
+		$mensagem =	"Arquivo apagado com sucesso!";
+		gravarLog($sql_apagar_arquivo);
+	}
+	else
+	{
+		$mensagem = "Erro ao apagar o arquivo. Tente novamente!";
+	}
+}
+
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 
 ?>
 
-<section id="contact" class="home-section bg-white">
+<section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 		<div class="form-group">
 			<h3>DADOS BANCÁRIOS</h3>
@@ -43,11 +102,11 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
 						<select class="form-control" name="codigoBanco" id="codigoBanco">
-							<option value='32'>Banco do Brasil S.A.</option>
-							<?php geraOpcao("banco",$pj['codigoBanco'],""); ?>
-						</select>
+							<option></option>
+							<?php geraOpcao("banco",$pj['codigoBanco'],"");	?>
+						</select>	
 					</div>
-				</div>  
+				</div> 
 		  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Agência</strong><br/>
@@ -60,45 +119,81 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 		  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarJuridica" value="<?php echo $idPessoaJuridica ?>">
+						<input type="hidden" name="cadastrarBanco" value="<?php echo $idPessoaJuridica ?>">
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
-			</form>
-			
+			</form>				
+				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/></div>
+				</div>
+					
 				<!-- Gerar FACC -->
 				<?php
-				/* criar aqui a recuperação de dados dos campos:
-					cnpj
-					razaosocial
-					cep
-					numero
-					telefone
-					codigobanco
-					agencia
-					conta
-				*/
-				if ($idPessoaJuridica == 2) //Se todos os campos necessários para a FACC forem preenchidos
-				{
+					$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
+					$http = $server."/pdf/";
+					$link1 = $http."rlt_facc_pj.php"."?id_pj=".$idPessoaJuridica;
 				?>
-				
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><br/></div>
-					</div>
 					
-					<div class="form-group">
-						<div class="col-md-offset-4 col-md-6">
-							<input type="hidden" name="gerarFacc" value="<?php echo $idPessoaJuridica ?>">	
-							<input type="submit" value="Gerar FACC" class="btn btn-theme btn-lg btn-block">
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-5">
+						<p align="left">Após inserir seus dados pessoais e os dados bancários, clique no botão para gerar a FACC</p>						
+					</div>
+					<div class="col-md-3">
+						<a href='<?php echo $link1 ?>' target='_blank' class="btn btn-theme btn-lg btn-block"><strong>Gerar</strong></a>							
+					</div>
+				</div>
+				<!--  FIM Gerar FACC -->
+								
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>
+				
+				<!-- Exibir arquivos -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class="table-responsive list_info"><h6>Arquivo Anexado</h6>
+							<?php listaArquivoCampo($idPessoaJuridica,$tipoPessoa,$idCampo,"dados_bancarios_pj"); ?>
 						</div>
 					</div>
-					
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><br/><br/></div>
+				</div>				
+				
+				
+				<!-- Upload de arquivo -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+						<form method="POST" action="?perfil=dados_bancarios_pj" enctype="multipart/form-data">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php 
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{ 
+								?>
+										<tr>
+											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										</tr>
+								<?php 
+									}
+								?>
+							</table><br>						
+							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaJuridica; ?>"  />
+							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
+							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
+						</form>
+						</div>
 					</div>
-				<?php
-				}
-				?>				
+				</div>
+				<!-- Fim Upload de arquivo -->
+				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>		
 		
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">					

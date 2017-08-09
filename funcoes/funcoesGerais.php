@@ -613,6 +613,10 @@ function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
 			AND list.id = '$idCampo'
 			AND arq.publicado = '1'";
 	$query = mysqli_query($con,$sql);
+	$linhas = mysqli_num_rows($query);
+	
+	if ($linhas > 0)
+	{	
 	echo "
 		<table class='table table-condensed'>
 			<thead>
@@ -623,8 +627,7 @@ function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
 			</thead>
 			<tbody>";
 				while($arquivo = mysqli_fetch_array($query))
-				{
-					//var_dump($arquivo);
+				{					
 					echo "<tr>";
 					echo "<td class='list_description'><a href='../uploadsdocs/".$arquivo['arquivo']."' target='_blank'>".$arquivo['arquivo']."</a><br/>(".$arquivo['documento'].")</td>";
 					echo " 
@@ -635,10 +638,15 @@ function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
 								<input type='hidden' name='apagar' value='".$arquivo['id']."' />
 								<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td>
 							</form>";
-					echo "</tr>";		
+					echo "</tr>";					
 				}
 				echo "
 		</tbody>
 		</table>";
+	}
+	else
+	{
+		echo "<p>Não há arquivo(s) inserido(s).<p/><br/>";
+	}	
 }
 ?>
