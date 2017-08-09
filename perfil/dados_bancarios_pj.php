@@ -2,8 +2,8 @@
 $con = bancoMysqli();
 $idPessoaJuridica = $_SESSION['idUsuario'];
 
-$idCampo = 1;
-$tipoPessoa = 1;
+$idCampo = 25;
+$tipoPessoa = 2;
 
 if(isset($_POST['cadastrarBanco']))
 {
