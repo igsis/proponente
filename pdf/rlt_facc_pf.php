@@ -29,7 +29,7 @@ $idPessoaFisica = $_SESSION['idUsuario'];
 
 $pessoa = recuperaDados("usuario_pf","id",$idPessoaFisica);
 $enderecoCEP = enderecoCEP($pessoa['cep']);
-$dbBanco = recuperaDados("banco","id",$idPessoaFisica);
+$dbBanco = recuperaDados("banco","id",$pessoa['codigoBanco']);
 
 $banco = $dbBanco["banco"];
 $codbanco = $dbBanco["codigoBanco"];

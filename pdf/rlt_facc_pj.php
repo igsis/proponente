@@ -28,7 +28,7 @@ $idPessoaJuridica = $_SESSION['idUsuario'];
 
 $pessoa = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 $enderecoCEP = enderecoCEP($pessoa['cep']);
-$dbBanco = recuperaDados("banco","id",$idPessoaJuridica);
+$dbBanco = recuperaDados("banco","id",$pessoa['codigoBanco']);
 $rep01 = recuperaDados("representante_legal","id",$pessoa['idRepresentanteLegal1']);
 
 $banco = $dbBanco["banco"];
