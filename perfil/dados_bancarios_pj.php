@@ -133,7 +133,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<?php
 					$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
 					$http = $server."/pdf/";
-					$link1 = $http."rlt_facc_pj.php"."?id_pj=".$idPessoaJuridica;
+					$link1 = $http."rlt_facc_pj.php";
 				?>
 					
 				<div class="form-group">

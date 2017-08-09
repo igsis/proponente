@@ -1,74 +1,60 @@
 <?php 
    
-   // INSTALAÇÃO DA CLASSE NA PASTA FPDF.
-	require_once("../include/lib/fpdf/fpdf.php");
-   require_once("../funcoes/funcoesConecta.php");
-   require_once("../funcoes/funcoesGerais.php");
-   require_once("../funcoes/funcoesSiscontrat.php");
+// INSTALAÇÃO DA CLASSE NA PASTA FPDF.
+require_once("../include/lib/fpdf/fpdf.php");
+require_once("../funcoes/funcoesConecta.php");
+require_once("../funcoes/funcoesGerais.php");
 
-   //CONEXÃO COM BANCO DE DADOS 
-   $conexao = bancoMysqli(); 
+//CONEXÃO COM BANCO DE DADOS 
+$conexao = bancoMysqli(); 
    
-// logo da instituição 
 session_start();
-
-
   
 class PDF extends FPDF
 {
-// Page header
-function Header()
-{	
-    // Logo
-    $this->Image('../pdf/img/fac_pj.jpg',15,10,180);
-    
-    // Line break
-    $this->Ln(20);
+	// Page header
+	function Header()
+	{	
+		// Logo
+		$this->Image('../pdf/img/facc_pj.jpg',15,10,180);
+		
+		// Line break
+		$this->Ln(20);
+	}
 }
-
-}
-
-
 
 //CONSULTA 
-$id_ped=$_GET['id'];
+$idPessoaJuridica = $_SESSION['idUsuario'];
 
-$ano=date('Y');
+$pessoa = recuperaDados("usuario_pj","id",$idPessoaJuridica);
+$enderecoCEP = enderecoCEP($pessoa['cep']);
+$dbBanco = recuperaDados("banco","id",$idPessoaJuridica);
+$rep01 = recuperaDados("representante_legal","id",$pessoa['idRepresentanteLegal1']);
 
-$pedido = siscontrat($id_ped);
-$pj = siscontratDocs($pedido['IdProponente'],2);
-$ex = siscontratDocs($pedido['IdExecutante'],1);
-$rep01 = siscontratDocs($pj['Representante01'],3);
-$rep02 = siscontratDocs($pj['Representante02'],3);
-$enderecoCEP = enderecoCEP($pj['CEP']);
+$banco = $dbBanco["banco"];
+$codbanco = $dbBanco["codigoBanco"];
 
-
-//endereço
 $rua = $enderecoCEP["rua"]; 
 $bairro = $enderecoCEP["bairro"];
 $cidade = $enderecoCEP["cidade"];
 $estado = $enderecoCEP["estado"];
 
-
 //PessoaJuridica
-$pjRazaoSocial = $pj["Nome"];
-$pjCNPJ = $pj['CNPJ'];
-$pjCCM = $pj["CCM"];
-$pjEndereco = $pj["Endereco"];
-$pjNumEndereco = $pj["NumEndereco"];
-$pjComplemento = $pj["Complemento"];
-$pjcep = $pj["CEP"];
-$pjTelefone01 = $pj["Telefone01"];
-$banco = $pj["Banco"];
-$agencia = $pj["Agencia"];
-$conta = $pj["Conta"];
-$codbanco = $pj["CodigoBanco"];
+$pjRazaoSocial = $pessoa["razaoSocial"];
+$pjCNPJ = $pessoa['cnpj'];
+$pjCCM = $pessoa["ccm"];
+$pjNumEndereco = $pessoa["numero"];
+$pjComplemento = $pessoa["complemento"];
+$pjcep = $pessoa["cep"];
+$pjTelefone01 = $pessoa["telefone1"];
+$agencia = $pessoa["agencia"];
+$conta = $pessoa["conta"];
 
 
 // Representante01
-$rep01Nome = $rep01["Nome"];
-$rep01RG = $rep01["RG"];
-$rep01CPF = $rep01["CPF"];
+$rep01Nome = $rep01["nome"];
+$rep01RG = $rep01["rg"];
+$rep01CPF = $rep01["cpf"];
 
 
 
@@ -125,7 +111,5 @@ $l=7; //DEFINE A ALTURA DA LINHA
    $pdf->Cell(50,$l,utf8_decode($rep01RG),0,0,'L');
 
 
-$pdf->Output('D',$id_ped.' - FACC.pdf');
-
-
+$pdf->Output();
 ?>

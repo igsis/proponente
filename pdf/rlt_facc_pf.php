@@ -112,6 +112,4 @@ $l=7; //DEFINE A ALTURA DA LINHA
 
 
 $pdf->Output();
-
-
 ?>
