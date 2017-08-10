@@ -649,7 +649,7 @@ function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
 		echo "<p>Não há arquivo(s) inserido(s).<p/><br/>";
 	}	
 }
-function listaArquivoCamposMultiplosPf($idPessoa,$tipoPessoa,$pagina)
+function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$pagina)
 {
 	$con = bancoMysqli();
 	$sql = "SELECT * 
