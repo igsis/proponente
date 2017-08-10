@@ -10,7 +10,8 @@
 		<script src="visual/js/jquery.maskedinput.js" type="text/javascript"></script>
 		<script src="visual/js/jquery.maskMoney.js" type="text/javascript"></script>
 		<script type="text/javascript">
-	$(document).ready(function(){	$("#cpf").mask("999.999.999-99");});</script>
+			$(document).ready(function(){	$("#cpf").mask("999.999.999-99");});
+		</script>
 	</head>
 	<body>	
 		<section id="services" class="home-section bg-white">

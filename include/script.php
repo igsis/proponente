@@ -63,7 +63,7 @@ function mtel(v){
  </script>
 
 <script type="text/javascript">
-	$(document).ready(function(){	$("#CNPJ").mask("99.999.999/9999-99");});
+	$(document).ready(function(){	$("#cnpj").mask("99.999.999/9999-99");});
 </script>
 <script type="text/javascript">
 	$(document).ready(function(){	$("#cpf").mask("999.999.999-99");});</script>

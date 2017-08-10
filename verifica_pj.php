@@ -6,6 +6,12 @@
 		<link href="visual/css/style.css" rel="stylesheet" media="screen">
 		<link href="visual/color/default.css" rel="stylesheet" media="screen">
 		<script src="visual/js/modernizr.custom.js"></script>
+		<script src="visual/js/jquery-1.9.1.js"></script>
+		<script src="visual/js/jquery.maskedinput.js" type="text/javascript"></script>
+		<script src="visual/js/jquery.maskMoney.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){	$("#cnpj").mask("99.999.999/9999-99");});
+		</script>
 	</head>
 	<body>	
 		<section id="services" class="home-section bg-white">
