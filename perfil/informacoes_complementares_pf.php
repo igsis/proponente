@@ -113,7 +113,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 
 ?>
 
-<section id="contact" class="home-section bg-white">
+<section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>INFORMAÇÕES COMPLEMENTARES</h3>
@@ -152,6 +152,10 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</div>
 					</div>
 				</form>
+				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>
 				
 				<!-- Exibir arquivos -->
 				<div class="form-group">
