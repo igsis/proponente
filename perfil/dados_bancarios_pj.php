@@ -1,10 +1,8 @@
 ﻿<?php
 $con = bancoMysqli();
 $idPessoaJuridica = $_SESSION['idUsuario'];
-
-$idCampo = 25;
-$tipoPessoa = 2;
-
+$idCampo = 37;
+$tipoPessoa = 1;
 if(isset($_POST['cadastrarBanco']))
 {
 	$idPessoaJuridica = $_POST['cadastrarBanco'];
@@ -27,8 +25,6 @@ if(isset($_POST['cadastrarBanco']))
 		$mensagem = "Erro ao atualizar! Tente novamente.";
 	}	
 }
-
-
 if(isset($_POST["enviar"]))
 {
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
@@ -68,7 +64,6 @@ if(isset($_POST["enviar"]))
 		}	
 	}
 }
-
 if(isset($_POST['apagar']))
 {
 	$idArquivo = $_POST['apagar'];
@@ -83,9 +78,7 @@ if(isset($_POST['apagar']))
 		$mensagem = "Erro ao apagar o arquivo. Tente novamente!";
 	}
 }
-
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
-
 ?>
 
 <section id="list_items" class="home-section bg-white">
@@ -133,7 +126,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<?php
 					$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
 					$http = $server."/pdf/";
-					$link1 = $http."rlt_facc_pj.php";
+					$link1 = $http."rlt_facc_pj.php"."?id_pj=".$idPessoaJuridica;
 				?>
 					
 				<div class="form-group">
@@ -154,7 +147,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo Anexado</h6>
-							<?php listaArquivoCampo($idPessoaJuridica,$tipoPessoa,$idCampo,"dados_bancarios_pj"); ?>
+							<?php listaArquivoCamposMultiplos($idPessoaJuridica,$tipoPessoa,$idCampo,"dados_bancarios_pj",3); ?>
 						</div>
 					</div>
 				</div>				

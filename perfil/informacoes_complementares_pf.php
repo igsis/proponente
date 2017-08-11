@@ -161,7 +161,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo Anexado</h6>
-							<?php listaArquivoCampo($idPessoaFisica,$tipoPessoa,$idCampo,"dados_bancarios_pf"); ?>
+							<?php listaArquivoCamposMultiplos($idPessoaFisica,$tipoPessoa,$idCampo,"dados_bancarios_pf",3); ?>
 						</div>
 					</div>
 				</div>	

@@ -602,7 +602,7 @@
 	}
 	
 	
-function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
+/*function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
 {
 	$con = bancoMysqli();
 	$sql = "SELECT * 
@@ -648,17 +648,82 @@ function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
 	{
 		echo "<p>Não há arquivo(s) inserido(s).<p/><br/>";
 	}	
-}
-function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$pagina)
+}*/
+
+function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 {
+	//$pf == 1 > documentos_pf
+	//$pf == 2 > documentos_pj
+	//$pf == 3 > dados_bancarios e informações_complementares
+	//$pf == 4 > anexos_pf
+	//$else > anexos_pj
 	$con = bancoMysqli();
-	$sql = "SELECT * 
+	if($pf == 1)
+	{
+		$arq1 = "AND (list.id = '1' OR ";
+		$arq2 = "list.id = '2' OR";
+		$arq3 = "list.id = '3' OR";
+		$arq4 = "list.id = '14')";
+		$sql = "SELECT * 
 			FROM upload_lista_documento as list
 			INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
-			WHERE arq.idPessoa = '3' 
-			AND arq.idTipoPessoa = '1' 
-			AND (list.id = '1' OR list.id = '2' OR list.id = '3' OR list.id = '14')
+			WHERE arq.idPessoa = '$idPessoa' 
+			AND arq.idTipoPessoa = '$tipoPessoa'
+			$arq1 $arq2 $arq3 $arq4 
 			AND arq.publicado = '1'";
+	}
+	else
+	{
+		if($pf == 2)
+		{
+			$arq1 = "AND (list.id = '9' OR ";
+			$arq2 = "list.id = '21')";
+			$sql = "SELECT * 
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa' 
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				$arq1 $arq2
+				AND arq.publicado = '1'";
+		}
+		else
+		{
+			if($pf == 3)
+			{
+				$sql = "SELECT * 
+					FROM upload_lista_documento as list
+					INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+					WHERE arq.idPessoa = '$idPessoa' 
+					AND arq.idTipoPessoa = '$tipoPessoa' 
+					AND list.id = '$idCampo'
+					AND arq.publicado = '1'";
+			}
+			else
+			{
+				if($pf == 4)
+				{
+					$sql = "SELECT * 
+						FROM upload_lista_documento as list
+						INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+						WHERE arq.idPessoa = '$idPessoa' 
+						AND arq.idTipoPessoa = '$tipoPessoa' 
+						AND list.id NOT IN('1','2','3','14')
+						AND arq.publicado = '1'";
+				}
+				else
+				{
+					$sql = "SELECT * 
+						FROM upload_lista_documento as list
+						INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+						WHERE arq.idPessoa = '$idPessoa' 
+						AND arq.idTipoPessoa = '$tipoPessoa' 
+						AND list.id NOT IN('9','21')
+						AND arq.publicado = '1'";
+				}
+			}
+		}
+		
+	}
 	$query = mysqli_query($con,$sql);
 	$linhas = mysqli_num_rows($query);
 	
