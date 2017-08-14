@@ -86,7 +86,7 @@ if(isset($_POST['apagar']))
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 ?>
 
-<section id="contact" class="home-section bg-white">
+<section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include '../perfil/includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>ENDEREÇO</h3>

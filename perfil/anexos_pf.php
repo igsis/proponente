@@ -70,12 +70,14 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
-        <div class="row">
-		    <div class="col-md-offset-2 col-md-8">
-				<div class="section-heading">
-					<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
-				</div>	
-					<!-- Exibir arquivos -->
+		<div class="form-group">
+			<h3>ANEXOS</h3>
+			<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
+			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
@@ -83,7 +85,6 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</div>
 					</div>
 				</div>	
-			</div>	
 				
 				<!-- Upload de arquivo -->
 				<div class="form-group">
@@ -114,7 +115,8 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</div>
 					</div>
 				</div>
-		</div>
+			</div>
 				<!-- Fim Upload de arquivo -->
+		</div>			
 	</div>
 </section>

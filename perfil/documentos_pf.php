@@ -246,6 +246,8 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				}	
 				?>
 				<!-- Fim Se for RNE -->
+			</div>	
+		</div>		
 				
 			<!-- campos -->	
 			<div class="row">
@@ -266,7 +268,6 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 									<input type="text" class="form-control" id="ccm" name="ccm" placeholder="Nº do CCM" value="<?php echo $pf['ccm']; ?>">
 								</div>
 							</div>
-				</div>		
 			<!-- fim dos campos -->
 			
 						<!-- Botão para gravar -->		
@@ -418,8 +419,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 							</form>	
 						</div>					
 					</div>
+				</div>
 			</div>
-			</div>
-		</div>
 	</div>
 </section>  
