@@ -70,12 +70,14 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
-        <div class="row">
-		    <div class="col-md-offset-2 col-md-8">
-				<div class="section-heading">
-					<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Nome:</b> <?php echo $pj['razaoSocial']; ?></p>
-				</div>	
-					<!-- Exibir arquivos -->
+		<div class="form-group">
+			<h3>ANEXOS</h3>
+			<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">	
+				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
@@ -83,7 +85,6 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 						</div>
 					</div>
 				</div>	
-			</div>	
 				
 				<!-- Upload de arquivo -->
 				<div class="form-group">
@@ -114,7 +115,8 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 						</div>
 					</div>
 				</div>
-		</div>
+			</div>
 				<!-- Fim Upload de arquivo -->
+		</div>
 	</div>
 </section>
