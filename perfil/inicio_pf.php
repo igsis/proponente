@@ -114,7 +114,10 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				</div>
 			</form>
 			
-			
+			<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+			</div>
+				
 				<!-- Botão para Prosseguir -->
 				<div class="form-group">
 					<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">

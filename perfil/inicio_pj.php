@@ -78,6 +78,9 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				</div>
 			</form>
 			
+			<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+			</div>			
 			
 				<!-- Botão para Prosseguir -->
 				<div class="form-group">

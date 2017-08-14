@@ -400,6 +400,10 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					</div>
 					<!-- Fim Upload de arquivo -->
 					
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>
+					
 					
 					<!-- Botão para Voltar e Prosseguir -->
 					<div class="form-group">					
