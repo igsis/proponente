@@ -1,8 +1,10 @@
 ﻿<?php
 $con = bancoMysqli();
 $idPessoaJuridica = $_SESSION['idUsuario'];
-$idCampo = 37;
-$tipoPessoa = 1;
+
+$idCampo = 54;
+$tipoPessoa = 2;
+
 if(isset($_POST['cadastrarBanco']))
 {
 	$idPessoaJuridica = $_POST['cadastrarBanco'];
@@ -146,7 +148,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<div class="table-responsive list_info"><h6>Arquivo Anexado</h6>
+						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
 							<?php listaArquivoCamposMultiplos($idPessoaJuridica,$tipoPessoa,$idCampo,"dados_bancarios_pj",3); ?>
 						</div>
 					</div>

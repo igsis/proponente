@@ -160,7 +160,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<div class="table-responsive list_info"><h6>Arquivo Anexado</h6>
+						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
 							<?php listaArquivoCamposMultiplos($idPessoaFisica,$tipoPessoa,$idCampo,"dados_bancarios_pf",3); ?>
 						</div>
 					</div>
