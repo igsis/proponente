@@ -41,12 +41,14 @@ if(isset($_POST['cadastrarDocumentos']))
 	$cpf = $_POST['cpf'];
 	$inscricaoInss = $_POST['inscricaoInss'];
 	$ccm = $_POST['ccm'];
-
+	$pis = $_POST['pis'];
 	
+		
 	$sql_insere_cpf = "UPDATE `usuario_pf` SET 
 	`cpf` = '$cpf',
 	`inscricaoInss` = '$inscricaoInss',
-	`ccm` = '$ccm'
+	`ccm` = '$ccm',
+	`pis` = '$pis'
 
 	WHERE `id` = '$idPessoaFisica'";
 	if(mysqli_query($con,$sql_insere_cpf))
@@ -264,8 +266,11 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 							</div>
 						
 							<div class="form-group">
-								<div class="col-md-offset-2 col-md-8"><strong>CCM:</strong><br/>
+								<div class="col-md-offset-2 col-md-6"><strong>CCM:</strong><br/>
 									<input type="text" class="form-control" id="ccm" name="ccm" placeholder="Nº do CCM" value="<?php echo $pf['ccm']; ?>">
+								</div>
+								<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
+									<input type="text" class="form-control" id="pis" name="pis" placeholder="Nº do PIS/PASEP/NIT" value="<?php echo $pf['pis']; ?>">
 								</div>
 							</div>
 			<!-- fim dos campos -->
@@ -355,7 +360,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 										<td width="50%"><td>
 									</tr>
 									<?php 
-										$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '3'";
+										$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '11'";
 										$query_arquivos = mysqli_query($con,$sql_arquivos);
 										while($arq = mysqli_fetch_array($query_arquivos))
 										{ 

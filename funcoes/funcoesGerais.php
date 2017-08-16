@@ -662,7 +662,7 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 	{
 		$arq1 = "AND (list.id = '1' OR ";
 		$arq2 = "list.id = '2' OR";
-		$arq3 = "list.id = '3' OR";
+		$arq3 = "list.id = '11' OR";
 		$arq4 = "list.id = '14')";
 		$sql = "SELECT * 
 			FROM upload_lista_documento as list
