@@ -115,8 +115,21 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</div>
 					</div>
 				</div>
-			</div>
 				<!-- Fim Upload de arquivo -->
-		</div>			
+				
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+			</div>
+				
+				<!-- Botão para Voltar -->
+				<div class="form-group">					
+					<div class="col-md-offset-2 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
+						</form>	
+					</div>
+				</div>	
+			</div>	
+		</div>
 	</div>
 </section>
