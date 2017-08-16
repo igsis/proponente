@@ -42,22 +42,43 @@
 			$mensagem = "A senha não pode estar em branco e deve conter mais de 5 caracteres";	
 		}
 	}
+	
+	if(isset($_POST['fraseSeguranca']))
+{
+	$idPessoaFisica = $_POST['fraseSeguranca'];
+	$idFraseSeguranca = $_POST['idFraseSeguranca'];
+	$respostaFrase = $_POST['respostaFrase'];
+	
+	$sql_atualiza_pf = "UPDATE usuario_pf SET
+	`idFraseSeguranca` = '$idFraseSeguranca', 
+	`respostaFrase` = '$respostaFrase'
+	WHERE `id` = '$idPessoaFisica'";	
+	
+	if(mysqli_query($con,$sql_atualiza_pf))
+	{
+		$mensagem = "Atualizado com sucesso!!!";	
+	}
+	else
+	{
+		$mensagem = "Erro ao atualizar suas informações de segurança! Tente novamente.";
+	}	
+}
+	
+$pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
-		<div class="row">
-			<div class="col-md-offset-2 col-md-8">
-				<div class="text-hide">
-					<h4>MUDANÇA DE SENHA</h4>
-					<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> - <b>Nome:</b> <?php echo $idPessoaFisica; ?></p>
-					<h6><?php if(isset($mensagem)){echo $mensagem;} ?></h6>
-				</div>
-			</div>
+		<div class="form-group">
+			<h3>DADOS DA CONTA</h3>
+			<p><b>Código de cadastro:</b> <?php echo $idPessoaFisica; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
+			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
+		<!-- Redefinição de senha -->
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<form method="POST" action="?perfil=senha_pf"class="form-horizontal" role="form">
 					<div class="form-group">
+						<h5>Redefinição de senha</h5>
 						<div class="col-md-offset-2 col-md-8"><label>Insira sua senha antiga para confirmar a mudança.</label>
 							<input type="password" name="senha03" class="form-control" id="inputName" placeholder="">
 						</div>
@@ -80,5 +101,38 @@
 				</form>
 			</div>
 		</div>
+		<!-- Fim Redefinição de Senha -->
+		
+		<!-- Pergunta de Segurança -->
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<form method="POST" action="?perfil=senha_pf"class="form-horizontal" role="form">
+					<h5>Recuperação de Senha</h5>
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-8"><strong>Escolha uma pergunta secreta:</strong><br/>
+								<select class="form-control" name="idFraseSeguranca" id="idFraseSeguranca">
+									<option></option>
+									<?php geraOpcao("frase_seguranca",$pf['idFraseSeguranca'],"");	?>
+								</select>	
+							</div>
+						</div> 
+					
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><label>Resposta</label>
+							<input type="text" name="respostaFrase" class="form-control" id="respostaFrase" placeholder="Ex: Amarelo">
+						</div>
+					</div>
+					
+				<!-- Botão para gravar -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<input type="hidden" name="fraseSeguranca" value="<?php echo $pf['id'] ?>">
+						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+		<!-- Fim Pergunta de Segurança -->
 	</div>
 </section>

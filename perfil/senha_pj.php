@@ -42,17 +42,15 @@
 			$mensagem = "A senha não pode estar em branco e deve conter mais de 5 caracteres";	
 		}
 	}
+	
+$pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
-		<div class="row">
-			<div class="col-md-offset-2 col-md-8">
-				<div class="text-hide">
-					<h4>MUDANÇA DE SENHA</h4>
-					<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> - <b>Nome:</b> <?php echo $idPessoaJuridica; ?></p>
-					<h6><?php if(isset($mensagem)){echo $mensagem;} ?></h6>
-				</div>
-			</div>
+		<div class="form-group">
+			<h3>DADOS DA CONTA</h3>
+			<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
