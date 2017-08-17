@@ -1,5 +1,6 @@
 <?php
- $idPessoaFisica = $_SESSION['idUsuario'];
+$con = bancoMysqli();
+$idPessoaFisica = $_SESSION['idUsuario'];
 
 	if(isset($_POST['senha01']))
 	{
@@ -43,26 +44,25 @@
 		}
 	}
 	
-	if(isset($_POST['fraseSeguranca']))
-{
-	$idPessoaFisica = $_POST['fraseSeguranca'];
-	$idFraseSeguranca = $_POST['idFraseSeguranca'];
-	$respostaFrase = $_POST['respostaFrase'];
-	
-	$sql_atualiza_pf = "UPDATE usuario_pf SET
-	`idFraseSeguranca` = '$idFraseSeguranca', 
-	`respostaFrase` = '$respostaFrase'
-	WHERE `id` = '$idPessoaFisica'";	
-	
-	if(mysqli_query($con,$sql_atualiza_pf))
+		if(isset($_POST['fraseSeguranca']))
 	{
-		$mensagem = "Atualizado com sucesso!!!";	
+		$idFraseSeguranca = $_POST['idFraseSeguranca'];
+		$respostaFrase = $_POST['respostaFrase'];
+		
+		$sql_seguranca_pf = "UPDATE usuario_pf SET
+		`idFraseSeguranca` = '$idFraseSeguranca', 
+		`respostaFrase` = '$respostaFrase'
+		WHERE `id` = '$idPessoaFisica'";	
+		
+		if(mysqli_query($con,$sql_seguranca_pf))
+		{
+			$mensagem = "Pergunta secreta atualizada com sucesso!";	
+		}
+		else
+		{
+			$mensagem = "Erro ao atualizar sua pergunta secreta! Tente novamente.";
+		}	
 	}
-	else
-	{
-		$mensagem = "Erro ao atualizar suas informações de segurança! Tente novamente.";
-	}	
-}
 	
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 ?>
@@ -93,11 +93,12 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</div>
 					</div>
 					
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8">
-							<button type="submit" class="btn btn-theme btn-lg btn-block">Mudar a senha</button>
-						</div>
+				<!-- Botão para gravar -->	
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<input type="submit" name="senha01" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
+				</div>
 				</form>
 			</div>
 		</div>
@@ -109,6 +110,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				<form method="POST" action="?perfil=senha_pf"class="form-horizontal" role="form">
 					<h5>Recuperação de Senha</h5>
 						<div class="form-group">
+						<p>Escolha uma pergunta secreta, para casos de recuperação de senha.</p>
 							<div class="col-md-offset-2 col-md-8"><strong>Escolha uma pergunta secreta:</strong><br/>
 								<select class="form-control" name="idFraseSeguranca" id="idFraseSeguranca">
 									<option></option>
@@ -118,16 +120,15 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</div> 
 					
 					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><label>Resposta</label>
-							<input type="text" name="respostaFrase" class="form-control" id="respostaFrase" placeholder="Ex: Amarelo">
+						<div class="col-md-offset-2 col-md-8"><strong>Resposta:</strong><br/>
+							<input type="text" class="form-control" id="respostaFrase" name="respostaFrase" placeholder="" value="<?php echo $pf['respostaFrase']; ?>">
 						</div>
 					</div>
 					
 				<!-- Botão para gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="fraseSeguranca" value="<?php echo $pf['id'] ?>">
-						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+						<input type="submit" name ="fraseSeguranca" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
 				</form>
