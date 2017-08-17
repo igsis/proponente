@@ -21,6 +21,12 @@ if(isset($_POST['login']))
 		<link href="visual/css/style.css" rel="stylesheet" media="screen">
 		<link href="visual/color/default.css" rel="stylesheet" media="screen">
 		<script src="visual/js/modernizr.custom.js"></script>
+		<script src="visual/js/jquery-1.9.1.js"></script>
+		<script src="visual/js/jquery.maskedinput.js" type="text/javascript"></script>
+		<script src="visual/js/jquery.maskMoney.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){	$("#cnpj").mask("99.999.999/9999-99");});
+		</script>
 	</head>
 	<body>
 		<section id="contact" class="home-section bg-white">
@@ -37,7 +43,7 @@ if(isset($_POST['login']))
 					<form method="POST" action="login_pj.php" class="form-horizontal" role="form">
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-6">
-								<input type="text" name="login" class="form-control" placeholder="Usuário">
+								<input type="text" id="cnpj" name="login" class="form-control" placeholder="Usuário">
 							</div>				  
 							<div class=" col-md-6">
 								<input type="password" name="senha" class="form-control" placeholder="Senha">
