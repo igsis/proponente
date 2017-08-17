@@ -110,8 +110,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				<form method="POST" action="?perfil=senha_pf"class="form-horizontal" role="form">
 					<h5>Recuperação de Senha</h5>
 						<div class="form-group">
-						<p>Escolha uma pergunta secreta, para casos de recuperação de senha.</p>
-							<div class="col-md-offset-2 col-md-8"><strong>Escolha uma pergunta secreta:</strong><br/>
+							<div class="col-md-offset-2 col-md-8"><strong>Escolha uma pergunta secreta, para casos de recuperação de senha:</strong><br/>
 								<select class="form-control" name="idFraseSeguranca" id="idFraseSeguranca">
 									<option></option>
 									<?php geraOpcao("frase_seguranca",$pf['idFraseSeguranca'],"");	?>

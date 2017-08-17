@@ -31,7 +31,7 @@
 						<div class="col-md-offset-2 col-md-8">
 							<form method="POST" action="login_resultado_pf.php" class="form-horizontal" role="form">
 								<label>Insira o CPF</label>
-								<input type="text" class="form-control" id="cpf" name="CPF"  placeholder="CPF">
+								<input type="text" name="busca" class="form-control" placeholder="CPF" id="cpf" >
 								<br />             
 								<div class="form-group">
 									<div class="col-md-offset-2 col-md-8">
