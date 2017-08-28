@@ -19,7 +19,7 @@ if(isset($_POST['cadastrarFisica']))
 	$sql_insere_pf = "INSERT INTO usuario_pf (`nome`, `nomeArtistico`, `idEstadoCivil`, `dataNascimento`, `nacionalidade`, `telefone1`, `telefone2`, `telefone3`, `email`, `login`, `senha`) VALUES
 	('$Nome', '$NomeArtistico','$IdEstadoCivil', '$DataNascimento', '$Nacionalidade', '$Telefone1', '$Telefone2', '$Telefone3', '$Email', '$Login', '$Senha')";	
 	
-	if(mysqli_query($con,$sql_atualiza_pf))
+	if(mysqli_query($con,$sql_insere_pf))
 	{
 		$mensagem = "Atualizado com sucesso!";	
 	}
@@ -41,7 +41,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?inicio_pf.php" method="post">
+			<form class="form-horizontal" role="form" action="?insere_pf.php" method="post">
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
 						<input type="text" class="form-control" name="nome" placeholder="Insira seu nome completo" value="<?php echo $pf['nome']; ?>" >

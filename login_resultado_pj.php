@@ -37,7 +37,7 @@ if($num_busca > 0)
 								<table class="table table-condensed">
 									<thead>
 										<tr class="list_menu">
-											<td>Razão Social</td>
+											<td>Nome</td>
 											<td>CNPJ</td>
 											<td width="15%"></td>
 										</tr>
@@ -48,7 +48,7 @@ if($num_busca > 0)
 										{			
 											echo "
 												<tr>
-													<td class='list_description'><b>".$descricao['razaoSocial']."</b></td>
+													<td class='list_description'><b>".$descricao['nome']."</b></td>
 													<td class='list_description'>".$descricao['login']."</td><td class='list_description'>
 													<form method='POST' action='?perfil=representante1_pj_cadastro'>
 														<input type='hidden' name='insereRepresentante' value='".$descricao['id']."'>
@@ -79,7 +79,7 @@ if($num_busca > 0)
 <?php
 }
 else
-{ // se não existir o cnpj, imprime um formulário.
+{ // se não existir o cpf, imprime um formulário.
 	$busca = $_POST['busca'];
 ?>	
 	<html>
@@ -103,7 +103,7 @@ else
 						<form class="form-horizontal" role="form" action="login_cadastro_pj.php" method="post">
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8"><strong>Razão Social: *</strong><br/>
-									<input type="text" class="form-control" name="nome" placeholder="Razão Social">
+									<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social">
 								</div>
 							</div>
 							  

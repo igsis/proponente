@@ -26,7 +26,7 @@ if(isset($_POST['cadastraNovoPf']))
 			{
 				$mensagem = "Usuário cadastrado com sucesso! Aguarde que você será redirecionado para a página de login";
 				 echo "<script type=\"text/javascript\">
-					  window.setTimeout(\"location.href='login_pf.php';\", 8000);
+					  window.setTimeout(\"location.href='login_pf.php';\", 4000);
 					</script>";
 				$query_insere_drt = mysqli_query($con,$sql_insere_drt);
 			}

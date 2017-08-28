@@ -120,7 +120,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Resposta:</strong><br/>
-							<input type="text" class="form-control" id="respostaFrase" name="respostaFrase" placeholder="" value="<?php echo $pf['respostaFrase']; ?>">
+							<input type="text" class="form-control" id="respostaFrase" maxlength="10" name="respostaFrase" placeholder="" value="<?php echo $pf['respostaFrase']; ?>">
 						</div>
 					</div>
 					

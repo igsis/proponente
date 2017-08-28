@@ -1,28 +1,31 @@
 <?php
 require "funcoes/funcoesGerais.php";
 require "funcoes/funcoesConecta.php";
-
 $busca = $_POST['cnpj'];
 $con = bancoMysqli(); // conecta no banco
 
 if(isset($_POST['cadastraNovoPj']))
 {		
 	//verifica se há um post
-	if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) > 4))
+	if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) >= 5))
 	{
 		if($_POST['senha01'] == $_POST['senha02'])
 		{
 			$razaoSocial = addslashes($_POST['razaoSocial']);
-			$email = $_POST['email'];
 			$login = $_POST['cnpj'];
 			$senha01 = md5($_POST['senha01']);
+			$email = $_POST['email'];
 			$sql_senha = "INSERT INTO `usuario_pj`(razaoSocial, email, login, senha) VALUES ('$razaoSocial', '$email', '$login', '$senha01')";
 			$query_senha = mysqli_query($con,$sql_senha);
+			$sql_select = "SELECT * FROM usuario_pj WHERE login = '$login'";
+			$query_select = mysqli_query($con,$sql_select);
+			$sql_array = mysqli_fetch_array($query_select);
+			$idPessoaJuridica = $sql_array['id'];
 			if($query_senha)
 			{
 				$mensagem = "Usuário cadastrado com sucesso! Aguarde que você será redirecionado para a página de login";
 				 echo "<script type=\"text/javascript\">
-					  window.setTimeout(\"location.href='login_pj.php';\", 8000);
+					  window.setTimeout(\"location.href='login_pj.php';\", 4000);
 					</script>";
 			}
 			else
@@ -81,8 +84,8 @@ if(isset($_POST['cadastraNovoPj']))
 							<div class="col-md-offset-2 col-md-6"><strong>CNPJ: *</strong><br/>
 								<input type="text" readonly class="form-control" name="cnpj" value="<?php echo $busca ?>" placeholder="CNPJ">
 							</div>
-							<div class="col-md-6"><strong>Email: *</strong><br/>
-								<input type="text" class="form-control" name="email" placeholder="Email">
+							<div class="col-md-6"><strong>E-mail: *</strong><br/>
+								<input type="text" class="form-control" name="email" placeholder="E-mail">
 							</div>
 						</div>
 							  

@@ -8,7 +8,6 @@ if(isset($_POST['cadastrarFisica']))
 {
 	$idPessoaFisica = $_POST['cadastrarFisica'];
 	$Nome = addslashes($_POST['nome']);
-	$InscricaoInss = $_POST['inscricaoInss'];
 	$tipoDocumento = $_POST['tipoDocumento'];
 	$cpf = $_POST['cpf'];
 	$rg = $_POST['rg'];
@@ -17,7 +16,6 @@ if(isset($_POST['cadastrarFisica']))
 	
 	$sql_atualiza_pf = "UPDATE usuario_pf SET
 	`nome` = '$Nome',
-	`inscricaoInss` = '$InscricaoInss', 
 	`tipoDocumento` = '$tipoDocumento',
 	`cpf` = '$cpf',	
 	`rg` = '$rg',
@@ -39,14 +37,12 @@ if(isset($_POST['cadastrarDocumentos']))
 {
 	$idPessoaFisica = $_POST['cadastrarDocumentos'];
 	$cpf = $_POST['cpf'];
-	$inscricaoInss = $_POST['inscricaoInss'];
 	$ccm = $_POST['ccm'];
 	$pis = $_POST['pis'];
 	
 		
 	$sql_insere_cpf = "UPDATE `usuario_pf` SET 
 	`cpf` = '$cpf',
-	`inscricaoInss` = '$inscricaoInss',
 	`ccm` = '$ccm',
 	`pis` = '$pis'
 
@@ -213,7 +209,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<input type="hidden" name="editaRg" value="<?php echo $pf['id'] ?>">
-						<input type="submit" value="INSERIR" class="btn btn-theme btn-lg btn-block">
+						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
 				<!-- Fim Botão -->			
@@ -239,7 +235,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
 							<input type="hidden" name="editaRg" value="<?php echo $pf['id'] ?>">
-							<input type="submit" value="EDITAR" class="btn btn-theme btn-lg btn-block">
+							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 						</div>
 					</div>
 					<!-- Fim Botão -->							
@@ -255,24 +251,20 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10">
 					<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-8"><strong>CPF *:</strong><br/>
+								<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo $pf['cpf']; ?>">
+							</div>					
+						</div>
 					
-							<div class="form-group">
-								<div class="col-md-offset-2 col-md-6"><strong>CPF *:</strong><br/>
-									<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo $pf['cpf']; ?>">
-								</div>					
-								<div class="col-md-6"><strong>Inscrição INSS:</strong><br/>
-									<input type="text" class="form-control" id="inscricaoInss" name="inscricaoInss" placeholder="Nº da inscrição INSS" value="<?php echo $pf['inscricaoInss']; ?>">
-								</div>
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-6"><strong>CCM:</strong><br/>
+								<input type="text" class="form-control" id="ccm" name="ccm" placeholder="Nº do CCM" value="<?php echo $pf['ccm']; ?>">
 							</div>
-						
-							<div class="form-group">
-								<div class="col-md-offset-2 col-md-6"><strong>CCM:</strong><br/>
-									<input type="text" class="form-control" id="ccm" name="ccm" placeholder="Nº do CCM" value="<?php echo $pf['ccm']; ?>">
-								</div>
-								<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
-									<input type="text" class="form-control" id="pis" name="pis" placeholder="Nº do PIS/PASEP/NIT" value="<?php echo $pf['pis']; ?>">
-								</div>
+							<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
+								<input type="text" class="form-control" id="pis" name="pis" placeholder="Nº do PIS/PASEP/NIT" value="<?php echo $pf['pis']; ?>">
 							</div>
+						</div>
 			<!-- fim dos campos -->
 			
 						<!-- Botão para gravar -->		
