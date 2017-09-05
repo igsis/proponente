@@ -99,7 +99,10 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 			<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
-						 
+			
+			<font color="#FF0000"><strong>Para contratações acima de R$ 5.000,00 obrigatória conta no Banco do Brasil.</strong></font>
+			<p>
+			
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
 						<select class="form-control" name="codigoBanco" id="codigoBanco">

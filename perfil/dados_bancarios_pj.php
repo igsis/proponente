@@ -93,6 +93,9 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 			<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
+			
+			<font color="#FF0000"><strong>Para contratações acima de R$ 5.000,00 obrigatória conta no Banco do Brasil.</strong></font><br />
+			<p>
 						 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
