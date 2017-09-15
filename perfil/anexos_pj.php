@@ -77,6 +77,24 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">	
+			<!-- Links emissão de documentos -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class="table-responsive list_info"><h6>Gerar Arquivo(s)</h6>
+						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
+						<a href="https://www.sifge.caixa.gov.br/Cidadao/Crf/FgeCfSCriteriosPesquisa.asp" target="_blank">CRF do FGTS</a></i><br/><br />
+						<a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></i><br/><br />
+						<a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a></i><br/><br />
+						<a href="http://www3.prefeitura.sp.gov.br/certidaotributaria/forms/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais (opção: mobiliária)</a></i><br/><br />
+						<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND - Certidão de regularidade perante o INSS</a></i><br/><br />
+						<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/certaut/CndConjunta/ConfirmaAutenticCndSolicitacao.asp?ORIGEM=PJ" target="_blank">Autenticidade de CND ­ Certidão de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União (CND)</a></i><br/><br />
+						<a href="http://www.tst.jus.br/certidao" target="_blank">CNDT - Certidão Negativa de Débitos Trabalhistas</a></i><br/><br />
+						<a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx" target="_blank">CADIN Municipal</a></i><br/><br />
+						<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></i><br/><br />
+						</div>
+					</div>
+				</div>
+			
 				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
