@@ -17,6 +17,7 @@ if(isset($_POST['cadastrarFisica']))
 	$Telefone3 = $_POST['telefone3'];
 	$Email = $_POST['email'];
 	$Login = $_POST['login'];
+	$dataAtualizacao = $_POST['dataAtualizacao'];
 		
 	
 	$sql_atualiza_pf = "UPDATE usuario_pf SET
@@ -29,7 +30,8 @@ if(isset($_POST['cadastrarFisica']))
 	`telefone1` = '$Telefone1', 
 	`telefone2` = '$Telefone2',  
 	`telefone3` = '$Telefone3', 
-	`email` = '$Email'
+	`email` = '$Email',
+	`dataAtualizacao` = '$dataAtualizacao',
 	WHERE `id` = '$idPessoaFisica'";	
 	
 	if(mysqli_query($con,$sql_atualiza_pf))
