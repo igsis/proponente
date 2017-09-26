@@ -2,7 +2,7 @@
 require "includes/funcoes.php";
 
 $con = bancoMysqli();
-$idPessoaFisica = $_SESSION['idUsuario'];
+$idPessoaFisica = $_SESSION['idUser'];
 
 $tipoPessoa = 1;
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);

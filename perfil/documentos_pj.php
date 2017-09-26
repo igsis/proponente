@@ -1,6 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUsuario'];
+$idPessoaJuridica = $_SESSION['idUser'];
 
 $tipoPessoa = 2;
 
@@ -11,7 +11,7 @@ if(isset($_POST['cadastrarJuridica']))
 	$Cnpj = $_POST['cnpj'];
 	$ccm = $_POST['ccm'];
 	$Data = date('Y-m-d');
-	$idUsuario = $_SESSION['idUsuario'];
+	$idUsuario = $_SESSION['idUser'];
 	
 	$sql_documentos_pj = "UPDATE usuario_pj SET
 	`cnpj` = '$Cnpj',

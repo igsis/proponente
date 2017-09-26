@@ -1,6 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPessoaFisica = $_SESSION['idUsuario'];
+$idPessoaFisica = $_SESSION['idUser'];
 
 
 if(isset($_POST['cadastrarFisica']))
@@ -17,7 +17,7 @@ if(isset($_POST['cadastrarFisica']))
 	$Telefone3 = $_POST['telefone3'];
 	$Email = $_POST['email'];
 	$Login = $_POST['login'];
-	$dataAtualizacao = $_POST['dataAtualizacao'];
+	$dataAtualizacao = date("Y-m-d");
 		
 	
 	$sql_atualiza_pf = "UPDATE usuario_pf SET
@@ -31,7 +31,7 @@ if(isset($_POST['cadastrarFisica']))
 	`telefone2` = '$Telefone2',  
 	`telefone3` = '$Telefone3', 
 	`email` = '$Email',
-	`dataAtualizacao` = '$dataAtualizacao',
+	`dataAtualizacao` = '$dataAtualizacao'
 	WHERE `id` = '$idPessoaFisica'";	
 	
 	if(mysqli_query($con,$sql_atualiza_pf))

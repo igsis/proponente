@@ -24,7 +24,7 @@ class PDF extends FPDF
 }
 
 //CONSULTA 
-$idPessoaJuridica = $_SESSION['idUsuario'];
+$idPessoaJuridica = $_SESSION['idUser'];
 
 $pessoa = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 $enderecoCEP = enderecoCEP($pessoa['cep']);

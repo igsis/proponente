@@ -1,6 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPessoaFisica = $_SESSION['idUsuario'];
+$idPessoaFisica = $_SESSION['idUser'];
 
 $tipoPessoa = 1;
 
@@ -12,7 +12,7 @@ if(isset($_POST['cadastrarFisica']))
 	$cpf = $_POST['cpf'];
 	$rg = $_POST['rg'];
 	$data = date('Y-m-d');
-	$idUsuario = $_SESSION['idUsuario'];
+	$idUsuario = $_SESSION['idUser'];
 	
 	$sql_atualiza_pf = "UPDATE usuario_pf SET
 	`nome` = '$Nome',

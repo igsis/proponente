@@ -2,7 +2,7 @@
 require "includes/funcoes.php";
 
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUsuario'];
+$idPessoaJuridica = $_SESSION['idUser'];
 
 $tipoPessoa = 2;
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);

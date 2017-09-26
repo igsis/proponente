@@ -1,6 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPessoaFisica = $_SESSION['idUsuario'];
+$idPessoaFisica = $_SESSION['idUser'];
 $ultimo = $idPessoaFisica;
 
 if(isset($_POST['cadastrarFisica']))
@@ -35,7 +35,7 @@ if(isset($_POST['cadastrarFisica']))
 	$tipoDocumento = $_POST['tipoDocumento'];
 	$Pis = 0;
 	$data = date('Y-m-d');
-	$idUsuario = $_SESSION['idUsuario'];
+	$idUsuario = $_SESSION['idUser'];
 	
 	$sql_atualizar_pessoa = "UPDATE sis_pessoa_fisica SET
 	`Nome` = '$Nome',
