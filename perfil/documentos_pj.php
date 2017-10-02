@@ -4,15 +4,12 @@ $idPessoaJuridica = $_SESSION['idUser'];
 
 $tipoPessoa = 2;
 
-if(isset($_POST['cadastrarJuridica']))
+if(isset($_POST['cadastrarDocumentosPJ']))
 {
-	$idPessoaJuridica = $_POST['cadastrarJuridica'];
-	$RazaoSocial = addslashes($_POST['razaoSocial']);
+	$idPessoaJuridica = $_POST['cadastrarDocumentosPJ'];
 	$ccm = $_POST['ccm'];
-	$Data = date('Y-m-d'); //PRA QUE SERVE ESSA DATA?
-	$idUsuario = $_SESSION['idUser'];
 	
-	$sql_documentos_pj = "UPDATE usuario_pj SET
+	$sql_documentos_pj = "UPDATE `usuario_pj` SET
 	`ccm` = '$ccm'
 	WHERE `id` = '$idPessoaJuridica'";	
 	
@@ -130,7 +127,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<!-- Botão para gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarJuridica" value="<?php echo $idPessoaJuridica ?>">	
+						<input type="hidden" name="cadastrarDocumentosPJ" value="<?php echo $idPessoaJuridica ?>">	
 						<input type="hidden" name="Sucesso" id="Sucesso" />
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
