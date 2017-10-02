@@ -92,11 +92,8 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 			<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">		
-			<form class="form-horizontal" role="form" action="?perfil=documentos_pj" method="post">
-
-			
+		<div class="row">	
+			<div class="col-md-offset-1 col-md-10">	
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>CNPJ *:</strong><br/>
 						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>">
@@ -122,6 +119,19 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 					<div class="col-md-offset-2 col-md-8"><br/></div>
 				</div>
 			</form>
+			
+			<!-- Links emissão de documentos -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class="table-responsive list_info"><h6>Gerar Arquivo(s)</h6>
+						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
+							<div align="left">
+								<a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></i><br/><br />
+								<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></i><br/><br />
+							</div>
+						</div>
+					</div>
+				</div>
 			
 			<!-- Exibir arquivos -->
 				<div class="form-group">
