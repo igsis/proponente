@@ -112,31 +112,32 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 		</div>
 		<div class="row">	
 			<div class="col-md-offset-1 col-md-10">	
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>CNPJ *:</strong><br/>
-						<input type="text" readonly class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>">
+				<form class="form-horizontal" role="form" action="?perfil=documentos_pj" method="post">	
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>CNPJ *:</strong><br/>
+							<input type="text" readonly class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>">
+						</div>
 					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>CCM:</strong><br/>
-						<input type="text" class="form-control" id="ccm" name="ccm" placeholder="CCM" value="<?php echo $pj['ccm']; ?>">
+					
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>CCM:</strong><br/>
+							<input type="text" class="form-control" id="ccm" name="ccm" placeholder="CCM" value="<?php echo $pj['ccm']; ?>">
+						</div>
 					</div>
-				</div>
-				
-				<!-- Botão para gravar -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarDocumentosPJ" value="<?php echo $idPessoaJuridica ?>">	
-						<input type="hidden" name="Sucesso" id="Sucesso" />
-						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+					
+					<!-- Botão para gravar -->
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8">
+							<input type="hidden" name="cadastrarDocumentosPJ" value="<?php echo $idPessoaJuridica ?>">	
+							<input type="hidden" name="Sucesso" id="Sucesso" />
+							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+						</div>
 					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><br/></div>
-				</div>
-			</form>
+					
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><br/></div>
+					</div>
+				</form>
 			
 			<!-- Links emissão de documentos -->
 				<div class="form-group">
