@@ -711,9 +711,7 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 						AND arq.publicado = '1'";
 				}
 				else
-				{
-					if($pf == 5)
-					{	
+				{	
 					$sql = "SELECT * 
 						FROM upload_lista_documento as list
 						INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
@@ -721,7 +719,6 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 						AND arq.idTipoPessoa = '$tipoPessoa' 
 						AND list.id NOT IN('9','21','54')
 						AND arq.publicado = '1'";
-					}
 					
 				}
 			}
