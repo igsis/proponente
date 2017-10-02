@@ -31,26 +31,6 @@ if(isset($_POST['cadastrarFisica']))
 	}	
 }
 
-/*if(isset($_POST['cadastrarDrt']))
-{
-	$idPessoaFisica = $_POST['cadastrarDrt'];
-	$Drt = $_POST['drt'];
-	
-	$sql_atualiza_drt = "UPDATE usuario_pf SET
-	`drt` = '$Drt'
-	WHERE `id` = '$idPessoaFisica'";
-	
-	
-	if (mysqli_query($con,$sql_atualiza_drt))
-	{
-		$mensagem = "Atualizado com sucesso!";	
-	}
-	else
-	{
-		$mensagem = "Erro ao atualizar! Tente novamente.";
-	}	
-}*/
-
 
 if(isset($_POST["enviar"]))
 {
@@ -61,34 +41,56 @@ if(isset($_POST["enviar"]))
 		$y = $arq['id'];
 		$x = $arq['sigla'];
 		$nome_arquivo = $_FILES['arquivo']['name'][$x];
+		$f_size = $_FILES['arquivo']['size'][$x];
 		
-		if($nome_arquivo != "")
+		//Extensões permitidas
+		$ext = array("PDF","pdf");
+		
+		if($f_size > 2097152) // 2MB em bytes
 		{
-			$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
-			$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
-			$hoje = date("Y-m-d H:i:s");
-			$dir = '../uploadsdocs/'; //Diretório para uploads
-		
-			if(move_uploaded_file($nome_temporario, $dir.$new_name))
-			{  
-				$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaFisica', '$y', '$new_name', '$hoje', '1'); ";
-				$query = mysqli_query($con,$sql_insere_arquivo);
+			$mensagem = "Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.";
+		}
+		else
+		{		
+			if($nome_arquivo != "")
+			{
+				$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
+				$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
+				$hoje = date("Y-m-d H:i:s");
+				$dir = '../uploadsdocs/'; //Diretório para uploads
+				
+				$allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
+				
+				$ext = strtolower(substr($nome_arquivo,-4));
+
+				if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
+				{			
 			
-				if($query)
-				{
-					$mensagem = "Arquivo recebido com sucesso";
+					if(move_uploaded_file($nome_temporario, $dir.$new_name))
+					{  
+						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaFisica', '$y', '$new_name', '$hoje', '1'); ";
+						$query = mysqli_query($con,$sql_insere_arquivo);
+					
+						if($query)
+						{
+							$mensagem = "Arquivo recebido com sucesso!";
+						}
+						else
+						{
+							$mensagem = "Erro ao gravar no banco!";
+						}
+					}
+					else
+					{
+						$mensagem = "Erro no upload. Tente novamente!"; 
+					}
 				}
 				else
 				{
-					$mensagem = "Erro ao gravar no banco";
+					$mensagem = "Erro no upload! Anexar documentos somente no formato PDF."; 
 				}
-				
-			}
-			else
-			{
-				 $mensagem = "Erro no upload"; 
-			}
-		}	
+			}	
+		}
 	}
 }
 
@@ -181,7 +183,8 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 							{ 
 						?>
 								<tr>
-									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+									<td><label><?php echo $arq['documento']?></label></td>
+									<td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 								</tr>
 						<?php 
 							}

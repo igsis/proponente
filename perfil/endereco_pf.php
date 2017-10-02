@@ -38,7 +38,6 @@ if(isset($_POST["enviar"]))
 		$x = $arq['sigla'];
 		$nome_arquivo = $_FILES['arquivo']['name'][$x];
 		$f_size = $_FILES['arquivo']['size'][$x];
-		$f_type = $_FILES["arquivo"]["type"];
 		
 		//Extensões permitidas
 		$ext = array("PDF","pdf");
@@ -74,8 +73,7 @@ if(isset($_POST["enviar"]))
 						else
 						{
 							$mensagem = "Erro ao gravar no banco!";
-						}
-						
+						}						
 					}
 					else
 					{
