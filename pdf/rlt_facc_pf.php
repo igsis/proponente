@@ -50,7 +50,7 @@ $Telefone01 = $pessoa["telefone1"];
 $agencia = $pessoa["agencia"];
 $conta = $pessoa["conta"];
 $cbo = $pessoa["cbo"];
-$INSS = $pessoa["inscricaoInss"];
+$PIS = $pessoa["pis"];
 $DataNascimento = exibirDataBr($pessoa["dataNascimento"]);
 
 
@@ -101,7 +101,7 @@ $l=7; //DEFINE A ALTURA DA LINHA
    
    $pdf->SetXY($x, 107);
    $pdf->SetFont('Arial','', 10);
-   $pdf->Cell(87,$l,utf8_decode($INSS),0,0,'L');
+   $pdf->Cell(87,$l,utf8_decode($PIS),0,0,'L');
    $pdf->Cell(52,$l,utf8_decode($DataNascimento),0,0,'L');
    $pdf->Cell(33,$l,utf8_decode($cbo),0,0,'L');
    
