@@ -2,7 +2,7 @@
 require "includes/funcoes.php";
 
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUser'];
+$idPessoaJuridica = $_SESSION['idUsuario'];
 
 $tipoPessoa = 2;
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
@@ -10,7 +10,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa'";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' NOT IN (9,21,54)";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{ 

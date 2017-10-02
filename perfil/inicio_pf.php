@@ -1,6 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPessoaFisica = $_SESSION['idUser'];
+$idPessoaFisica = $_SESSION['idUsuario'];
 
 
 if(isset($_POST['cadastrarFisica']))

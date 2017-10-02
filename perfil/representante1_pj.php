@@ -1,6 +1,6 @@
 <?php
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUser'];
+$idPessoaJuridica = $_SESSION['idUsuario'];
 
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 

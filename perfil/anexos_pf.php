@@ -2,7 +2,7 @@
 require "includes/funcoes.php";
 
 $con = bancoMysqli();
-$idPessoaFisica = $_SESSION['idUser'];
+$idPessoaFisica = $_SESSION['idUsuario'];
 
 $tipoPessoa = 1;
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
@@ -10,7 +10,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa'";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id NOT IN (1,2,3,11,14,25,29,30)";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{ 
@@ -112,7 +112,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 									<td width="50%"><td>
 								</tr>
 								<?php 
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id NOT IN (1,2,3,14,25,29,30)";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id NOT IN (1,2,3,11,14,25,29,30)";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{ 

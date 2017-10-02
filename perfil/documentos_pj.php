@@ -1,6 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUser'];
+$idPessoaJuridica = $_SESSION['idUsuario'];
 
 $tipoPessoa = 2;
 
@@ -11,7 +11,7 @@ if(isset($_POST['cadastrarJuridica']))
 	$Cnpj = $_POST['cnpj'];
 	$ccm = $_POST['ccm'];
 	$Data = date('Y-m-d');
-	$idUsuario = $_SESSION['idUser'];
+	$idUsuario = $_SESSION['idUsuario'];
 	
 	$sql_documentos_pj = "UPDATE usuario_pj SET
 	`cnpj` = '$Cnpj',
@@ -30,7 +30,7 @@ if(isset($_POST['cadastrarJuridica']))
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa'";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id IN (9,21)";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{ 

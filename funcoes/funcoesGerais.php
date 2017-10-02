@@ -27,7 +27,7 @@
 					session_start();
 					$_SESSION['login'] = $user['login'];
 					$_SESSION['nome'] = $user['nome'];
-					$_SESSION['idUser'] = $user['id'];
+					$_SESSION['idUsuario'] = $user['id'];
 					$log = "Fez login.";
 					//gravarLog($log);
 					header("Location: visual/index_pf.php");
@@ -67,7 +67,7 @@
 					session_start();
 					$_SESSION['login'] = $user['login'];
 					$_SESSION['nome'] = $user['nome'];
-					$_SESSION['idUser'] = $user['id'];
+					$_SESSION['idUsuario'] = $user['id'];
 					$log = "Fez login.";
 					//gravarLog($log);
 					header("Location: visual/index_pj.php");
@@ -227,7 +227,7 @@
 	{
 		//grava na tabela log os inserts e updates
 		$logTratado = addslashes($log);
-		$idLogin = $_SESSION['idUser'];
+		$idLogin = $_SESSION['idUsuario'];
 		$ip = $_SERVER["REMOTE_ADDR"];
 		$data = date('Y-m-d H:i:s');
 		$sql = "INSERT INTO `log` (`id`, `idUsuario`, `ip`, `data`, `descricao`) 
@@ -707,18 +707,22 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 						INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 						WHERE arq.idPessoa = '$idPessoa' 
 						AND arq.idTipoPessoa = '$tipoPessoa' 
-						AND list.id NOT IN('1','2','3','14')
+						AND list.id NOT IN('1','2','3','11','14','25','29','30')
 						AND arq.publicado = '1'";
 				}
 				else
 				{
+					if($pf == 5)
+					{	
 					$sql = "SELECT * 
 						FROM upload_lista_documento as list
 						INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 						WHERE arq.idPessoa = '$idPessoa' 
 						AND arq.idTipoPessoa = '$tipoPessoa' 
-						AND list.id NOT IN('9','21')
+						AND list.id NOT IN('9','21','54')
 						AND arq.publicado = '1'";
+					}
+					
 				}
 			}
 		}

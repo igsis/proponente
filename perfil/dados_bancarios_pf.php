@@ -123,7 +123,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 			<div class="col-md-offset-1 col-md-10">
 			<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
 			
-			<font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 4.999,99 *SOMENTE COM CONTA NO BANCO DO BRASIL*.</strong></font>
+			<font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA NO BANCO DO BRASIL*.</strong></font>
 			<p>
 			
 				<div class="form-group">

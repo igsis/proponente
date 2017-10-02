@@ -4,7 +4,7 @@
 		//atualiza os dados
 		$nome = $_POST['nome'];
 		$email  = $_POST['email'];
-		$idUsuario = $_SESSION['idUser'];
+		$idUsuario = $_SESSION['idUsuario'];
 		$sql_atualiza_dados = "UPDATE usuario SET `nome` = '$nome', email = '$email' WHERE id = '$idUsuario';";
 		$con = bancoMysqli();
 		$query_atualiza_dados = mysqli_query($con, $sql_atualiza_dados);	
@@ -18,7 +18,7 @@
 			$mensagem = "Erro ao atualizar! Tente novamente.";
 		}
 	}
-	$conta = recuperaUsuarioCompleto($_SESSION['idUser']);
+	$conta = recuperaUsuarioCompleto($_SESSION['idUsuario']);
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include '../perfil/includes/menu_interno_pf.php'; ?>

@@ -1,6 +1,6 @@
 <?php
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUser'];
+$idPessoaJuridica = $_SESSION['idUsuario'];
 
 // Cadastro um representante que não existe
 if(isset($_POST['cadastraRepresentante']))

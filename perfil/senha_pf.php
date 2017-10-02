@@ -1,6 +1,6 @@
 <?php
 $con = bancoMysqli();
-$idPessoaFisica = $_SESSION['idUser'];
+$idPessoaFisica = $_SESSION['idUsuario'];
 
 	if(isset($_POST['senha01']))
 	{
@@ -13,7 +13,7 @@ $idPessoaFisica = $_SESSION['idUser'];
 				$senha = recuperaDados("usuario_pf","login",$_SESSION['login']);
 				if(md5($_POST['senha03']) == $senha['senha'])
 				{
-					$usuario = $_SESSION['idUser'];
+					$usuario = $_SESSION['idUsuario'];
 					$senha01 = md5($_POST['senha01']);
 					$sql_senha = "UPDATE `usuario_pf` SET `senha` = '$senha01' WHERE `id` = '$usuario';";
 					$con = bancoMysqli();

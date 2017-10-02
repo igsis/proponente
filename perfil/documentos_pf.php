@@ -1,8 +1,9 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPessoaFisica = $_SESSION['idUser'];
+$idPessoaFisica = $_SESSION['idUsuario'];
 
 $tipoPessoa = 1;
+
 
 if(isset($_POST['cadastrarFisica']))
 {
@@ -12,7 +13,7 @@ if(isset($_POST['cadastrarFisica']))
 	$cpf = $_POST['cpf'];
 	$rg = $_POST['rg'];
 	$data = date('Y-m-d');
-	$idUsuario = $_SESSION['idUser'];
+	$idUsuario = $_SESSION['idUsuario'];
 	
 	$sql_atualiza_pf = "UPDATE usuario_pf SET
 	`nome` = '$Nome',
@@ -110,7 +111,7 @@ if(isset($_POST['editaRg']))
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa'";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id IN (1,2,11,14)";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{ 

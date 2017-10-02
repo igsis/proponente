@@ -37,7 +37,7 @@ if($num_busca > 0)
 								<table class="table table-condensed">
 									<thead>
 										<tr class="list_menu">
-											<td>Nome</td>
+											<td>Razão Social</td>
 											<td>CNPJ</td>
 											<td width="15%"></td>
 										</tr>
@@ -48,7 +48,7 @@ if($num_busca > 0)
 										{			
 											echo "
 												<tr>
-													<td class='list_description'><b>".$descricao['nome']."</b></td>
+													<td class='list_description'><b>".$descricao['razaoSocial']."</b></td>
 													<td class='list_description'>".$descricao['login']."</td><td class='list_description'>
 													<form method='POST' action='?perfil=representante1_pj_cadastro'>
 														<input type='hidden' name='insereRepresentante' value='".$descricao['id']."'>
