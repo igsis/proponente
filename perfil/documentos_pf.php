@@ -10,11 +10,13 @@ if(isset($_POST['cadastrarDocumentos']))
 {
 	$idPessoaFisica = $_POST['cadastrarDocumentos'];
 	$ccm = $_POST['ccm'];
-	$pis = $_POST['pis'];	
+	$pis = $_POST['pis'];
+	$rg = $_POST['rg'];	
 		
 	$sql_insere_cpf = "UPDATE `usuario_pf` SET 
 	`ccm` = '$ccm',
-	`pis` = '$pis'
+	`pis` = '$pis',
+	`rg` = '$rg'
 	WHERE `id` = '$idPessoaFisica'";
 	if(mysqli_query($con,$sql_insere_cpf))
 	{
@@ -44,25 +46,10 @@ if(isset($_POST['tipoDocumento']))
 	}
 }
 
-/* Insere o RG */
-if(isset($_POST['cadastraRg']))
-{
-	$rg = $_POST['rg'];
-	$sql_insere_rg = "INSERT INTO `usuario_pf`(`rg`) VALUES ('$rg')";
-	if(mysqli_query($con,$sql_insere_rg))
-	{
-		$mensagem = "Inserido com sucesso!";	
-	}
-	else
-	{
-		$mensagem = "Erro ao inserir os dados! Tente novamente.";
-	}
-}
-
-/* Edita o RG */
+/* Edita o RG 
 if(isset($_POST['editaRg']))
 {
-	$rg = $_POST['rg'];
+	
 	$sql_edita_rg = "UPDATE `usuario_pf` SET `rg` = '$rg' 
 	WHERE `id` = '$idPessoaFisica'";
 	if(mysqli_query($con,$sql_edita_rg))
@@ -74,7 +61,7 @@ if(isset($_POST['editaRg']))
 		$mensagem = "Erro ao editar os dados! Tente novamente.";
 	}
 }
-
+*/
 
 if(isset($_POST["enviar"]))
 {
@@ -181,231 +168,202 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				</div>	
 			</form>	
 			<!-- Fim Escolha o tipo de documento -->
-				
-			<!-- Se for RG -->
-			<?php
-				If ($pf['idTipoDocumento'] == 1)
-				{
-			?>	
-			<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">
+			
+			<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">	
+			
 				<div class="form-group">
+				<!-- Se for RG -->
+				<?php
+				If ($pf['idTipoDocumento'] == 1) //se for rg
+				{?>				
 					<div class="col-md-offset-2 col-md-8"><strong>RG nº *:</strong><br/>
+				<?php			
+				}
+				If ($pf['idTipoDocumento'] == 2) //se for rne
+				{				
+				?>
+					<div class="col-md-offset-2 col-md-8"><strong>RNE nº *:</strong><br/>
+				<?php
+				}
+				If ($pf['idTipoDocumento'] == 3)// se for passaporte
+				{
+				?>
+					<div class="col-md-offset-2 col-md-8"><strong>Passaporte nº *:</strong><br/>
+				<?php
+				}
+				?>
 						<input type="text" class="form-control" name="rg" placeholder="Número" value="<?php echo $pf['rg']; ?>">
 					</div>
 				</div>
-
-				<!-- Botão para gravar -->
+						
+				
+				<!-- demais campos -->						
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><strong>CPF *:</strong><br/>
+						<input type="text" readonly class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo $pf['cpf']; ?>">
+					</div>					
+				</div>
+			
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-6"><strong>CCM:</strong><br/>
+						<input type="text" class="form-control" id="ccm" name="ccm" placeholder="Nº do CCM" value="<?php echo $pf['ccm']; ?>">
+					</div>
+					<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
+						<input type="text" class="form-control" id="pis" name="pis" placeholder="Nº do PIS/PASEP/NIT" value="<?php echo $pf['pis']; ?>">
+					</div>
+				</div>
+				<!-- fim dos campos -->
+	
+				<!-- Botão para gravar -->		
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="editaRg" value="<?php echo $pf['id'] ?>">
+						<input type="hidden" name="cadastrarDocumentos" value="<?php echo $idPessoaFisica ?>">	
+						<input type="hidden" name="Sucesso" id="Sucesso" />
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
-				<!-- Fim Botão -->			
 			</form>
-			<?php			
-			}	
-			?>
-			<!-- Fim Se for RG -->
-				
-				<!-- Se for RNE -->
-				<?php
-				If ($pf['idTipoDocumento'] == 2)
-				{
-				?>	
-				<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><strong>RNE nº *:</strong><br/>
-							<input type="text" class="form-control" name="rg" placeholder="Número" value="<?php echo $pf['rg']; ?>">
-						</div>
-					</div>
 					
-					<!-- Botão para gravar -->
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8">
-							<input type="hidden" name="editaRg" value="<?php echo $pf['id'] ?>">
-							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
-						</div>
-					</div>
-					<!-- Fim Botão -->							
-				</form>
-				<?php			
-				}	
-				?>
-				<!-- Fim Se for RNE -->
-			</div>	
-		</div>		
-				
-			<!-- campos -->	
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">
-						<div class="form-group">
-							<div class="col-md-offset-2 col-md-8"><strong>CPF *:</strong><br/>
-								<input type="text" readonly class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo $pf['cpf']; ?>">
-							</div>					
-						</div>
-					
-						<div class="form-group">
-							<div class="col-md-offset-2 col-md-6"><strong>CCM:</strong><br/>
-								<input type="text" class="form-control" id="ccm" name="ccm" placeholder="Nº do CCM" value="<?php echo $pf['ccm']; ?>">
-							</div>
-							<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
-								<input type="text" class="form-control" id="pis" name="pis" placeholder="Nº do PIS/PASEP/NIT" value="<?php echo $pf['pis']; ?>">
-							</div>
-						</div>
-			<!-- fim dos campos -->
-			
-						<!-- Botão para gravar -->		
-						<div class="form-group">
-							<div class="col-md-offset-2 col-md-8">
-								<input type="hidden" name="cadastrarDocumentos" value="<?php echo $idPessoaFisica ?>">	
-								<input type="hidden" name="Sucesso" id="Sucesso" />
-								<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
-							</div>
-						</div>
-					</form>
-					
-					
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-					</div>
-					
-					<!-- Exibir arquivos -->
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8">
-							<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-								<?php listaArquivoCamposMultiplos($idPessoaFisica,$tipoPessoa,"","documentos_pf",1); ?>
-							</div>
-						</div>
-					</div>				
-					
-					
-					<!-- Upload de arquivo 1 -->
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8">
-							<div class = "center">
-							<form method="POST" action="?perfil=documentos_pf" enctype="multipart/form-data">
-								<table>
-									<tr>
-										<td width="50%"><td>
-									</tr>
-									<?php 
-										$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '1'";
-										$query_arquivos = mysqli_query($con,$sql_arquivos);
-										while($arq = mysqli_fetch_array($query_arquivos))
-										{ 
-									?>
-											<tr>
-												<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-											</tr>
-									<?php 
-										}
-									?>
-								</table><br>						
-							</div>
-						</div>
-					</div>
-					
-									<!-- Upload de arquivo 2 -->
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8">
-							<div class = "center">
-								<table>
-									<tr>
-										<td width="50%"><td>
-									</tr>
-									<?php 
-										$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '2'";
-										$query_arquivos = mysqli_query($con,$sql_arquivos);
-										while($arq = mysqli_fetch_array($query_arquivos))
-										{ 
-									?>
-											<tr>
-												<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-											</tr>
-									<?php 
-										}
-									?>
-								</table><br>						
-							</div>
-						</div>
-					</div>
-					
-									<!-- Upload de arquivo 3 -->
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8">
-							<div class = "center">
-								<table>
-									<tr>
-										<td width="50%"><td>
-									</tr>
-									<?php 
-										$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '11'";
-										$query_arquivos = mysqli_query($con,$sql_arquivos);
-										while($arq = mysqli_fetch_array($query_arquivos))
-										{ 
-									?>
-									<tr>
-										<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-									</tr>
-									<?php 
-										}
-									?>
-								</table><br>						
-							</div>
-						</div>
-					</div>
-					
-									<!-- Upload de arquivo 4 -->
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8">
-							<div class = "center">
-								<table>
-									<tr>
-										<td width="50%"><td>
-									</tr>
-									<?php 
-										$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '14'";
-										$query_arquivos = mysqli_query($con,$sql_arquivos);
-										while($arq = mysqli_fetch_array($query_arquivos))
-										{ 
-									?>
-											<tr>
-												<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-											</tr>
-									<?php 
-										}
-									?>
-								</table><br>						
-								<input type="hidden" name="idPessoa" value="<?php echo $idPessoaFisica; ?>"  />
-								<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
-								<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
-							</form>
-							</div>
-						</div>
-					</div>
-					<!-- Fim Upload de arquivo -->
 					
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
-					
-					
-					<!-- Botão para Voltar e Prosseguir -->
-					<div class="form-group">					
-						<div class="col-md-offset-2 col-md-2">
-							<form class="form-horizontal" role="form" action="?perfil=inicio_pf" method="post">
-								<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
-							</form>	
+				
+				<!-- Exibir arquivos -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
+							<?php listaArquivoCamposMultiplos($idPessoaFisica,$tipoPessoa,"","documentos_pf",1); ?>
 						</div>
-						<div class="col-md-offset-4 col-md-2">
-							<form class="form-horizontal" role="form" action="?perfil=endereco_pf" method="post">	
-								<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
-							</form>	
-						</div>					
+					</div>
+				</div>				
+				
+				
+				<!-- Upload de arquivo 1 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+						<form method="POST" action="?perfil=documentos_pf" enctype="multipart/form-data">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php 
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '1'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{ 
+								?>
+										<tr>
+											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										</tr>
+								<?php 
+									}
+								?>
+							</table><br>						
+						</div>
 					</div>
 				</div>
+				
+								<!-- Upload de arquivo 2 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php 
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '2'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{ 
+								?>
+										<tr>
+											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										</tr>
+								<?php 
+									}
+								?>
+							</table><br>						
+						</div>
+					</div>
+				</div>
+				
+								<!-- Upload de arquivo 3 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php 
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '11'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{ 
+								?>
+								<tr>
+									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+								</tr>
+								<?php 
+									}
+								?>
+							</table><br>						
+						</div>
+					</div>
+				</div>
+				
+								<!-- Upload de arquivo 4 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php 
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '14'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{ 
+								?>
+										<tr>
+											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										</tr>
+								<?php 
+									}
+								?>
+							</table><br>						
+							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaFisica; ?>"  />
+							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
+							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
+						</form>
+						</div>
+					</div>
+				</div>
+				<!-- Fim Upload de arquivo -->
+				
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 			</div>
+				
+				
+				<!-- Botão para Voltar e Prosseguir -->
+				<div class="form-group">					
+					<div class="col-md-offset-2 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=inicio_pf" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
+						</form>	
+					</div>
+					<div class="col-md-offset-4 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=endereco_pf" method="post">	
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
+						</form>	
+					</div>					
+				</div>
+			</div>
+		</div>
 	</div>
 </section>  
