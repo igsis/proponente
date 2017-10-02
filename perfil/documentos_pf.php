@@ -128,8 +128,7 @@ if(isset($_POST["enviar"]))
 			$mensagem = "Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.";
 		}
 		else
-		{
-		
+		{		
 			if($nome_arquivo != "")
 			{
 				$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
