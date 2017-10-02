@@ -21,7 +21,7 @@
 					<div class="col-md-offset-1 col-md-10">
 						<h6>ESQUECEU SUA SENHA?</h6>
 
-						<p align="left">Se você esqueceu a sua senha, por gentileza entre em contato conosco através do endereço de email stidesenvolvimento@prefeitura.sp.gov.br informando seu nome completo, Cpf e o email cadastrado na nossa plataforma.</p>
+						<p align="left">Se você esqueceu a senha, por gentileza entre em contato conosco <a href="https://docs.google.com/forms/d/e/1FAIpQLSf8XlUkbEV7L62-2hhs0nEidtbixHBY9CV1KIh6oI7qZm_cHg/viewform" target="_blank">CLICANDO AQUI</a> para preencher o formulário.</p>
 						<p align="left">Assim que possível, nossa equipe entrará em contato para redefinir sua senha.</p>
 						
 						<br />	
