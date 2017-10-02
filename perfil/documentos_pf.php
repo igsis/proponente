@@ -4,34 +4,6 @@ $idPessoaFisica = $_SESSION['idUser'];
 
 $tipoPessoa = 1;
 
-/* NÃO SEI PRA QUE SERVE
-if(isset($_POST['cadastrarFisica']))
-{
-	$idPessoaFisica = $_POST['cadastrarFisica'];
-	$Nome = addslashes($_POST['nome']);
-	$tipoDocumento = $_POST['tipoDocumento'];
-	$cpf = $_POST['cpf'];
-	$rg = $_POST['rg'];
-	$data = date('Y-m-d');
-	$idUsuario = $_SESSION['idUser'];
-	
-	$sql_atualiza_pf = "UPDATE usuario_pf SET
-	`nome` = '$Nome',
-	`tipoDocumento` = '$tipoDocumento',
-	`cpf` = '$cpf',	
-	`rg` = '$rg',
-	`IdUsuario` = '$idUsuario'
-	WHERE `id` = '$idPessoaFisica'";	
-	
-	if(mysqli_query($con,$sql_documentos_pf))
-	{
-		$mensagem = "Atualizado com sucesso!";	
-	}
-	else
-	{
-		$mensagem = "Erro ao atualizar! Tente novamente.";
-	}	
-}*/
 
 /* Insere os documentos */
 if(isset($_POST['cadastrarDocumentos']))
@@ -76,8 +48,7 @@ if(isset($_POST['tipoDocumento']))
 if(isset($_POST['cadastraRg']))
 {
 	$rg = $_POST['rg'];
-	$sql_insere_rg = "INSERT INTO `usuario_pf`(`rg`) VALUES ('$rg') 
-	WHERE `id` = '$idPessoaFisica'";
+	$sql_insere_rg = "INSERT INTO `usuario_pf`(`rg`) VALUES ('$rg')";
 	if(mysqli_query($con,$sql_insere_rg))
 	{
 		$mensagem = "Inserido com sucesso!";	
