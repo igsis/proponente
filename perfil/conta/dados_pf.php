@@ -4,7 +4,7 @@
 		//atualiza os dados
 		$nome = $_POST['nome'];
 		$email  = $_POST['email'];
-		$idUsuario = $_SESSION['idUsuario'];
+		$idUsuario = $_SESSION['idUser'];
 		$sql_atualiza_dados = "UPDATE usuario SET `nome` = '$nome', email = '$email' WHERE id = '$idUsuario';";
 		$con = bancoMysqli();
 		$query_atualiza_dados = mysqli_query($con, $sql_atualiza_dados);	

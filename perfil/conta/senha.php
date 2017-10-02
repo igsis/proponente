@@ -10,7 +10,7 @@
 				$senha = recuperaDados("usuario","login",$_SESSION['login']);
 				if(md5($_POST['senha03']) == $senha['senha'])
 				{
-					$usuario = $_SESSION['idUsuario'];
+					$usuario = $_SESSION['idUser'];
 					$senha01 = md5($_POST['senha01']);
 					$sql_senha = "UPDATE `usuario` SET `senha` = '$senha01' WHERE `id` = '$usuario';";
 					$query_senha = mysqli_query($con,$sql_senha);
