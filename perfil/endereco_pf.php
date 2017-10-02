@@ -37,34 +37,57 @@ if(isset($_POST["enviar"]))
 		$y = $arq['id'];
 		$x = $arq['sigla'];
 		$nome_arquivo = $_FILES['arquivo']['name'][$x];
+		$f_size = $_FILES['arquivo']['size'][$x];
+		$f_type = $_FILES["arquivo"]["type"];
 		
-		if($nome_arquivo != "")
+		//Extensões permitidas
+		$ext = array("PDF","pdf");
+		
+		if($f_size > 2097152) // 2MB em bytes
 		{
-			$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
-			$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
-			$hoje = date("Y-m-d H:i:s");
-			$dir = '../uploadsdocs/'; //Diretório para uploads
-		
-			if(move_uploaded_file($nome_temporario, $dir.$new_name))
-			{  
-				$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaFisica', '$idCampo', '$new_name', '$hoje', '1'); ";
-				$query = mysqli_query($con,$sql_insere_arquivo);
-			
-				if($query)
-				{
-					$mensagem = "Arquivo recebido com sucesso";
+			$mensagem = "Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.";
+		}
+		else
+		{
+			if($nome_arquivo != "")
+			{
+				$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
+				$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
+				$hoje = date("Y-m-d H:i:s");
+				$dir = '../uploadsdocs/'; //Diretório para uploads
+				
+				$allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
+				
+				$ext = strtolower(substr($nome_arquivo,-4));
+
+				if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
+				{			
+					if(move_uploaded_file($nome_temporario, $dir.$new_name))
+					{  
+						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaFisica', '$idCampo', '$new_name', '$hoje', '1'); ";
+						$query = mysqli_query($con,$sql_insere_arquivo);
+					
+						if($query)
+						{
+							$mensagem = "Arquivo recebido com sucesso!";
+						}
+						else
+						{
+							$mensagem = "Erro ao gravar no banco!";
+						}
+						
+					}
+					else
+					{
+						$mensagem = "Erro no upload. Tete novamente!"; 
+					}
 				}
 				else
 				{
-					$mensagem = "Erro ao gravar no banco";
+					$mensagem = "Erro no upload! Anexar documentos somente no formato PDF."; 
 				}
-				
 			}
-			else
-			{
-				 $mensagem = "Erro no upload"; 
-			}
-		}	
+		}		
 	}
 }
 
