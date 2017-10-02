@@ -15,7 +15,7 @@ if(isset($_POST['cadastraNovoPj']))
 			$login = $_POST['cnpj'];
 			$senha01 = md5($_POST['senha01']);
 			$email = $_POST['email'];
-			$sql_senha = "INSERT INTO `usuario_pj`(razaoSocial, email, login, senha) VALUES ('$razaoSocial', '$email', '$login', '$senha01')";
+			$sql_senha = "INSERT INTO `usuario_pj`(razaoSocial, cnpj, email, login, senha) VALUES ('$razaoSocial', '$login', '$email', '$login', '$senha01')";
 			$query_senha = mysqli_query($con,$sql_senha);
 			$sql_select = "SELECT * FROM usuario_pj WHERE login = '$login'";
 			$query_select = mysqli_query($con,$sql_select);

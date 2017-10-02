@@ -8,13 +8,11 @@ if(isset($_POST['cadastrarJuridica']))
 {
 	$idPessoaJuridica = $_POST['cadastrarJuridica'];
 	$RazaoSocial = addslashes($_POST['razaoSocial']);
-	$Cnpj = $_POST['cnpj'];
 	$ccm = $_POST['ccm'];
-	$Data = date('Y-m-d');
+	$Data = date('Y-m-d'); //PRA QUE SERVE ESSA DATA?
 	$idUsuario = $_SESSION['idUser'];
 	
 	$sql_documentos_pj = "UPDATE usuario_pj SET
-	`cnpj` = '$Cnpj',
 	`ccm` = '$ccm'
 	WHERE `id` = '$idPessoaJuridica'";	
 	
@@ -47,8 +45,7 @@ if(isset($_POST["enviar"]))
 			$mensagem = "Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.";
 		}
 		else
-		{		
-		
+		{				
 			if($nome_arquivo != "")
 			{
 				$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
@@ -75,8 +72,7 @@ if(isset($_POST["enviar"]))
 						else
 						{
 							$mensagem = "Erro ao gravar no banco";
-						}
-						
+						}						
 					}
 					else
 					{
@@ -121,7 +117,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 			<div class="col-md-offset-1 col-md-10">	
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>CNPJ *:</strong><br/>
-						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>">
+						<input type="text" readonly class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>">
 					</div>
 				</div>
 				

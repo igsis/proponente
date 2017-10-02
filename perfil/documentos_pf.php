@@ -4,7 +4,7 @@ $idPessoaFisica = $_SESSION['idUser'];
 
 $tipoPessoa = 1;
 
-
+/* NÃO SEI PRA QUE SERVE
 if(isset($_POST['cadastrarFisica']))
 {
 	$idPessoaFisica = $_POST['cadastrarFisica'];
@@ -31,22 +31,18 @@ if(isset($_POST['cadastrarFisica']))
 	{
 		$mensagem = "Erro ao atualizar! Tente novamente.";
 	}	
-}
+}*/
 
 /* Insere os documentos */
 if(isset($_POST['cadastrarDocumentos']))
 {
 	$idPessoaFisica = $_POST['cadastrarDocumentos'];
-	$cpf = $_POST['cpf'];
 	$ccm = $_POST['ccm'];
-	$pis = $_POST['pis'];
-	
+	$pis = $_POST['pis'];	
 		
 	$sql_insere_cpf = "UPDATE `usuario_pf` SET 
-	`cpf` = '$cpf',
 	`ccm` = '$ccm',
 	`pis` = '$pis'
-
 	WHERE `id` = '$idPessoaFisica'";
 	if(mysqli_query($con,$sql_insere_cpf))
 	{
@@ -141,8 +137,7 @@ if(isset($_POST["enviar"]))
 				$ext = strtolower(substr($nome_arquivo,-4));
 
 				if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
-				{
-			
+				{			
 					if(move_uploaded_file($nome_temporario, $dir.$new_name))
 					{  
 						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaFisica', '$y', '$new_name', '$hoje', '1'); ";
@@ -155,8 +150,7 @@ if(isset($_POST["enviar"]))
 						else
 						{
 							$mensagem = "Erro ao gravar no banco";
-						}
-						
+						}						
 					}
 					else
 					{
@@ -277,7 +271,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					<form class="form-horizontal" role="form" action="?perfil=documentos_pf" method="post">
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-8"><strong>CPF *:</strong><br/>
-								<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo $pf['cpf']; ?>">
+								<input type="text" readonly class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo $pf['cpf']; ?>">
 							</div>					
 						</div>
 					
