@@ -78,7 +78,6 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 			<div class="col-md-offset-1 col-md-10">
 				<form method="POST" action="?perfil=senha_pf"class="form-horizontal" role="form">
 					<div class="form-group">
-						<h5>Redefinição de senha</h5>
 						<div class="col-md-offset-2 col-md-8"><label>Insira sua senha antiga para confirmar a mudança.</label>
 							<input type="password" name="senha03" class="form-control" id="inputName" placeholder="">
 						</div>
@@ -93,12 +92,11 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 						</div>
 					</div>
 					
-				<!-- Botão para gravar -->	
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<input type="submit" name="senha01" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8">
+							<button type="submit" class="btn btn-theme btn-lg btn-block">Mudar a senha</button>
+						</div>
 					</div>
-				</div>
 				</form>
 			</div>
 		</div>

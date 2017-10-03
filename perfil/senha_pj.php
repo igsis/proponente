@@ -1,5 +1,6 @@
 <?php
- $idPessoaJuridica = $_SESSION['idUser'];
+$con = bancoMysqli();
+$idPessoaJuridica = $_SESSION['idUser'];
 
 	if(isset($_POST['senha01']))
 	{
@@ -43,6 +44,26 @@
 		}
 	}
 	
+		if(isset($_POST['fraseSeguranca']))
+	{
+		$idFraseSeguranca = $_POST['idFraseSeguranca'];
+		$respostaFrase = $_POST['respostaFrase'];
+		
+		$sql_seguranca_pj = "UPDATE usuario_pj SET
+		`idFraseSeguranca` = '$idFraseSeguranca', 
+		`respostaFrase` = '$respostaFrase'
+		WHERE `id` = '$idPessoaJuridica'";	
+		
+		if(mysqli_query($con,$sql_seguranca_pj))
+		{
+			$mensagem = "Pergunta secreta atualizada com sucesso!";	
+		}
+		else
+		{
+			$mensagem = "Erro ao atualizar sua pergunta secreta! Tente novamente.";
+		}	
+	}
+	
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 ?>
 <section id="contact" class="home-section bg-white">
@@ -52,6 +73,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 			<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
+		<!-- Redefinição de senha -->
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<form method="POST" action="?perfil=senha_pj"class="form-horizontal" role="form">
@@ -78,5 +100,37 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				</form>
 			</div>
 		</div>
+		<!-- Fim Redefinição de Senha -->
+		
+		<!-- Pergunta de Segurança -->
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<form method="POST" action="?perfil=senha_pj"class="form-horizontal" role="form">
+					<h5>Recuperação de Senha</h5>
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-8"><strong>Escolha uma pergunta secreta, para casos de recuperação de senha:</strong><br/>
+								<select class="form-control" name="idFraseSeguranca" id="idFraseSeguranca">
+									<option></option>
+									<?php geraOpcao("frase_seguranca",$pj['idFraseSeguranca'],"");	?>
+								</select>	
+							</div>
+						</div> 
+					
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>Resposta:</strong><br/>
+							<input type="text" class="form-control" id="respostaFrase" maxlength="10" name="respostaFrase" placeholder="" value="<?php echo $pj['respostaFrase']; ?>">
+						</div>
+					</div>
+					
+				<!-- Botão para gravar -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<input type="submit" name ="fraseSeguranca" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+		<!-- Fim Pergunta de Segurança -->
 	</div>
 </section>
