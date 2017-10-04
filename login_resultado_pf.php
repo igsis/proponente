@@ -7,10 +7,15 @@ $con = bancoMysqli();
 
 if(isset($_POST['busca']))
 {
-	$busca = $_POST['busca'];
+	$busca = validaCPF($_POST['busca']);
 	$sql_busca = "SELECT * FROM usuario_pf WHERE login = '$busca' ORDER BY nome";
 	$query_busca = mysqli_query($con,$sql_busca); 
 	$num_busca = mysqli_num_rows($query_busca);
+	if($busca == false)
+	{
+		$mensagem = "<font color='red'>CPF inválido! Redirecionando...</font>";
+		echo "<script type=\"text/javascript\">window.setTimeout(\"location.href='verifica_pf.php';\", 3600);</script>";		
+	}
 }
 
 if($num_busca > 0)

@@ -5,7 +5,7 @@ $busca = $_POST['cpf'];
 $con = bancoMysqli(); // conecta no banco
 
 if(isset($_POST['cadastraNovoPf']))
-{		
+{			
 	$email = $_POST['email'];
 	$nome = addslashes($_POST['nome']);
 	if($email == '' OR $nome == '')
@@ -19,8 +19,9 @@ if(isset($_POST['cadastraNovoPf']))
 		{
 			if($_POST['senha01'] == $_POST['senha02'])
 			{
-				$login = $_POST['cpf'];
+				
 				$senha01 = md5($_POST['senha01']);
+				$login = $_POST['cpf'];
 				$dataAtualizacao = date("Y-m-d");
 				$sql_senha = "INSERT INTO `usuario_pf`(nome, cpf, email, login, senha, dataAtualizacao) VALUES ('$nome', '$login', '$email', '$login', '$senha01', '$dataAtualizacao')";
 				$query_senha = mysqli_query($con,$sql_senha);
@@ -52,7 +53,7 @@ if(isset($_POST['cadastraNovoPf']))
 		{
 			$mensagem = "A senha não pode estar em branco e deve conter mais de 5 caracteres";	
 		}
-	}
+	}		
 }
 ?>	
 
