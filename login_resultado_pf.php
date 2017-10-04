@@ -8,7 +8,7 @@ $con = bancoMysqli();
 if(isset($_POST['busca']))
 {
 	$busca = $_POST['busca'];
-	$sql_busca = "SELECT * FROM usuario_pj WHERE login = '$busca' ORDER BY razaoSocial";
+	$sql_busca = "SELECT * FROM usuario_pf WHERE login = '$busca' ORDER BY nome";
 	$query_busca = mysqli_query($con,$sql_busca); 
 	$num_busca = mysqli_num_rows($query_busca);
 }
@@ -37,8 +37,8 @@ if($num_busca > 0)
 								<table class="table table-condensed">
 									<thead>
 										<tr class="list_menu">
-											<td>Razão Social</td>
-											<td>CNPJ</td>
+											<td>Nome</td>
+											<td>CPF</td>
 											<td width="15%"></td>
 										</tr>
 									</thead>
@@ -48,7 +48,7 @@ if($num_busca > 0)
 										{			
 											echo "
 												<tr>
-													<td class='list_description'><b>".$descricao['razaoSocial']."</b></td>
+													<td class='list_description'><b>".$descricao['nome']."</b></td>
 													<td class='list_description'>".$descricao['login']."</td>
 													<td><a href='https://goo.gl/forms/AM7jU1XVDUBUVJXE3'><input type='submit' value='Esqueci a Senha' class='btn btn-theme btn-block'></a></td>
 												</tr>
@@ -91,15 +91,15 @@ else
 			<section id="contact" class="home-section bg-white">
 				<div class="container">
 					<div class="form-group">
-						<h3>CADASTRO DE PESSOA JURÍDICA</h3>				
+						<h3>CADASTRO DE PESSOA FÍSICA</h3>				
 						<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 					</div>
 					<div class="row">
 						<div class="col-md-offset-1 col-md-10">
-						<form class="form-horizontal" role="form" action="login_cadastro_pj.php" method="post">
+						<form class="form-horizontal" role="form" action="login_cadastro_pf.php" method="post">
 							<div class="form-group">
-								<div class="col-md-offset-2 col-md-8"><strong>Razão Social: *</strong><br/>
-									<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social">
+								<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
+									<input type="text" class="form-control" name="nome" placeholder="Nome completo">
 								</div>
 							</div>
 							  
@@ -113,8 +113,8 @@ else
 							</div>
 							
 							<div class="form-group">	
-								<div class="col-md-offset-2 col-md-6"><strong>CNPJ: *</strong><br/>
-									<input type="text" readonly class="form-control" name="cnpj" value="<?php echo $busca ?>" placeholder="CNPJ">
+								<div class="col-md-offset-2 col-md-6"><strong>CPF: *</strong><br/>
+									<input type="text" readonly class="form-control" name="cpf" value="<?php echo $busca ?>" placeholder="CPF">
 								</div>
 								<div class="col-md-6"><strong>Email: *</strong><br/>
 									<input type="text" class="form-control" name="email" placeholder="Email">
@@ -125,7 +125,7 @@ else
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8">
 									<input type="hidden" value="<?php echo $busca ?>">
-									<input type="hidden" name="cadastraNovoPj">
+									<input type="hidden" name="cadastraNovoPf">
 									<input type="submit" value="Enviar" class="btn btn-theme btn-lg btn-block">
 								</div>
 							</div>
