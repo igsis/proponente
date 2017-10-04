@@ -6,45 +6,52 @@ $con = bancoMysqli(); // conecta no banco
 
 if(isset($_POST['cadastraNovoPf']))
 {		
-	//verifica se há um post
-	if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) >= 5))
+	$email = $_POST['email'];
+	$nome = addslashes($_POST['nome']);
+	if($email == '' OR $nome == '')
 	{
-		if($_POST['senha01'] == $_POST['senha02'])
+		$mensagem = "Por favor, preencha todos os campos.";
+	}
+	else
+	{	
+		//verifica se há um post
+		if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) >= 5))
 		{
-			$nome = addslashes($_POST['nome']);
-			$email = $_POST['email'];
-			$login = $_POST['cpf'];
-			$senha01 = md5($_POST['senha01']);
-			$dataAtualizacao = date("Y-m-d");
-			$sql_senha = "INSERT INTO `usuario_pf`(nome, cpf, email, login, senha, dataAtualizacao) VALUES ('$nome', '$login', '$email', '$login', '$senha01', '$dataAtualizacao')";
-			$query_senha = mysqli_query($con,$sql_senha);
-			$sql_select = "SELECT * FROM usuario_pf WHERE login = '$login'";
-			$query_select = mysqli_query($con,$sql_select);
-			$sql_array = mysqli_fetch_array($query_select);
-			$idPessoaFisica = $sql_array['id'];
-			$sql_insere_drt = "INSERT INTO `drt` (`numero`, `dataEmissao`, `idUsuario`) VALUES ('', '', '$idPessoaFisica')";
-			if($query_senha)
+			if($_POST['senha01'] == $_POST['senha02'])
 			{
-				$mensagem = "Usuário cadastrado com sucesso! Aguarde que você será redirecionado para a página de login";
-				 echo "<script type=\"text/javascript\">
-					  window.setTimeout(\"location.href='login_pf.php';\", 4000);
-					</script>";
-				$query_insere_drt = mysqli_query($con,$sql_insere_drt);
+				$login = $_POST['cpf'];
+				$senha01 = md5($_POST['senha01']);
+				$dataAtualizacao = date("Y-m-d");
+				$sql_senha = "INSERT INTO `usuario_pf`(nome, cpf, email, login, senha, dataAtualizacao) VALUES ('$nome', '$login', '$email', '$login', '$senha01', '$dataAtualizacao')";
+				$query_senha = mysqli_query($con,$sql_senha);
+				$sql_select = "SELECT * FROM usuario_pf WHERE login = '$login'";
+				$query_select = mysqli_query($con,$sql_select);
+				$sql_array = mysqli_fetch_array($query_select);
+				$idPessoaFisica = $sql_array['id'];
+				$sql_insere_drt = "INSERT INTO `drt` (`numero`, `dataEmissao`, `idUsuario`) VALUES ('', '', '$idPessoaFisica')";
+				if($query_senha)
+				{
+					$mensagem = "Usuário cadastrado com sucesso! Aguarde que você será redirecionado para a página de login";
+					 echo "<script type=\"text/javascript\">
+						  window.setTimeout(\"location.href='login_pf.php';\", 4000);
+						</script>";
+					$query_insere_drt = mysqli_query($con,$sql_insere_drt);
+				}
+				else
+				{
+					$mensagem = "Erro ao cadastrar. Tente novamente.";	
+				}
 			}
 			else
 			{
-				$mensagem = "Erro ao cadastrar. Tente novamente.";	
+				// caso não tenha digitado 2 vezes
+				$mensagem = "As senhas não conferem. Tente novamente.";
 			}
 		}
 		else
 		{
-			// caso não tenha digitado 2 vezes
-			$mensagem = "As senhas não conferem. Tente novamente.";
+			$mensagem = "A senha não pode estar em branco e deve conter mais de 5 caracteres";	
 		}
-	}
-	else
-	{
-		$mensagem = "A senha não pode estar em branco e deve conter mais de 5 caracteres";	
 	}
 }
 ?>	
