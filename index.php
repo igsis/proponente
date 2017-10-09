@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Mapeamento e Cadastro de Artistas e Profissionais de Arte e Cultura</title>
+		<title>Cadastro de Artistas e Profissionais de Arte e Cultura</title>
 		<link href="visual/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="visual/css/style.css" rel="stylesheet" media="screen">
 		<link href="visual/color/default.css" rel="stylesheet" media="screen">
@@ -18,13 +18,11 @@
 						
 						<h2 align="justify">CADASTRO DE ARTISTAS E PROFISSIONAIS DE ARTE E CULTURA</h2>
 											
-						<p align="justify">O objetivo é credenciar os artistas para que eles possam trabalhar em eventos realizados pela Secretaria de Cultura.</p>
+						<p align="justify">O objetivo é credenciar os artistas, a fim de agilizar a contratação em eventos realizados pela Secretaria Municipal de Cultura de São Paulo.</p>
 
-						<p align="left">Uma vez cadastrados, esses artistas poderão ser convocados para projetos rotineiros da Secretaria Municipal de Cultura, bem como ações maiores, como a Virada Cultural, por exemplo. Nada impede, contudo, que em eventos de grande porte, chamamentos específicos sejam realizados.</p>
+						<p align="left">Uma vez cadastrados, esses artistas poderão atualizar suas informações e enviar a documentação necessária para o processo de contratação. Como o sistema possui ligação direta com o sistema da programação, a medida que o cadastro do artista no CAPAC encontra-se atualizado, o processo de contratação consequentemente é agilizado.</p>
 
-						<p align="left">Podem se cadastrar artistas ou grupos artísticos, como pessoa física ou jurídica, diretamente ou então por intermédio do empresário ou produtor. Empresários e produtores, aliás, também podem se cadastrar, bem como qualquer pessoa física ou jurídica que tenha experiência profissional em áreas relacionadas à cultura.</p>
-
-						<p align="left">...</p>
+						<p align="left">Podem se cadastrar artistas ou grupos artísticos, como pessoa física ou jurídica.</p>
 						
 						<br />	
 						
