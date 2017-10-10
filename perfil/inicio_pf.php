@@ -70,7 +70,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				</div>
 				  
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>Telefone #1 *:</strong><br/>
+					<div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
 						<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone1']; ?>">
 					</div>
 					<div class="col-md-6"><strong>Telefone #2:</strong><br/>
