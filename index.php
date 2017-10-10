@@ -26,6 +26,8 @@
 
 						<p align="justify">Podem se cadastrar artistas ou grupos artísticos, como pessoa física ou jurídica.</p>
 						
+						<p align="justify">Dúvidas entre em contato com o setor responsável por sua contratação.</p>
+						
 						<br /><br />	
 						
 						<div class="form-group">
