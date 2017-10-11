@@ -8,18 +8,23 @@
 		<script src="visual/js/modernizr.custom.js"></script>
 	</head>
 	<body>
-		<div id="bar">
-			<p id="p-bar">&nbsp;<!--<img src="images/logo_pequeno.png" />--></p>			
-		</div>
+		
+		<section id="spacer1" class="home-section spacer">	
+           <div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="color-light">
+							<h1 class="wow bounceInDown" data-wow-delay="1s">IGSIS - CADASTRO DE ARTISTAS E PROFISSIONAIS DE ARTE E CULTURA</h1>						
+						</div>
+					</div>				
+				</div>
+            </div>
+		</section>
 		<section id="contact" class="home-section bg-white">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-offset-1 col-md-10">
-						
-						<h2 align="justify">IGSIS - CADASTRO DE ARTISTAS E PROFISSIONAIS DE ARTE E CULTURA</h2>
-						
-						<br/>
-						
+												
 						<p align="justify">Este sistema tem por objetivo criar um ambiente para credenciamento de artistas e profissionais de arte e cultura a fim de agilizar os processos de contratação artística em eventos realizados pela Secretaria Municipal de Cultura de São Paulo.</p>
 
 						<p align="justify">Uma vez cadastrados, esses artistas poderão atualizar suas informações e enviar a documentação necessária para o processo de contratação. Como o sistema possui ligação direta com o sistema da programação, a medida que o cadastro do artista no IGSIS - CAPAC encontra-se atualizado, o processo de contratação consequentemente é agilizado.</p>
