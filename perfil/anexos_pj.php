@@ -7,6 +7,8 @@ $idPessoaJuridica = $_SESSION['idUser'];
 $tipoPessoa = 2;
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 
+$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
+$http = $server."/pdf/";
 
 if(isset($_POST["enviar"]))
 {

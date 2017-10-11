@@ -4,6 +4,10 @@ $idPessoaJuridica = $_SESSION['idUser'];
 
 $tipoPessoa = 2;
 
+$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
+$http = $server."/pdf/";
+$link1 = $http."rlt_declaracaoccm_pj.php"."?id_pj=".$idPessoaJuridica;
+
 if(isset($_POST['cadastrarDocumentosPJ']))
 {
 	$idPessoaJuridica = $_POST['cadastrarDocumentosPJ'];
@@ -147,6 +151,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 							<div align="left">
 								<a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></i><br/><br />
 								<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></i><br/><br />
+								<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM (Empresa Fora de São Paulo)</a></i><br/><br />
 							</div>
 						</div>
 					</div>

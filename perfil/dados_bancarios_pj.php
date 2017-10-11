@@ -118,7 +118,8 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 			<div class="col-md-offset-1 col-md-10">
 			<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
 			
-			<font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA NO BANCO DO BRASIL*.</strong></font><br />
+			<font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />
+			Não são aceitas: conta fácil, poupança e conjunta.</strong></font><br />
 			<p>
 						 
 				<div class="form-group">

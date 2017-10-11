@@ -7,6 +7,9 @@ $idPessoaFisica = $_SESSION['idUser'];
 $tipoPessoa = 1;
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 
+$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
+$http = $server."/pdf/";
+
 
 if(isset($_POST["enviar"]))
 {
@@ -112,7 +115,6 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 								<a href="http://www3.prefeitura.sp.gov.br/certidaotributaria/forms/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais de São Paulo</a></i><br/><br />
 								<a href="http://www.tst.jus.br/certidao" target="_blank">CNDT - Certidão Negativa de Débitos de Tributos Trabalhistas</a></i><br/><br />
 								<a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx" target="_blank">CADIN Municipal</a></i><br/><br />
-								<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CndConjuntaInter/InformaNICertidao.asp?Tipo=2" target="_blank">CND Federal - Certidão Negativa de Débitos de Tributos Federais</a></i><br/>
 							</div>
 						</div>
 					</div>
