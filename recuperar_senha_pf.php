@@ -27,7 +27,7 @@
 						<br />	
 
 						<p align="left">Atenciosamente,</p>
-						<p align="left"><strong>Equipe MACAPAC</strong></p>
+						<p align="left"><strong>Equipe IGSIS - CAPAC</strong></p>
 						
 					</div>
 				</div>
