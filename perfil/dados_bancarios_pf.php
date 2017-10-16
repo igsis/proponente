@@ -159,7 +159,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 					
 				<!-- Gerar FACC -->
 				<?php
-					$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
+					$server = "http://200.237.5.33/capac/"; //mudar para pasta do igsis
 					$http = $server."/pdf/";
 					$link1 = $http."rlt_facc_pf.php"."?id_pf=".$idPessoaFisica;
 				?>
