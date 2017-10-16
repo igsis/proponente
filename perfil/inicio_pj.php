@@ -4,7 +4,15 @@ $idPessoaJuridica = $_SESSION['idUser'];
 
 
 if(isset($_POST['cadastrarJuridica']))
-{
+{		
+	$Email = $_POST['email'];
+	$Telefone1 = addslashes($_POST['telefone1']);
+	if($Email == '' OR $Telefone1 == '')
+	{
+		$mensagem = "Por favor, preencha todos os campos.";
+	}
+	else
+	{	
 	$idPessoaJuridica = $_POST['cadastrarJuridica'];
 	$RazaoSocial = addslashes($_POST['razaoSocial']);
 	$Telefone1 = $_POST['telefone1'];
@@ -29,6 +37,7 @@ if(isset($_POST['cadastrarJuridica']))
 	{
 		$mensagem = "Erro ao atualizar! Tente novamente.";
 	}	
+	}
 }
 
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);

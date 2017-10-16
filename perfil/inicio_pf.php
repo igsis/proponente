@@ -4,7 +4,15 @@ $idPessoaFisica = $_SESSION['idUser'];
 
 
 if(isset($_POST['cadastrarFisica']))
-{
+{		
+	$Email = $_POST['email'];
+	$Telefone1 = addslashes($_POST['telefone1']);
+	if($Email == '' OR $Telefone1 == '')
+	{
+		$mensagem = "Por favor, preencha todos os campos.";
+	}
+	else
+	{	
 	$idPessoaFisica = $_POST['cadastrarFisica'];
 	$Nome = addslashes($_POST['nome']);
 	$NomeArtistico = addslashes($_POST['nomeArtistico']);
@@ -42,6 +50,7 @@ if(isset($_POST['cadastrarFisica']))
 	{
 		$mensagem = "Erro ao atualizar! Tente novamente.";
 	}	
+	}
 }
 
 $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
