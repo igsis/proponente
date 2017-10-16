@@ -131,7 +131,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				
 				<!-- Upload de arquivo -->
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
+					<div class="col-md-offset-1 col-md-10">
 						<div class = "center">
 						<form method="POST" action="?perfil=anexos_pf" enctype="multipart/form-data">
 							<table>
@@ -145,7 +145,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 									{ 
 								?>
 										<tr>
-											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+											<td class="list_description"><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php 
 									}

@@ -134,7 +134,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				
 				<!-- Upload de arquivo -->
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
+					<div class="col-md-offset-1 col-md-10">
 						<div class = "center">
 						<form method="POST" action="?perfil=anexos_pj" enctype="multipart/form-data">
 							<table>
