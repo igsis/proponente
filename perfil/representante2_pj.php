@@ -60,6 +60,20 @@ if ($pj['idRepresentanteLegal2'] == 0) // Não possui representante legal cadast
 							<input type="submit" class="btn btn-theme btn-lg btn-block" value="Pesquisar">                   
 						</div>
 					</div>
+					
+					<!-- Botão para Voltar e Prosseguir -->
+						<div class="form-group">					
+							<div class="col-md-offset-2 col-md-2">
+								<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
+									<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+								</form>	
+							</div>
+							<div class="col-md-offset-4 col-md-2">
+								<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">	
+									<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+								</form>	
+							</div>					
+						</div>
 				</form>
 			</div>
 		</div>
@@ -109,6 +123,20 @@ else
 									<input type="submit" value="Trocar o Representante" class="btn btn-theme btn-lg btn-block">
 								</form>	
 							</div>
+						</div>
+						
+						<!-- Botão para Voltar e Prosseguir -->
+						<div class="form-group">					
+							<div class="col-md-offset-2 col-md-2">
+								<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
+									<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+								</form>	
+							</div>
+							<div class="col-md-offset-4 col-md-2">
+								<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">	
+									<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+								</form>	
+							</div>					
 						</div>
 						
 					</div>
