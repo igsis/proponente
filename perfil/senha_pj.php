@@ -128,7 +128,22 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 						<input type="submit" name ="fraseSeguranca" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>	
+					
 				</form>
+				
+								<!-- Botão para Voltar -->
+				<div class="form-group">					
+					<div class="col-md-offset-2 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+						</form>	
+					</div>
+				</div>
+				
 			</div>
 		</div>
 		<!-- Fim Pergunta de Segurança -->
