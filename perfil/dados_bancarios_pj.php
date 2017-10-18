@@ -154,7 +154,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 					
 				<!-- Gerar FACC -->
 				<?php
-					$server = "http://200.237.5.33/capac/"; //mudar para pasta do igsis
+					$server = "http://".$_SERVER['SERVER_NAME']."/capac/"; 
 					$http = $server."/pdf/";
 					$link1 = $http."rlt_facc_pj.php"."?id_pj=".$idPessoaJuridica;
 				?>
