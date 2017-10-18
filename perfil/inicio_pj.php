@@ -72,7 +72,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 					<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
 						<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone3']; ?>" >
 					</div>
-					<div class="col-md-6"><strong>E-mail:</strong><br/>
+					<div class="col-md-6"><strong>E-mail *:</strong><br/>
 						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pj['email']; ?>" >
 					</div>
 				</div>					

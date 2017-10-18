@@ -97,7 +97,7 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 				</div>
 		  
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>E-mail:</strong><br/>
+					<div class="col-md-offset-2 col-md-6"><strong>E-mail *:</strong><br/>
 						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pf['email']; ?>" >
 					</div>	
 					<div class="col-md-6"><strong>Estado civil:</strong><br/>

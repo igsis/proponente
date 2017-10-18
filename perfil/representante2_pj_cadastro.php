@@ -5,6 +5,14 @@ $idPessoaJuridica = $_SESSION['idUser'];
 // Cadastro um representante que não existe
 if(isset($_POST['cadastraRepresentante']))
 {
+	$nome = addslashes($_POST['nome']);
+	$rg = $_POST['rg'];
+	if($rg == '' OR $nome == '')
+	{
+		$mensagem = "Por favor, preencha todos os campos obrigatórios!";
+	}
+	else
+	{	
 	$idRep2 = $_POST['cadastraRepresentante'];
 	$nome = addslashes($_POST['nome']);
 	$rg = $_POST['rg'];
@@ -25,6 +33,7 @@ if(isset($_POST['cadastraRepresentante']))
 	{
 		$mensagem = "Erro ao cadastrar! Tente novamente.";
 	}	
+	}
 }
 
 // Insere um Representante que foi pesquisado
@@ -36,6 +45,14 @@ if(isset($_POST['insereRepresentante']))
 // Edita os dados do representante
 if(isset($_POST['editaRepresentante']))
 {
+	$nome = addslashes($_POST['nome']);
+	$rg = $_POST['rg'];
+	if($rg == '' OR $nome == '')
+	{
+		$mensagem = "Por favor, preencha todos os campos obrigatórios!";
+	}
+	else
+	{	
 	$idRep2 = $_POST['editaRepresentante'];
 	$nome = addslashes($_POST['nome']);
 	$rg = $_POST['rg'];
@@ -62,6 +79,7 @@ if(isset($_POST['editaRepresentante']))
 	{
 		$mensagem = "Erro ao atualizar! Tente novamente.";
 	}	
+	}
 }
 
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
