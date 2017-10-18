@@ -9,6 +9,7 @@
 			| <a href="?perfil=dados_bancarios_pf">Dados Bancários</a>  
 			| <a href="?perfil=anexos_pf">Demais Anexos</a> 
 			| <a href="?perfil=senha_pf">Trocar a senha</a>
+			| <a href="../manual" target="_blank">Ajuda</a>
 			| <a href="../include/logoff.php">Sair</a> |</strong><br/>
 		</div>
 	</div>
