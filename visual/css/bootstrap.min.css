@@ -44,7 +44,7 @@
 }
 
 .breadcrumbs .breadcrumb > li + li:before {
-  content: " ";
+  content: " ";
 }
 
 #list_items .list_info {
@@ -77,8 +77,12 @@
 .list_info table tr td {
   border-top: 0 none;
   vertical-align: inherit;
+  font-size: 14px;
 }
 
+table td {
+  font-size: 14px;
+}
 
 #list_items .list_info .image {
   padding-left: 30px;
