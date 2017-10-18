@@ -171,7 +171,12 @@ $pf = recuperaDados("usuario_pf","id",$idPessoaFisica);
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
 						</form>	
 					</div>
-				</div>	
+					<div class="col-md-offset-4 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=senha_pf" method="post">	
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
+						</form>	
+					</div>					
+				</div>
 			</div>	
 		</div>
 	</div>
