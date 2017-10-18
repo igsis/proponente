@@ -9,6 +9,7 @@ if(isset($_POST['cadastraRepresentante']))
 	$rg = $_POST['rg'];
 	if($rg == '' OR $nome == '')
 	{
+		
 		$mensagem = "Por favor, preencha todos os campos obrigatórios!";
 	}	
 	else
@@ -107,7 +108,7 @@ $representante1 = recuperaDados("representante_legal","id",$idRep1);
 							<input type="text" class="form-control" name="rg" placeholder="RG" value="<?php echo $representante1['rg']; ?>" >
 						</div>
 						<div class="col-md-6"><strong>CPF: *</strong><br/>
-							<input type="text" readonly class="form-control" name="cpf" placeholder="CPF" value="<?php echo $representante1['cpf']; ?>" >
+							<input type="text" readonly class="form-control" name="cpf" value="<?php echo $representante1['cpf'] ?>" placeholder="CPF">
 						</div>
 					</div>
 					

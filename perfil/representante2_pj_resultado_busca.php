@@ -82,7 +82,7 @@ else
 	<section id="contact" class="home-section bg-white">
 		<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 			<div class="form-group">
-				<h3>INFORMAÇÕES INICIAIS</h3>
+				<h3>CADASTRO REPRESENTANTE LEGAL #2</h3>
 				<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 				<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 			</div>
