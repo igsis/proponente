@@ -7,14 +7,18 @@ $con = bancoMysqli();
 
 if(isset($_POST['busca']))
 {
-	$busca = validaCPF($_POST['busca']);
-	$sql_busca = "SELECT * FROM usuario_pf WHERE login = '$busca' ORDER BY nome";
-	$query_busca = mysqli_query($con,$sql_busca); 
-	$num_busca = mysqli_num_rows($query_busca);
-	if($busca == false)
+	//validação
+	$validacao = validaCPF($_POST['busca']);
+	if($validacao == false)
 	{
-		$mensagem = "<font color='red'>CPF inválido! Redirecionando...</font>";
-		echo "<script type=\"text/javascript\">window.setTimeout(\"location.href='verifica_pf.php';\", 3600);</script>";		
+		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=erro_login_pf.php'>";
+	}
+	else
+	{
+		$busca = $_POST['busca'];
+		$sql_busca = "SELECT * FROM usuario_pf WHERE login = '$busca' ORDER BY nome";
+		$query_busca = mysqli_query($con,$sql_busca); 
+		$num_busca = mysqli_num_rows($query_busca);		
 	}
 }
 
@@ -24,7 +28,7 @@ if($num_busca > 0)
 	<html>
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-			<title>Mapeamento e Cadastro de Artistas e Profissionais de Arte e Cultura</title>
+			<title>IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura</title>
 			<link href="visual/css/bootstrap.min.css" rel="stylesheet" media="screen">
 			<link href="visual/css/style.css" rel="stylesheet" media="screen">
 			<link href="visual/color/default.css" rel="stylesheet" media="screen">

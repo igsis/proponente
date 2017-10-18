@@ -7,18 +7,19 @@ $con = bancoMysqli();
 
 if(isset($_POST['busca']))
 {
-	$busca = validaCNPJ($_POST['busca']);
-	if($busca == false)
+	//validação
+	$validacao = validaCNPJ($_POST['busca']);
+	if($validacao == false)
 	{
-		$mensagem = "<font color='red'>CNPJ inválido! Redirecionando...</font>";
-		echo "<script type=\"text/javascript\">window.setTimeout(\"location.href='verifica_pj.php';\", 3600);</script>";		
+		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=erro_login_pj.php'>";
 	}
 	else
-	{	
+	{
+		$busca = $_POST['busca'];
 		$sql_busca = "SELECT * FROM usuario_pj WHERE login = '$busca' ORDER BY razaoSocial";
 		$query_busca = mysqli_query($con,$sql_busca); 
-		$num_busca = mysqli_num_rows($query_busca);
-	}	
+		$num_busca = mysqli_num_rows($query_busca);		
+	}
 }
 
 if($num_busca > 0)
