@@ -77,42 +77,60 @@ $representante1 = recuperaDados("representante_legal","id",$idRep1);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?perfil=representante1_pj_cadastro" method="post">
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
-						<input type="text" class="form-control" name="nome" placeholder="Nome completo" value="<?php echo $representante1['nome']; ?>" >
+				<form class="form-horizontal" role="form" action="?perfil=representante1_pj_cadastro" method="post">
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
+							<input type="text" class="form-control" name="nome" placeholder="Nome completo" value="<?php echo $representante1['nome']; ?>" >
+						</div>
 					</div>
-				</div>
-				  
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>RG: *</strong><br/>
-						<input type="text" class="form-control" name="rg" placeholder="RG" value="<?php echo $representante1['rg']; ?>" >
+					  
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-6"><strong>RG: *</strong><br/>
+							<input type="text" class="form-control" name="rg" placeholder="RG" value="<?php echo $representante1['rg']; ?>" >
+						</div>
+						<div class="col-md-6"><strong>CPF: *</strong><br/>
+							<input type="text" readonly class="form-control" name="cpf" placeholder="CPF" value="<?php echo $representante1['cpf']; ?>" >
+						</div>
 					</div>
-					<div class="col-md-6"><strong>CPF: *</strong><br/>
-						<input type="text" readonly class="form-control" name="cpf" placeholder="CPF" value="<?php echo $representante1['cpf']; ?>" >
+					
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade: </strong><br/>
+							<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $representante1['nacionalidade']; ?>">
+						</div>
+						<div class="col-md-6"><strong>Estado civil:</strong><br/>
+							<select class="form-control" name="idEstadoCivil" >
+								<?php geraOpcao("estado_civil",$representante1['idEstadoCivil'],""); ?>  
+							</select>
+						</div>	
+					</div>	  
+			  
+						  
+					<!-- Botão para Gravar -->
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8">
+							<input type="hidden" name="editaRepresentante" value="<?php echo $idRep1 ?>">
+							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+						</div>
 					</div>
-				</div>
+				</form>
 				
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade: </strong><br/>
-						<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $representante1['nacionalidade']; ?>">
-					</div>
-					<div class="col-md-6"><strong>Estado civil:</strong><br/>
-						<select class="form-control" name="idEstadoCivil" >
-							<?php geraOpcao("estado_civil",$representante1['idEstadoCivil'],""); ?>  
-						</select>
-					</div>	
-				</div>	  
-		  
-					  
-				<!-- Botão para Gravar -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="editaRepresentante" value="<?php echo $idRep1 ?>">
-						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
-					</div>
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
-			</form>
+				
+				<!-- Botão para Voltar e Prosseguir -->
+				<div class="form-group">					
+					<div class="col-md-offset-2 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+						</form>	
+					</div>
+					<div class="col-md-offset-4 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">	
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+						</form>	
+					</div>					
+				</div>
 			
 			</div>
 		</div>
