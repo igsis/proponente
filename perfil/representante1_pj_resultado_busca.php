@@ -4,10 +4,22 @@ $idPessoaJuridica = $_SESSION['idUser'];
 
 $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 
-$busca = $_POST['busca'];
-$sql_busca = "SELECT * FROM representante_legal WHERE cpf = '$busca' ORDER BY nome";
-$query_busca = mysqli_query($con,$sql_busca); 
-$num_busca = mysqli_num_rows($query_busca);
+if(isset($_POST['busca']))
+{
+	//validação
+	$validacao = validaCPF($_POST['busca']);
+	if($validacao == false)
+	{
+		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=erros&p=erro_representante1'>";
+	}
+	else
+	{
+		$busca = $_POST['busca'];
+		$sql_busca = "SELECT * FROM representante_legal WHERE cpf = '$busca' ORDER BY nome";
+		$query_busca = mysqli_query($con,$sql_busca); 
+		$num_busca = mysqli_num_rows($query_busca);		
+	}
+}
 
 if($num_busca > 0)
 { // Se exisitr, lista a resposta.
