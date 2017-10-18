@@ -4,7 +4,7 @@ $idPessoaJuridica = $_SESSION['idUser'];
 
 $tipoPessoa = 2;
 
-$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
+$server = "http://".$_SERVER['SERVER_NAME']."/capac/"; 
 $http = $server."/pdf/";
 $link1 = $http."rlt_declaracaoccm_pj.php"."?id_pj=".$idPessoaJuridica;
 
